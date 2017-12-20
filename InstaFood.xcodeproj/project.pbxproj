@@ -7,14 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5FFB1B0BF2C3C0FF696E910E /* Pods_InstaFood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A6E7EB61949A17AECAB4E0 /* Pods_InstaFood.framework */; };
 		841476231FE82CA900DC8D1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841476221FE82CA900DC8D1D /* AppDelegate.swift */; };
 		841476251FE82CA900DC8D1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841476241FE82CA900DC8D1D /* ViewController.swift */; };
 		841476281FE82CA900DC8D1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841476261FE82CA900DC8D1D /* Main.storyboard */; };
 		8414762A1FE82CA900DC8D1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 841476291FE82CA900DC8D1D /* Assets.xcassets */; };
 		8414762D1FE82CA900DC8D1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8414762B1FE82CA900DC8D1D /* LaunchScreen.storyboard */; };
+		847186B41FE9697700781F8D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847186B31FE9697700781F8D /* LoginViewController.swift */; };
+		847186B71FE96DAB00781F8D /* Background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 841476361FE8334300DC8D1D /* Background.jpg */; };
+		847186B91FE96E4C00781F8D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847186B81FE96E4C00781F8D /* SignUpViewController.swift */; };
+		84892D871FE99112004874BC /* RecipesFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84892D861FE99112004874BC /* RecipesFeedViewController.swift */; };
+		84CF31911FEABFEA00882540 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84CF31901FEAB30400882540 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03A6E7EB61949A17AECAB4E0 /* Pods_InstaFood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaFood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		344AAC3BA7703357383F89D0 /* Pods-InstaFood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaFood.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstaFood/Pods-InstaFood.debug.xcconfig"; sourceTree = "<group>"; };
 		8414761F1FE82CA900DC8D1D /* InstaFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		841476221FE82CA900DC8D1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		841476241FE82CA900DC8D1D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +30,17 @@
 		841476291FE82CA900DC8D1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8414762C1FE82CA900DC8D1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8414762E1FE82CA900DC8D1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		841476361FE8334300DC8D1D /* Background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Background.jpg; sourceTree = "<group>"; };
+		847186B31FE9697700781F8D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		847186B81FE96E4C00781F8D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		847186BA1FE9791500781F8D /* Email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Email.png; sourceTree = "<group>"; };
+		84892D861FE99112004874BC /* RecipesFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesFeedViewController.swift; sourceTree = "<group>"; };
+		84892D881FE99947004874BC /* home-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-100.png"; sourceTree = "<group>"; };
+		84892D891FE999C5004874BC /* book-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book-100.png"; sourceTree = "<group>"; };
+		84892D8A1FE999C5004874BC /* plus-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus-100.png"; sourceTree = "<group>"; };
+		84892D8C1FE99A6A004874BC /* star-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-100.png"; sourceTree = "<group>"; };
+		84CF31901FEAB30400882540 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B341DF587FA5956004163DEA /* Pods-InstaFood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaFood.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstaFood/Pods-InstaFood.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +48,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FFB1B0BF2C3C0FF696E910E /* Pods_InstaFood.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3FBAE73BA044E75FBA9D43AF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				344AAC3BA7703357383F89D0 /* Pods-InstaFood.debug.xcconfig */,
+				B341DF587FA5956004163DEA /* Pods-InstaFood.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		841476161FE82CA900DC8D1D = {
 			isa = PBXGroup;
 			children = (
 				841476211FE82CA900DC8D1D /* InstaFood */,
 				841476201FE82CA900DC8D1D /* Products */,
+				3FBAE73BA044E75FBA9D43AF /* Pods */,
+				A9014603B28B6E9CC3C4660C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +85,64 @@
 		841476211FE82CA900DC8D1D /* InstaFood */ = {
 			isa = PBXGroup;
 			children = (
-				841476221FE82CA900DC8D1D /* AppDelegate.swift */,
+				847186B01FE965DC00781F8D /* Controller */,
+				847186AF1FE9655300781F8D /* View */,
+				847186AE1FE9654D00781F8D /* Model */,
+				841476341FE8331100DC8D1D /* SupportingFiles */,
 				841476241FE82CA900DC8D1D /* ViewController.swift */,
-				841476261FE82CA900DC8D1D /* Main.storyboard */,
 				841476291FE82CA900DC8D1D /* Assets.xcassets */,
-				8414762B1FE82CA900DC8D1D /* LaunchScreen.storyboard */,
 				8414762E1FE82CA900DC8D1D /* Info.plist */,
+				84CF31901FEAB30400882540 /* GoogleService-Info.plist */,
 			);
 			path = InstaFood;
+			sourceTree = "<group>";
+		};
+		841476341FE8331100DC8D1D /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				841476361FE8334300DC8D1D /* Background.jpg */,
+				847186BA1FE9791500781F8D /* Email.png */,
+				84892D881FE99947004874BC /* home-100.png */,
+				84892D891FE999C5004874BC /* book-100.png */,
+				84892D8A1FE999C5004874BC /* plus-100.png */,
+				84892D8C1FE99A6A004874BC /* star-100.png */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		847186AE1FE9654D00781F8D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		847186AF1FE9655300781F8D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				841476261FE82CA900DC8D1D /* Main.storyboard */,
+				8414762B1FE82CA900DC8D1D /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		847186B01FE965DC00781F8D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				841476221FE82CA900DC8D1D /* AppDelegate.swift */,
+				847186B31FE9697700781F8D /* LoginViewController.swift */,
+				847186B81FE96E4C00781F8D /* SignUpViewController.swift */,
+				84892D861FE99112004874BC /* RecipesFeedViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A9014603B28B6E9CC3C4660C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				03A6E7EB61949A17AECAB4E0 /* Pods_InstaFood.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +152,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 841476311FE82CA900DC8D1D /* Build configuration list for PBXNativeTarget "InstaFood" */;
 			buildPhases = (
+				AB90C3FC06B6A64641D5C8EB /* [CP] Check Pods Manifest.lock */,
 				8414761B1FE82CA900DC8D1D /* Sources */,
 				8414761C1FE82CA900DC8D1D /* Frameworks */,
 				8414761D1FE82CA900DC8D1D /* Resources */,
+				0D07AFF4E3F28B0C76BB6F9E /* [CP] Embed Pods Frameworks */,
+				FF20ADA16A252638F49008F5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -124,6 +208,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8414762D1FE82CA900DC8D1D /* LaunchScreen.storyboard in Resources */,
+				847186B71FE96DAB00781F8D /* Background.jpg in Resources */,
+				84CF31911FEABFEA00882540 /* GoogleService-Info.plist in Resources */,
 				8414762A1FE82CA900DC8D1D /* Assets.xcassets in Resources */,
 				841476281FE82CA900DC8D1D /* Main.storyboard in Resources */,
 			);
@@ -131,12 +217,85 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0D07AFF4E3F28B0C76BB6F9E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-InstaFood/Pods-InstaFood-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InstaFood/Pods-InstaFood-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB90C3FC06B6A64641D5C8EB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-InstaFood-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF20ADA16A252638F49008F5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InstaFood/Pods-InstaFood-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8414761B1FE82CA900DC8D1D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				847186B41FE9697700781F8D /* LoginViewController.swift in Sources */,
+				84892D871FE99112004874BC /* RecipesFeedViewController.swift in Sources */,
 				841476251FE82CA900DC8D1D /* ViewController.swift in Sources */,
+				847186B91FE96E4C00781F8D /* SignUpViewController.swift in Sources */,
 				841476231FE82CA900DC8D1D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +431,7 @@
 		};
 		841476321FE82CA900DC8D1D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 344AAC3BA7703357383F89D0 /* Pods-InstaFood.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -286,6 +446,7 @@
 		};
 		841476331FE82CA900DC8D1D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B341DF587FA5956004163DEA /* Pods-InstaFood.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
