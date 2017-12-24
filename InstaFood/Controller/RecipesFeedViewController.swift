@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RecipesFeedViewController: UIViewController {
 
@@ -23,6 +24,23 @@ class RecipesFeedViewController: UIViewController {
     
     // MARK: - LogOut
     @IBAction func LogOut(_ sender: Any) {
+        print ("-------------------")
+        do {
+            try! Auth.auth().signOut()
+            if Auth.auth().currentUser == nil {
+                print ("Sign out Successfully")
+                MoveToLoginViewController()
+            }
+        }
+        catch let error as NSError{
+            print(error.localizedDescription)
+        }
+        
+        
+        
+    }
+    // MARK: - MoveToLoginViewController
+    func MoveToLoginViewController() {
         let storyboardMain = UIStoryboard(name: "Main",bundle: nil)
         let loginsView = storyboardMain.instantiateViewController(withIdentifier: "Root") as! UINavigationController
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

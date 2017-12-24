@@ -134,7 +134,7 @@
         <!--Forgot a Password-->
         <scene sceneID="AY7-Ts-OUc">
             <objects>
-                <viewController title="Forgot a Password" id="bfi-o6-ebc" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ForgetPassword" title="Forgot a Password" id="bfi-o6-ebc" customClass="ForgetPasswordViewController" customModule="InstaFood" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eqC-a8-TR3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -167,11 +167,17 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="EmailButton"/>
+                                <connections>
+                                    <action selector="ForgetPasswordPressed:" destination="bfi-o6-ebc" eventType="touchUpInside" id="smC-3i-l5G"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="12y-JP-gNH"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="Qwq-I4-4xe" id="sV7-XG-VuC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TyR-c1-fOb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
