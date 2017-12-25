@@ -16,6 +16,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var passwordTextfield: UITextField!
     
+    let networkingService = NetworkingService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         else {
             print ("Successfully loged in with facebook")
             //go to the Feed Bar
-            self.moveToFeedBar()
+            self.networkingService.moveToFeedBar()
         }
     }
 
@@ -65,18 +66,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 SVProgressHUD.dismiss()
                 
                 //go to the Feed Bar
-                self.moveToFeedBar()
+                self.networkingService.moveToFeedBar()
             }
         }
         
     }
-    
-    // MARK: - Login
-    func moveToFeedBar() {
-        let storyboardMain = UIStoryboard(name: "Main",bundle: nil)
-        let tabController = storyboardMain.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = tabController
-    }
-    
 }

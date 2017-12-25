@@ -19,6 +19,7 @@
 		847186B91FE96E4C00781F8D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847186B81FE96E4C00781F8D /* SignUpViewController.swift */; };
 		84892D871FE99112004874BC /* RecipesFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84892D861FE99112004874BC /* RecipesFeedViewController.swift */; };
 		84CF31911FEABFEA00882540 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84CF31901FEAB30400882540 /* GoogleService-Info.plist */; };
+		84F69A671FF1544F00BCA187 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F69A661FF1544F00BCA187 /* NetworkingService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		84892D8A1FE999C5004874BC /* plus-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus-100.png"; sourceTree = "<group>"; };
 		84892D8C1FE99A6A004874BC /* star-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-100.png"; sourceTree = "<group>"; };
 		84CF31901FEAB30400882540 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		84F69A661FF1544F00BCA187 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		B341DF587FA5956004163DEA /* Pods-InstaFood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaFood.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstaFood/Pods-InstaFood.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +117,7 @@
 		847186AE1FE9654D00781F8D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				84F69A661FF1544F00BCA187 /* NetworkingService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				841476251FE82CA900DC8D1D /* ViewController.swift in Sources */,
 				847186B91FE96E4C00781F8D /* SignUpViewController.swift in Sources */,
 				8447702E1FEED14A002BFD0A /* ForgetPasswordViewController.swift in Sources */,
+				84F69A671FF1544F00BCA187 /* NetworkingService.swift in Sources */,
 				841476231FE82CA900DC8D1D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

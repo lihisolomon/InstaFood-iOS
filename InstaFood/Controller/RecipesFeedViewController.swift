@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 
 class RecipesFeedViewController: UIViewController {
+    
+    let networkingService = NetworkingService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,23 +31,14 @@ class RecipesFeedViewController: UIViewController {
             try! Auth.auth().signOut()
             if Auth.auth().currentUser == nil {
                 print ("Sign out Successfully")
-                MoveToLoginViewController()
+                networkingService.MoveToLoginViewController()
             }
         }
         catch let error as NSError{
             print(error.localizedDescription)
         }
-        
-        
-        
     }
-    // MARK: - MoveToLoginViewController
-    func MoveToLoginViewController() {
-        let storyboardMain = UIStoryboard(name: "Main",bundle: nil)
-        let loginsView = storyboardMain.instantiateViewController(withIdentifier: "Root") as! UINavigationController
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = loginsView
-    }
+    
     /*
     // MARK: - Navigation
 

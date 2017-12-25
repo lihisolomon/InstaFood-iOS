@@ -13,6 +13,8 @@ class ForgetPasswordViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     
+    let networkingService = NetworkingService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,19 +28,43 @@ class ForgetPasswordViewController: UIViewController {
     
 
     @IBAction func ForgetPasswordPressed(_ sender: Any) {
+        var titleAlert = ""
+        var messageAlert = ""
+        var action = ""
+        
         Auth.auth().sendPasswordReset(withEmail: emailTextField.text!) {error in
             if error == nil {
-                print ("-------------------")
-                print ("an Email to reset password has been sent to you")
+                titleAlert = "Success"
+                messageAlert = "An Email to reset password has been sent to you"
+                action = "login"
             }
             else {
                 print(self.emailTextField.text!)
                 print (error!)
+                
+                titleAlert = "Reset Password Failed"
+                messageAlert = "Please check Email Address"
+                
+                //title: NSLocalizedString("OK", comment: "Default action")
             }
-            
+            self.sendAlertToUser(titleAlert: titleAlert, messageAlert: messageAlert, action: action)
         }
     }
     
+    // MARK: Send alert to the user
+    func sendAlertToUser(titleAlert: String, messageAlert: String, action: String) {
+        let alert = UIAlertController(title: titleAlert, message: messageAlert, preferredStyle: .alert)
+        let restartAction = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
+            if action == "login"{
+                self.networkingService.MoveToLoginViewController()
+            }
+            else{
+                NSLog("The \"OK\" alert occured.")
+            }
+        })
+        alert.addAction(restartAction)
+        self.present(alert, animated: true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 
