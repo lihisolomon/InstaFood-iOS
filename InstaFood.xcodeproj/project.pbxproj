@@ -44,6 +44,7 @@
 		84892D8C1FE99A6A004874BC /* star-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-100.png"; sourceTree = "<group>"; };
 		84CF31901FEAB30400882540 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		84F69A661FF1544F00BCA187 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		84F69A681FF1624E00BCA187 /* user-Image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "user-Image.jpg"; sourceTree = "<group>"; };
 		B341DF587FA5956004163DEA /* Pods-InstaFood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaFood.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstaFood/Pods-InstaFood.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,6 +105,7 @@
 		841476341FE8331100DC8D1D /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				84F69A681FF1624E00BCA187 /* user-Image.jpg */,
 				841476361FE8334300DC8D1D /* Background.jpg */,
 				847186BA1FE9791500781F8D /* Email.png */,
 				84892D881FE99947004874BC /* home-100.png */,
