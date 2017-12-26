@@ -1437,7 +1437,11 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 	}
 	
 	if(!_hapticGenerator) {
-		_hapticGenerator = [[UINotificationFeedbackGenerator alloc] init];
+        if (@available(iOS 10.0, *)) {
+            _hapticGenerator = [[UINotificationFeedbackGenerator alloc] init];
+        } else {
+            // Fallback on earlier versions
+        }
 	}
 	return _hapticGenerator;
 }

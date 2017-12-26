@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
 
 class ForgetPasswordViewController: UIViewController {
 
@@ -28,12 +28,14 @@ class ForgetPasswordViewController: UIViewController {
     
 
     @IBAction func ForgetPasswordPressed(_ sender: Any) {
+        print ("-------------------")
         var titleAlert = ""
         var messageAlert = ""
         var action = ""
         
         Auth.auth().sendPasswordReset(withEmail: emailTextField.text!) {error in
             if error == nil {
+                print("reset password successfully")
                 titleAlert = "Success"
                 messageAlert = "An Email to reset password has been sent to you"
                 action = "login"
@@ -44,8 +46,6 @@ class ForgetPasswordViewController: UIViewController {
                 
                 titleAlert = "Reset Password Failed"
                 messageAlert = "Please check Email Address"
-                
-                //title: NSLocalizedString("OK", comment: "Default action")
             }
             self.sendAlertToUser(titleAlert: titleAlert, messageAlert: messageAlert, action: action)
         }

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
 import SVProgressHUD
 import FBSDKLoginKit
 
@@ -28,13 +28,16 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         loginButton.frame = CGRect(x: 32, y: 565, width: 343, height: 45)
         loginButton.delegate = self
         // Do any additional setup after loading the view.
+
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print ("-------------------")
         print("Did logout from facebook")
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        print ("-------------------")
         if (error != nil){
             print (error)
             return
@@ -58,17 +61,26 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         SVProgressHUD.show()
         Auth.auth().signIn(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (user, error) in
             if error != nil {
-                print ("-------------------")
                 print (error!)
+                self.sendAlertToUser(titleAlert: "invalid email or password", messageAlert: "please check your inputs")
             }
             else {
                 print ("login successful")
-                SVProgressHUD.dismiss()
-                
                 //go to the Feed Bar
                 self.networkingService.moveToFeedBar()
             }
+            SVProgressHUD.dismiss()
         }
         
+    }
+    
+    // MARK: Send alert to the user
+    func sendAlertToUser(titleAlert: String, messageAlert: String) {
+        let alert = UIAlertController(title: titleAlert, message: messageAlert, preferredStyle: .alert)
+        let restartAction = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
+            NSLog("The \"OK\" alert occured.")
+        })
+        alert.addAction(restartAction)
+        self.present(alert, animated: true, completion: nil)
     }
 }
