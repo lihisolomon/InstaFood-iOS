@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
-import FirebaseStorage
 import SVProgressHUD
 
 class SignUpViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -35,66 +32,26 @@ class SignUpViewController: UIViewController,UIImagePickerControllerDelegate, UI
         SVProgressHUD.show()
         if (firstNameTextfield.text!.isEmpty){
             SVProgressHUD.dismiss()
-            sendAlertToUser(titleAlert: "No First Name", messageAlert: "please type your first name")
+            networkingService.sendAlertToUser(self, titleAlert: "No First Name", messageAlert: "please type your first name")
         }
         else if (lastNameTextfield.text!.isEmpty){
             SVProgressHUD.dismiss()
-            sendAlertToUser(titleAlert: "No Last Name", messageAlert: "please type your last name")
+            networkingService.sendAlertToUser(self,titleAlert: "No Last Name", messageAlert: "please type your last name")
         }
         else if (!isValidEmail(emailTextfield.text!)){
             SVProgressHUD.dismiss()
-            sendAlertToUser(titleAlert: "invalid email", messageAlert: "please type valid email address")
+            networkingService.sendAlertToUser(self,titleAlert: "invalid email", messageAlert: "please type valid email address")
         }
         else if (!isValidPassword(passwordTextfield.text!)){
             SVProgressHUD.dismiss()
-            sendAlertToUser(titleAlert: "invalid password", messageAlert: "please type passwrod with minimum 6 characters at least 1 Alphabet and 1 Number")
+            networkingService.sendAlertToUser(self,titleAlert: "invalid password", messageAlert: "please type passwrod with minimum 6 characters at least 1 Alphabet and 1 Number")
         }
         else {
-            Auth.auth().createUser(withEmail: emailTextfield.text!, password: passwordTextfield.text!, completion: {(authData,error) in
-                    if error != nil{
-                        SVProgressHUD.dismiss()
-                        print (error!)
-                        self.sendAlertToUser(titleAlert: "Error, Please Try Again", messageAlert: error!.localizedDescription)
-                    }
-                    else {
-                        guard let uid = authData?.uid else {return }
-                        
-                        //successfully authenticated user
-                        //upload image into Firebase
-                        let storageRef = Storage.storage().reference().child("ProfileImage\(uid)")
-                        if let uploadData = UIImagePNGRepresentation(self.userImageView.image!){
-                            storageRef.putData(uploadData, metadata: nil, completion: {(metadata,error) in
-                                if error != nil{
-                                    print (error!)
-                                }
-                                else{
-                                    print ("Storage image Successfully")
-                                }
-                                if let profileUserURL = metadata?.downloadURL()?.absoluteString{
-                                    let userInfo = ["FirstName" : self.firstNameTextfield.text!, "LastName" : self.lastNameTextfield.text!, "EmailAddress" : self.emailTextfield.text! ,"ProfileImage" : profileUserURL]
-                                    self.uploadUserData(uid, values: userInfo as [String : AnyObject])
-                                }
-                                else {
-                                    let userInfo = ["FirstName" : self.firstNameTextfield.text!, "LastName" : self.lastNameTextfield.text!, "EmailAddress" : self.emailTextfield.text!]
-                                    self.uploadUserData(uid, values: userInfo as [String : AnyObject])
-                                }
-                            })
-                        }
-                         SVProgressHUD.dismiss()
-                        print ("Registration Successfully")
-                        self.networkingService.moveToFeedBar()
-                    }
-            })
+            networkingService.CreateNewUser(self,emailTextfield.text!,passwordTextfield.text!,self.firstNameTextfield.text!,self.lastNameTextfield.text!, userImageView.image!)
+            SVProgressHUD.dismiss()
         }
     }
-    //Mark: upload user data
-    func uploadUserData(_ uid: String, values :[String: AnyObject] ){
-        print ("-------------------")
-        let ref = Database.database().reference()
-        ref.child("users").child(uid).setValue(values)
-        
-        print ("upload data Successfully")
-    }
+    
     // MARK: add picture pressed
     @IBAction func addPicturePressed(_ sender: Any) {
         print ("-------------------")
@@ -131,15 +88,7 @@ class SignUpViewController: UIViewController,UIImagePickerControllerDelegate, UI
         return NSPredicate(format:"SELF MATCHES %@", emailRegex).evaluate(with: email)
     }
     
-    // MARK: Send alert to the user
-    func sendAlertToUser(titleAlert: String, messageAlert: String) {
-        let alert = UIAlertController(title: titleAlert, message: messageAlert, preferredStyle: .alert)
-        let restartAction = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
-            NSLog("The \"OK\" alert occured.")
-        })
-        alert.addAction(restartAction)
-        self.present(alert, animated: true, completion: nil)
-    }
+    
     
     // MARK: did Finish Picking Media
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {

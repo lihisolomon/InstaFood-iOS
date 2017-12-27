@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 import SVProgressHUD
 import FBSDKLoginKit
 
@@ -30,7 +29,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         // Do any additional setup after loading the view.
 
     }
-    
+    // MARK: - Facebook functions
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print ("-------------------")
         print("Did logout from facebook")
@@ -59,28 +58,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         print ("-------------------")
         //login
         SVProgressHUD.show()
-        Auth.auth().signIn(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (user, error) in
-            if error != nil {
-                print (error!)
-                self.sendAlertToUser(titleAlert: "invalid email or password", messageAlert: "please check your inputs")
-            }
-            else {
-                print ("login successful")
-                //go to the Feed Bar
-                self.networkingService.moveToFeedBar()
-            }
-            SVProgressHUD.dismiss()
-        }
         
-    }
-    
-    // MARK: Send alert to the user
-    func sendAlertToUser(titleAlert: String, messageAlert: String) {
-        let alert = UIAlertController(title: titleAlert, message: messageAlert, preferredStyle: .alert)
-        let restartAction = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
-            NSLog("The \"OK\" alert occured.")
-        })
-        alert.addAction(restartAction)
-        self.present(alert, animated: true, completion: nil)
+        networkingService.LoginUser(self, emailTextfield.text!, passwordTextfield.text!)
+        
+        SVProgressHUD.dismiss()
     }
 }
