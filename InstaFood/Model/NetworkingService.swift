@@ -104,7 +104,7 @@ struct NetworkingService {
     }
     
     //Mark: upload recipes data on Firebase - For signOut
-    func uploadRecipesData(_ uiViewController: UIViewController, _ titleRecipe: String ,_ ingredients: String,_ stepsRecipe: String, _ pictureRercipe: UIImage) {
+    func uploadRecipesData(_ uiViewController: UIViewController, _ titleRecipe: String ,_ ingredients: String,_ stepsRecipe: String, _ pictureRercipe: UIImage, success:@escaping (String,String,Recipe)->(), failure:@escaping ()->()){
         print ("-------------------")
         SVProgressHUD.show()
         let uid = Auth.auth().currentUser?.uid
@@ -113,25 +113,46 @@ struct NetworkingService {
         if let uploadData = UIImagePNGRepresentation(pictureRercipe){
             storageRef.putData(uploadData, metadata: nil, completion: {(metadata,error) in
                 if error != nil{
-                    print("Error")
-                    print (error!)
+                    print("Error: \(error!)")
+                    failure()
+                    return
                 }
                 else{
                     print ("-------------------")
                     print ("Storage image Successfully")
                 }
-                if let RecipeURL = metadata?.downloadURL()?.absoluteString{
-                    let recipeInfo = ["Title" :titleRecipe, "Ingredients" : ingredients, "steps" : stepsRecipe, "RecipeImage": RecipeURL]
+                if let recipeURL = metadata?.downloadURL()?.absoluteString{
+                    let recipeInfo = ["Title" :titleRecipe, "Ingredients" : ingredients, "steps" : stepsRecipe, "RecipeImage": recipeURL]
                     Database.database().reference().child("Recipes").child(uid!).child(uniqName).setValue(recipeInfo)
-                    self.sendAlertToUser(uiViewController, titleAlert: "Success", messageAlert: "inserted new recipe successfuly")
-                    print ("upload Recipes data Successfully")
                     SVProgressHUD.dismiss()
+                    print ("upload Recipes data Successfully")
+                    //self.sendAlertToUser(uiViewController, titleAlert: "Success", messageAlert: "inserted new recipe successfuly",action: "RecipeView")
+                    //self.sendAlertToUser(uiViewController, titleAlert: "Success", messageAlert: "inserted new recipe successfuly")
+                    let recipe = Recipe(titleRecipe,ingredients,stepsRecipe,recipeURL)
+                   success(uid!,uniqName,recipe)
                 }
             })
         }
-        
     }
-    
+    // MARK: - Display new recipe data לא למחוק
+//    func displayRecipeData(uid: String, recipeNum: String) -> Recipe{
+//        print ("-------------------")
+//        var recipe : Recipe?
+//        let ref = Database.database().reference()
+//        ref.child("Recipes").child(uid).child(recipeNum).observeSingleEvent (of: .value, with: { (snapshot)  in
+//            if let recipeDict = snapshot.value as? Dictionary<String, AnyObject> {
+//                let title = recipeDict["Title"] as? String ?? ""
+//                let steps = recipeDict["steps"] as? String ?? ""
+//                let ingredients = recipeDict["Ingredients"] as? String ?? ""
+//                let picture = recipeDict["RecipeImage"] as? String ?? ""
+//                let recipe = Recipe(title,ingredients,steps,picture)
+//            }
+//
+//        }){ (error) in
+//            print(error.localizedDescription)
+//        }
+//        return recipe!
+//    }
     
     // MARK: - Move To Feed Bar View Controller
     func moveToFeedBar() {
@@ -147,6 +168,14 @@ struct NetworkingService {
         let loginsView = storyboardMain.instantiateViewController(withIdentifier: "Root") as! UINavigationController
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginsView
+    }
+    
+    // MARK: - Move To Recipe View View Controller
+    func MoveToRecipeViewController() {
+        let storyboardMain = UIStoryboard(name: "Main",bundle: nil)
+        let recipeView = storyboardMain.instantiateViewController(withIdentifier: "RecipeView") as! UIViewController
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = recipeView
     }
     
     // MARK: Send alert to the user
@@ -185,6 +214,9 @@ struct NetworkingService {
             if action == "login"{
                 self.MoveToLoginViewController()
             }
+            else if action == "RecipeView"{
+                self.MoveToRecipeViewController()
+            }
             else{
                 NSLog("The \"OK\" alert occured.")
             }
@@ -193,6 +225,7 @@ struct NetworkingService {
         uiViewController.present(alert, animated: true, completion: nil)
     }
     
+    // MARK: Send alert to the user with 2 options
     func sendAlertToUserWithTwoOptions(vc: UIViewController, title: String, body: String, option1: String, option2: String) {
         let alert = UIAlertController(title: title, message: body, preferredStyle: UIAlertControllerStyle.alert)
         
@@ -207,6 +240,7 @@ struct NetworkingService {
         
         vc.present(alert, animated: true, completion: nil)
     }
+    
     func getCurrentUserPic() ->UIImage {
         var pic:UIImage?
         let uid = Auth.auth().currentUser?.uid

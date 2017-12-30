@@ -15,6 +15,8 @@
 		8414762D1FE82CA900DC8D1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8414762B1FE82CA900DC8D1D /* LaunchScreen.storyboard */; };
 		8447702E1FEED14A002BFD0A /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447702D1FEED14A002BFD0A /* ForgetPasswordViewController.swift */; };
 		845A891E1FF66FA10030F381 /* MyRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845A891D1FF66FA10030F381 /* MyRecipesViewController.swift */; };
+		84675F441FF79DFA00D1A196 /* RecipeViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84675F431FF79DFA00D1A196 /* RecipeViewViewController.swift */; };
+		84675F461FF7C5AA00D1A196 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84675F451FF7C5AA00D1A196 /* Recipe.swift */; };
 		847186B41FE9697700781F8D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847186B31FE9697700781F8D /* LoginViewController.swift */; };
 		847186B71FE96DAB00781F8D /* Background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 841476361FE8334300DC8D1D /* Background.jpg */; };
 		847186B91FE96E4C00781F8D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847186B81FE96E4C00781F8D /* SignUpViewController.swift */; };
@@ -36,6 +38,8 @@
 		841476361FE8334300DC8D1D /* Background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Background.jpg; sourceTree = "<group>"; };
 		8447702D1FEED14A002BFD0A /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		845A891D1FF66FA10030F381 /* MyRecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecipesViewController.swift; sourceTree = "<group>"; };
+		84675F431FF79DFA00D1A196 /* RecipeViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewViewController.swift; sourceTree = "<group>"; };
+		84675F451FF7C5AA00D1A196 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		847186B31FE9697700781F8D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		847186B81FE96E4C00781F8D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		847186BA1FE9791500781F8D /* Email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Email.png; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				84F69A661FF1544F00BCA187 /* NetworkingService.swift */,
+				84675F451FF7C5AA00D1A196 /* Recipe.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 				8408A87C1FF6A6E6006C7960 /* NewRecipeViewController.swift */,
 				8447702D1FEED14A002BFD0A /* ForgetPasswordViewController.swift */,
 				845A891D1FF66FA10030F381 /* MyRecipesViewController.swift */,
+				84675F431FF79DFA00D1A196 /* RecipeViewViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -311,6 +317,8 @@
 				8447702E1FEED14A002BFD0A /* ForgetPasswordViewController.swift in Sources */,
 				84F69A671FF1544F00BCA187 /* NetworkingService.swift in Sources */,
 				841476231FE82CA900DC8D1D /* AppDelegate.swift in Sources */,
+				84675F441FF79DFA00D1A196 /* RecipeViewViewController.swift in Sources */,
+				84675F461FF7C5AA00D1A196 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

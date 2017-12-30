@@ -24,10 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        //config the main storyboard
-        let storyboardMain = UIStoryboard(name: "Main",bundle: nil)
-        let loginsView = storyboardMain.instantiateViewController(withIdentifier: "Root") as! UINavigationController
-        self.window?.rootViewController = loginsView
+        
 
         return true
     }

@@ -8,10 +8,11 @@
 
 import UIKit
 
+
 class NewRecipeViewController: UIViewController,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
-
+    
     let networkingService = NetworkingService()
-
+    var recipe: Recipe?
     
     @IBOutlet weak var titleRecipe: UITextView!
     @IBOutlet weak var ingredients: UITextView!
@@ -21,10 +22,13 @@ class NewRecipeViewController: UIViewController,UITextViewDelegate,UIImagePicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
+        
     }
     
+    // MARK: save button is pressed
     @IBAction func SaveIsPressed(_ sender: UIButton) {
-        if titleRecipe.text == "Add title"{
+        if titleRecipe.text == "Add Title"{
             networkingService.sendAlertToUser(self, titleAlert: "Title is missing", messageAlert: "please enter the title of the recipe")
         }
         else if ingredients.text == "Add ingredients"{
@@ -37,24 +41,37 @@ class NewRecipeViewController: UIViewController,UITextViewDelegate,UIImagePicker
             networkingService.sendAlertToUser(self, titleAlert: "image is missing", messageAlert: "please enter the image of the recipe")
         }
         else{
-            networkingService.uploadRecipesData(self,titleRecipe.text!,ingredients.text!,stepsRecipe.text!,pictureRecipe.image!)
-            
+            networkingService.uploadRecipesData(self,titleRecipe.text!,ingredients.text!,stepsRecipe.text!,pictureRecipe.image!, success: success, failure: failure)
         }
     }
-  
-
+    
+    func success(uid: String,recipeID: String, recipe: Recipe) {
+        print ("Success")
+        self.recipe = recipe
+        if let recipeViewVC = self.storyboard?.instantiateViewController(withIdentifier: "RecipeViewVC") as? RecipeViewViewController {
+            recipeViewVC.recipe = recipe
+            self.navigationController?.pushViewController(recipeViewVC, animated: true)
+        }
+        
+    }
+    func failure() {
+        networkingService.sendAlertToUser(self, titleAlert: "Error", messageAlert: "Error loading new recipe\n please try again")
+        print("Could not upload the recipe")
+    }
+    
+    // MARK: add picture is pressed
     @IBAction func addPictureIsPressed(_ sender: UIButton) {
-   
-    print ("-------------------")
+        print ("-------------------")
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.allowsEditing = true
         networkingService.pickPicture (self,pickerController)
         
-        let button = sender as? UIButton
-        button?.setTitle("", for: UIControlState.normal)
+        let button = sender as UIButton
+        button.setTitle("", for: UIControlState.normal)
     }
     
+    // MARK: pick image
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.pictureRecipe.image = image
@@ -62,26 +79,11 @@ class NewRecipeViewController: UIViewController,UITextViewDelegate,UIImagePicker
         picker.dismiss(animated: true, completion: nil);
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
     
     // MARK: - Logout
-   
     @IBAction func Logout(_ sender: UIButton) {
-    networkingService.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
+        networkingService.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

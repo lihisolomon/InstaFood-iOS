@@ -226,7 +226,7 @@
             </objects>
             <point key="canvasLocation" x="2189.8550724637685" y="507.88043478260875"/>
         </scene>
-        <!--AddRecipe-->
+        <!--New Recipe View Controller-->
         <scene sceneID="kOr-Du-md9">
             <objects>
                 <viewController id="tGY-vk-idv" customClass="NewRecipeViewController" customModule="InstaFood" customModuleProvider="target" sceneMemberID="viewController">
@@ -276,13 +276,13 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Add Title" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="O6e-3W-889">
-                                <rect key="frame" x="0.0" y="62" width="414" height="116"/>
+                                <rect key="frame" x="0.0" y="76" width="414" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="add steps" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9l9-6r-oY5">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="add steps" translatesAutoresizingMaskIntoConstraints="NO" id="9l9-6r-oY5">
                                 <rect key="frame" x="0.0" y="433" width="414" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -306,17 +306,123 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="3bq-c6-9nf"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="AddRecipe" image="PlusIcon" selectedImage="PlusIcon" id="bCd-1S-vbk"/>
+                    <navigationItem key="navigationItem" id="VOg-Py-L79"/>
                     <connections>
                         <outlet property="ingredients" destination="Mcq-CK-3N6" id="N0n-2j-IyB"/>
                         <outlet property="pictureRecipe" destination="gF2-0p-4re" id="Uvj-hy-sHq"/>
                         <outlet property="stepsRecipe" destination="9l9-6r-oY5" id="TPh-WE-jOg"/>
                         <outlet property="titleRecipe" destination="O6e-3W-889" id="6DR-7L-Vxi"/>
+                        <segue destination="NuT-hQ-3i3" kind="show" id="rvg-gB-7Z3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8JR-wB-k1q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2189.8550724637685" y="-166.30434782608697"/>
+            <point key="canvasLocation" x="3481" y="-139"/>
+        </scene>
+        <!--Recipe View View Controller-->
+        <scene sceneID="Kwb-Ir-zPH">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6hS-M3-Nc6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="RecipeViewVC" id="NuT-hQ-3i3" customClass="RecipeViewViewController" customModule="InstaFood" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u1e-nQ-Y1Z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U4R-4c-0Q5">
+                                <rect key="frame" x="174" y="127" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwR-Pp-n2K">
+                                <rect key="frame" x="0.0" y="61" width="414" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                                <color key="textColor" red="0.2743541476587481" green="0.65539993523316065" blue="0.30689295088019219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ingredients:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Sh-5b-Cxo">
+                                <rect key="frame" x="0.0" y="253" width="157" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <color key="textColor" red="0.94050112419999998" green="0.082353456559999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Steps:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6c-md-FS3">
+                                <rect key="frame" x="0.0" y="427" width="89" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <color key="textColor" red="0.94050112419999998" green="0.082353456559999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recipe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQP-CH-Ep9">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.96201020079999999" green="0.96201020079999999" blue="0.96201020079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAx-C3-vN4">
+                                <rect key="frame" x="0.0" y="0.0" width="129" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="save"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
+                                <state key="normal" title="Feed"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yu9-XG-0lf">
+                                <rect key="frame" x="292" y="0.0" width="122" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.96201020079999999" green="0.96201020079999999" blue="0.96201020079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="LogOut">
+                                    <color key="titleColor" red="0.94050112419999998" green="0.082353456559999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="Logout:" destination="tGY-vk-idv" eventType="touchUpInside" id="KZV-qt-xlr"/>
+                                    <action selector="SignOut:" destination="NuT-hQ-3i3" eventType="touchUpInside" id="ydv-oX-c0a"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Writer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i7J-3L-mED">
+                                <rect key="frame" x="0.0" y="127" width="66" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="steps" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2iI-e5-MiH">
+                                <rect key="frame" x="0.0" y="464" width="414" height="169"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="writer name" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="N6m-to-RY4">
+                                <rect key="frame" x="0.0" y="154" width="173" height="83"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="ingredients" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wG9-8I-dJt">
+                                <rect key="frame" x="0.0" y="297" width="414" height="143"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="tvg-Nb-Jh6"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="ingredientsRecipe" destination="wG9-8I-dJt" id="fQ4-Mf-NNK"/>
+                        <outlet property="pictureRecipe" destination="U4R-4c-0Q5" id="uVB-x7-9gk"/>
+                        <outlet property="stepsRecipe" destination="2iI-e5-MiH" id="Svc-Sd-vvm"/>
+                        <outlet property="titleRecipe" destination="OwR-Pp-n2K" id="wqL-DS-mFU"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="4367" y="-139"/>
         </scene>
         <!--Feed-->
         <scene sceneID="nse-mF-br6">
@@ -371,7 +477,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="4WG-mF-Bcj" kind="relationship" relationship="viewControllers" id="xS2-w8-WfZ"/>
-                        <segue destination="tGY-vk-idv" kind="relationship" relationship="viewControllers" id="X97-Jh-JqR"/>
+                        <segue destination="kzh-aV-Nwl" kind="relationship" relationship="viewControllers" id="X97-Jh-JqR"/>
                         <segue destination="uY3-Lq-E7o" kind="relationship" relationship="viewControllers" id="qhU-fr-8RS"/>
                         <segue destination="Xby-Aa-gwD" kind="relationship" relationship="viewControllers" id="bGC-cH-3Pr"/>
                     </connections>
@@ -573,12 +679,31 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="IRY-hE-mJj"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="tWE-nE-eTp"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="usW-4F-FAd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-386" y="32"/>
+        </scene>
+        <!--AddRecipe-->
+        <scene sceneID="JMO-Wa-zBJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kzh-aV-Nwl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="AddRecipe" image="PlusIcon" selectedImage="PlusIcon" id="bCd-1S-vbk"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gcs-69-Lbe">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tGY-vk-idv" kind="relationship" relationship="rootViewController" id="mno-lV-hqV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lhH-sJ-fBw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2695.6521739130435" y="-138.58695652173915"/>
         </scene>
     </scenes>
     <resources>
