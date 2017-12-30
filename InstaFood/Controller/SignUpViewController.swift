@@ -2,7 +2,7 @@
 //  SignUpViewController.swift
 //  InstaFood
 //
-//  Created by admin on 29/12/2017.
+//  Created by admin on 19/12/2017.
 //  Copyright © 2017 admin. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import UIKit
 import SVProgressHUD
 
 class SignUpViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     @IBOutlet var firstNameTextfield: UITextField!
     @IBOutlet var lastNameTextfield: UITextField!
     @IBOutlet var emailTextfield: UITextField!
@@ -21,7 +21,7 @@ class SignUpViewController: UIViewController,UIImagePickerControllerDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -58,26 +58,14 @@ class SignUpViewController: UIViewController,UIImagePickerControllerDelegate, UI
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.allowsEditing = true
+        networkingService.pickPicture (self,pickerController)
         
-        let alertController = UIAlertController(title: "Choose Picture", message: "Choose From", preferredStyle: .actionSheet)
-        let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
-            pickerController.sourceType = .camera
-            self.present(pickerController, animated: true, completion: nil)
-        }
-        let photosLibraryAction = UIAlertAction(title: "Photos Library", style: .default) { (action) in
-            pickerController.sourceType = .photoLibrary
-            self.present(pickerController, animated: true, completion: nil)
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
-        
-        alertController.addAction(cameraAction)
-        alertController.addAction(photosLibraryAction)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true, completion: nil)
+        let button = sender as? UIButton
+        button?.setTitle("", for: UIControlState.normal)
     }
     
     // MARK: Check password Validation
-     func isValidPassword(_ password : String) -> Bool {
+    func isValidPassword(_ password : String) -> Bool {
         let passwordRegex = "^(?=.*[A-Z])(?=.*[a-z])[A-Za-z\\d$@$#!%*?&]{6,}"
         return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: password)
     }
@@ -88,8 +76,6 @@ class SignUpViewController: UIViewController,UIImagePickerControllerDelegate, UI
         return NSPredicate(format:"SELF MATCHES %@", emailRegex).evaluate(with: email)
     }
     
-    
-    
     // MARK: did Finish Picking Media
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -98,13 +84,14 @@ class SignUpViewController: UIViewController,UIImagePickerControllerDelegate, UI
         picker.dismiss(animated: true, completion: nil);
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
+

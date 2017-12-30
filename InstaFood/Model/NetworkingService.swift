@@ -9,6 +9,8 @@
 import Foundation
 import Firebase
 import UIKit
+import SVProgressHUD
+import FBSDKCoreKit
 
 struct NetworkingService {
     
@@ -39,7 +41,7 @@ struct NetworkingService {
                 
                 //successfully authenticated user
                 //upload image into Firebase
-                let storageRef = Storage.storage().reference().child("ProfileImage\(uid)")
+                let storageRef = Storage.storage().reference().child("ProfileImages").child("\(uid).png")
                 if let uploadData = UIImagePNGRepresentation(userImage){
                     storageRef.putData(uploadData, metadata: nil, completion: {(metadata,error) in
                         if error != nil{
@@ -91,17 +93,44 @@ struct NetworkingService {
     func signOut(){
         print ("-------------------")
         do {
-            try! Auth.auth().signOut()
-            if Auth.auth().currentUser == nil {
-                print ("Sign out Successfully")
-                MoveToLoginViewController()
-            }
-        }
-        catch let error as NSError{
+            try Auth.auth().signOut()
+            FBSDKAccessToken.setCurrent(nil)
+            print ("Sign out Successfully")
+            MoveToLoginViewController()
+            
+        } catch let error as NSError {
             print(error.localizedDescription)
         }
     }
     
+    //Mark: upload recipes data on Firebase - For signOut
+    func uploadRecipesData(_ uiViewController: UIViewController, _ titleRecipe: String ,_ ingredients: String,_ stepsRecipe: String, _ pictureRercipe: UIImage) {
+        print ("-------------------")
+        SVProgressHUD.show()
+        let uid = Auth.auth().currentUser?.uid
+        let uniqName = NSUUID().uuidString
+        let storageRef = Storage.storage().reference().child("Recipes").child(uid!).child("\(uniqName).png")
+        if let uploadData = UIImagePNGRepresentation(pictureRercipe){
+            storageRef.putData(uploadData, metadata: nil, completion: {(metadata,error) in
+                if error != nil{
+                    print("Error")
+                    print (error!)
+                }
+                else{
+                    print ("-------------------")
+                    print ("Storage image Successfully")
+                }
+                if let RecipeURL = metadata?.downloadURL()?.absoluteString{
+                    let recipeInfo = ["Title" :titleRecipe, "Ingredients" : ingredients, "steps" : stepsRecipe, "RecipeImage": RecipeURL]
+                    Database.database().reference().child("Recipes").child(uid!).child(uniqName).setValue(recipeInfo)
+                    self.sendAlertToUser(uiViewController, titleAlert: "Success", messageAlert: "inserted new recipe successfuly")
+                    print ("upload Recipes data Successfully")
+                    SVProgressHUD.dismiss()
+                }
+            })
+        }
+        
+    }
     
     
     // MARK: - Move To Feed Bar View Controller
@@ -119,7 +148,7 @@ struct NetworkingService {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginsView
     }
-
+    
     // MARK: Send alert to the user
     func sendAlertToUser(_ uiViewController: UIViewController, titleAlert: String, messageAlert: String) {
         let alert = UIAlertController(title: titleAlert, message: messageAlert, preferredStyle: .alert)
@@ -128,6 +157,25 @@ struct NetworkingService {
         })
         alert.addAction(restartAction)
         uiViewController.present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: user pick an Image
+    func pickPicture(_ uiViewController: UIViewController,_ pickerController: UIImagePickerController){
+        let alertController = UIAlertController(title: "Choose Picture", message: "Choose From", preferredStyle: .actionSheet)
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
+            pickerController.sourceType = .camera
+            uiViewController.present(pickerController, animated: true, completion: nil)
+        }
+        let photosLibraryAction = UIAlertAction(title: "Photos Library", style: .default) { (action) in
+            pickerController.sourceType = .photoLibrary
+            uiViewController.present(pickerController, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        
+        alertController.addAction(cameraAction)
+        alertController.addAction(photosLibraryAction)
+        alertController.addAction(cancelAction)
+        uiViewController.present(alertController, animated: true, completion: nil)
     }
     
     // MARK: Send alert to the user with action param
@@ -144,4 +192,52 @@ struct NetworkingService {
         alert.addAction(restartAction)
         uiViewController.present(alert, animated: true, completion: nil)
     }
+    
+    func sendAlertToUserWithTwoOptions(vc: UIViewController, title: String, body: String, option1: String, option2: String) {
+        let alert = UIAlertController(title: title, message: body, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: option1, style: .default, handler: { (action: UIAlertAction!) in
+            print("Handle Ok logic here")
+            self.signOut()
+        }))
+        
+        alert.addAction(UIAlertAction(title: option2, style: .cancel, handler: { (action: UIAlertAction!) in
+            print("Handle Cancel Logic here")
+        }))
+        
+        vc.present(alert, animated: true, completion: nil)
+    }
+    func getCurrentUserPic() ->UIImage {
+        var pic:UIImage?
+        let uid = Auth.auth().currentUser?.uid
+        let storageRef = Storage.storage().reference().child("ProfileImage\(uid)")
+        storageRef.getData(maxSize: 1*1000*1000)  { (data, error) in
+            if error == nil {
+                pic = UIImage(data : data!)!
+            }
+            else{
+                //print(error)
+                print("no picture found \n")
+                Storage.storage().reference().child("default chef.png").getData(maxSize: 1*1000*1000)  { (data, error) in
+                    pic = UIImage(data : data!)!
+                }
+            }
+        }
+        return pic!
+    }
+    
+    func getCurrentUserName() -> String{
+        let uid = Auth.auth().currentUser?.uid
+        var name : String = ""
+        Database.database().reference().child("users\(uid)").observeSingleEvent(of: .value, with: {(snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let firstName = value?["FirstName"] as? String
+            let lastName = value?["LastName"] as? String
+            name = firstName! + " " + lastName!
+        })
+        
+        return name
+    }
+    
 }
+

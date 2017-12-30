@@ -11,7 +11,7 @@ import SVProgressHUD
 import FBSDKLoginKit
 
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
-
+    
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var passwordTextfield: UITextField!
     
@@ -26,8 +26,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         // MARK: - NEED TO CHANGE TO CONTSRAINTS!!!!!!!!
         loginButton.frame = CGRect(x: 32, y: 565, width: 343, height: 45)
         loginButton.delegate = self
-        // Do any additional setup after loading the view.
-
+        
     }
     // MARK: - Facebook functions
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
@@ -47,7 +46,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             self.networkingService.moveToFeedBar()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -64,3 +63,4 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         SVProgressHUD.dismiss()
     }
 }
+

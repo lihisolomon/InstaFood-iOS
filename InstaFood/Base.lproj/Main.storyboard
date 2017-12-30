@@ -9,6 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Helvetica.ttc">
+            <string>Helvetica</string>
+            <string>Helvetica-Bold</string>
+        </array>
         <array key="MalayalamSangamMN.ttc">
             <string>MalayalamSangamMN-Bold</string>
         </array>
@@ -225,7 +229,7 @@
         <!--AddRecipe-->
         <scene sceneID="kOr-Du-md9">
             <objects>
-                <viewController id="tGY-vk-idv" sceneMemberID="viewController">
+                <viewController id="tGY-vk-idv" customClass="NewRecipeViewController" customModule="InstaFood" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ln8-1m-dFX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -250,12 +254,65 @@
                                 <state key="normal" title="LogOut">
                                     <color key="titleColor" red="0.94050112419999998" green="0.082353456559999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="Logout:" destination="tGY-vk-idv" eventType="touchUpInside" id="OoU-YW-7up"/>
+                                </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B3P-Za-ccC">
+                                <rect key="frame" x="0.0" y="11" width="118" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="save"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="SaveIsPressed:" destination="tGY-vk-idv" eventType="touchUpInside" id="pTD-sD-FZ0"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Add ingredients" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Mcq-CK-3N6" userLabel="Ingredients">
+                                <rect key="frame" x="0.0" y="179" width="203" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Add Title" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="O6e-3W-889">
+                                <rect key="frame" x="0.0" y="62" width="414" height="116"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="add steps" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9l9-6r-oY5">
+                                <rect key="frame" x="0.0" y="433" width="414" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQ0-2c-U1L">
+                                <rect key="frame" x="204" y="179" width="210" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <state key="normal" title="Add Picture"/>
+                                <connections>
+                                    <action selector="addPictureIsPressed:" destination="tGY-vk-idv" eventType="touchUpInside" id="BnW-ny-rA6"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gF2-0p-4re">
+                                <rect key="frame" x="204" y="179" width="210" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="3bq-c6-9nf"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="AddRecipe" image="PlusIcon" selectedImage="PlusIcon" id="bCd-1S-vbk"/>
+                    <connections>
+                        <outlet property="ingredients" destination="Mcq-CK-3N6" id="N0n-2j-IyB"/>
+                        <outlet property="pictureRecipe" destination="gF2-0p-4re" id="Uvj-hy-sHq"/>
+                        <outlet property="stepsRecipe" destination="9l9-6r-oY5" id="TPh-WE-jOg"/>
+                        <outlet property="titleRecipe" destination="O6e-3W-889" id="6DR-7L-Vxi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8JR-wB-k1q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -441,7 +498,7 @@
         <!--MyRecipes-->
         <scene sceneID="8P9-QM-2qN">
             <objects>
-                <viewController id="Xby-Aa-gwD" sceneMemberID="viewController">
+                <viewController id="Xby-Aa-gwD" customClass="MyRecipesViewController" customModule="InstaFood" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WCb-VQ-1TO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -467,11 +524,39 @@
                                     <color key="titleColor" red="0.94050112419999998" green="0.082353456559999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KqG-hn-fBr">
+                                <rect key="frame" x="20" y="82" width="174" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qr-fI-H4t">
+                                <rect key="frame" x="194" y="149" width="200" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfU-HW-6jj">
+                                <rect key="frame" x="354" y="111" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="Edit"/>
+                                <state key="selected">
+                                    <color key="titleColor" red="0.15686274510000001" green="0.66666666669999997" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="editButton:" destination="Xby-Aa-gwD" eventType="touchUpInside" id="ap3-Ts-fbP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="91B-gh-Of2"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="MyRecipes" image="BookIcon" selectedImage="BookIcon" id="sld-Zf-2qY"/>
+                    <connections>
+                        <outlet property="profileImage" destination="KqG-hn-fBr" id="aXv-7c-eTW"/>
+                        <outlet property="profileNameLabel" destination="1Qr-fI-H4t" id="tIc-co-PxO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zJ3-HJ-5zE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
