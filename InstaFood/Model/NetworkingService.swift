@@ -136,26 +136,10 @@ struct NetworkingService {
     func getCurrentUID () ->String{
         return (Auth.auth().currentUser?.uid)!
     }
-    // MARK: - Display new recipe data לא למחוק
-//    func displayRecipeData(uid: String, recipeNum: String) -> Recipe{
-//        print ("-------------------")
-//        var recipe : Recipe?
-//        let ref = Database.database().reference()
-//        ref.child("Recipes").child(uid).child(recipeNum).observeSingleEvent (of: .value, with: { (snapshot)  in
-//            if let recipeDict = snapshot.value as? Dictionary<String, AnyObject> {
-//                let title = recipeDict["Title"] as? String ?? ""
-//                let steps = recipeDict["steps"] as? String ?? ""
-//                let ingredients = recipeDict["Ingredients"] as? String ?? ""
-//                let picture = recipeDict["RecipeImage"] as? String ?? ""
-//                let recipe = Recipe(title,ingredients,steps,picture)
-//            }
-//
-//        }){ (error) in
-//            print(error.localizedDescription)
-//        }
-//        return recipe!
-//    }
     
+    func getUserPicUrl () ->String{
+        return Storage.storage().reference().child("ProfileImages").child(getCurrentUID() + ".png").fullPath
+    }
     // MARK: - Move To Feed Bar View Controller
     func moveToFeedBar() {
         let storyboardMain = UIStoryboard(name: "Main",bundle: nil)
@@ -173,12 +157,12 @@ struct NetworkingService {
     }
     
     // MARK: - Move To Recipe View View Controller
-    func MoveToRecipeViewController() {
-        let storyboardMain = UIStoryboard(name: "Main",bundle: nil)
-        let recipeView = storyboardMain.instantiateViewController(withIdentifier: "RecipeView") as! UIViewController
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = recipeView
-    }
+//    func MoveToRecipeViewController() {
+//        let storyboardMain = UIStoryboard(name: "Main",bundle: nil)
+//        let recipeView = storyboardMain.instantiateViewController(withIdentifier: "RecipeView") as! UIViewController
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        appDelegate.window?.rootViewController = recipeView
+//    }
     
     // MARK: Send alert to the user
     func sendAlertToUser(_ uiViewController: UIViewController, titleAlert: String, messageAlert: String) {
@@ -216,9 +200,9 @@ struct NetworkingService {
             if action == "login"{
                 self.MoveToLoginViewController()
             }
-            else if action == "RecipeView"{
-                self.MoveToRecipeViewController()
-            }
+//            else if action == "RecipeView"{
+//                self.MoveToRecipeViewController()
+//            }
             else{
                 NSLog("The \"OK\" alert occured.")
             }
@@ -242,24 +226,23 @@ struct NetworkingService {
         
         vc.present(alert, animated: true, completion: nil)
     }
-    
-    func getImageFromURL(_ url: String,_ uploadImage:@escaping (UIImage)->())
+
+    func getImageFromURL(_ url: String,_ uploadImageSuccess:@escaping (UIImage)->(),_ uploadImageFailure:@escaping (UIImage)->())
     {
         let storageRef = Storage.storage().reference().child(url)
         storageRef.getData(maxSize: 2*1024*1024)  { (data, error) in
             if error == nil {
-                uploadImage(UIImage(data : data!)!)
+                uploadImageSuccess(UIImage(data : data!)!)
             }
             else{
                 //print(error)
                 print("no picture found \n")
-                Storage.storage().reference().child("default chef.png").getData(maxSize: 1*1000*1000)  { (data, error) in
-                    uploadImage(UIImage(data : data!)!)
+                Storage.storage().reference().child("default chef.png").getData(maxSize: 2*1024*1024)  { (data, error) in
+                    uploadImageSuccess(UIImage(data : data!)!)
                 }
             }
         }
     }
-    
     func getCurrentFullName(_ uploadFullName:@escaping (String)->()){
         let uid = self.getCurrentUID()
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: {(snapshot) in

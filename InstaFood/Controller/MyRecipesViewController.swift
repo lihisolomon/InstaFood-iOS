@@ -19,16 +19,27 @@ class MyRecipesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // profileImage.image = networkingService.getCurrentUserPic()
-       // profileNameLabel.text = networkingService.getCurrentUserName()
+        networkingService.getCurrentFullName(uploadFullName)
+        networkingService.getImageFromURL(networkingService.getUserPicUrl(),success,failure)
         // Do any additional setup after loading the view.
     }
-
+    func uploadFullName(fullName: String){
+        self.profileNameLabel.text = fullName
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    func success(data : UIImage){
+        profileImage.image = data
+        
+    }
+    func failure(data : UIImage) {
+         profileImage.image = data
+         networkingService.sendAlertToUser(self, titleAlert: "Error", messageAlert: "no picture found in firebase storage")
+        print("Could not find pic in firebase storage")
+    }
 
     /*
     // MARK: - Navigation
