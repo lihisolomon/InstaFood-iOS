@@ -269,24 +269,17 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Add ingredients" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Mcq-CK-3N6" userLabel="Ingredients">
-                                <rect key="frame" x="0.0" y="179" width="203" height="254"/>
+                                <rect key="frame" x="0.0" y="153" width="172" height="245"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Add Title" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="O6e-3W-889">
-                                <rect key="frame" x="0.0" y="76" width="414" height="102"/>
+                                <rect key="frame" x="0.0" y="76" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="add steps" translatesAutoresizingMaskIntoConstraints="NO" id="9l9-6r-oY5">
-                                <rect key="frame" x="0.0" y="433" width="414" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQ0-2c-U1L">
@@ -299,9 +292,16 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gF2-0p-4re">
-                                <rect key="frame" x="204" y="179" width="210" height="254"/>
+                                <rect key="frame" x="169" y="153" width="245" height="245"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="add steps" translatesAutoresizingMaskIntoConstraints="NO" id="9l9-6r-oY5">
+                                <rect key="frame" x="0.0" y="397" width="414" height="290"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="3bq-c6-9nf"/>
@@ -317,19 +317,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8JR-wB-k1q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3481" y="-139"/>
+            <point key="canvasLocation" x="3479.7101449275365" y="-139.4021739130435"/>
         </scene>
         <!--Recipe View View Controller-->
         <scene sceneID="Kwb-Ir-zPH">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6hS-M3-Nc6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="RecipeViewVC" id="NuT-hQ-3i3" customClass="RecipeViewViewController" customModule="InstaFood" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u1e-nQ-Y1Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U4R-4c-0Q5">
-                                <rect key="frame" x="174" y="127" width="240" height="128"/>
+                                <rect key="frame" x="229" y="127" width="185" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwR-Pp-n2K">
@@ -367,6 +366,9 @@
                                 <accessibility key="accessibilityConfiguration" label="save"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                                 <state key="normal" title="Feed"/>
+                                <connections>
+                                    <action selector="FeedIsPressed:" destination="NuT-hQ-3i3" eventType="touchUpInside" id="C97-rr-oqX"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yu9-XG-0lf">
                                 <rect key="frame" x="292" y="0.0" width="122" height="74"/>
@@ -392,21 +394,21 @@
                                 <rect key="frame" x="0.0" y="464" width="414" height="169"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="writer name" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="N6m-to-RY4">
-                                <rect key="frame" x="0.0" y="154" width="173" height="83"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="ingredients" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wG9-8I-dJt">
                                 <rect key="frame" x="0.0" y="297" width="414" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="writer name" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="N6m-to-RY4">
+                                <rect key="frame" x="0.0" y="148" width="221" height="111"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -419,10 +421,12 @@
                         <outlet property="pictureRecipe" destination="U4R-4c-0Q5" id="uVB-x7-9gk"/>
                         <outlet property="stepsRecipe" destination="2iI-e5-MiH" id="Svc-Sd-vvm"/>
                         <outlet property="titleRecipe" destination="OwR-Pp-n2K" id="wqL-DS-mFU"/>
+                        <outlet property="writerRecipe" destination="N6m-to-RY4" id="4hu-YZ-0gd"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6hS-M3-Nc6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4367" y="-139"/>
+            <point key="canvasLocation" x="4366.666666666667" y="-139.4021739130435"/>
         </scene>
         <!--Feed-->
         <scene sceneID="nse-mF-br6">

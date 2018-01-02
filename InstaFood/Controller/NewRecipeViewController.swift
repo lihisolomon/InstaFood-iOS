@@ -13,17 +13,18 @@ class NewRecipeViewController: UIViewController,UITextViewDelegate,UIImagePicker
     
     let networkingService = NetworkingService()
     var recipe: Recipe?
+    var fullName :String?
     
-    @IBOutlet weak var titleRecipe: UITextView!
-    @IBOutlet weak var ingredients: UITextView!
-    @IBOutlet weak var stepsRecipe: UITextView!
-    @IBOutlet weak var pictureRecipe: UIImageView!
+    @IBOutlet var titleRecipe: UITextView!
+    @IBOutlet var ingredients: UITextView!
+    @IBOutlet var stepsRecipe: UITextView!
+    @IBOutlet var pictureRecipe: UIImageView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
-        
+        networkingService.getCurrentFullName(uploadFullName)
     }
     
     // MARK: save button is pressed
@@ -41,11 +42,16 @@ class NewRecipeViewController: UIViewController,UITextViewDelegate,UIImagePicker
             networkingService.sendAlertToUser(self, titleAlert: "image is missing", messageAlert: "please enter the image of the recipe")
         }
         else{
-            networkingService.uploadRecipesData(self,titleRecipe.text!,ingredients.text!,stepsRecipe.text!,pictureRecipe.image!, success: success, failure: failure)
+            let uid = networkingService.getCurrentUID()
+            let uniqID = NSUUID().uuidString
+            networkingService.uploadRecipesData(self,uid:uid ,uniqID:uniqID, titleRecipe.text!,ingredients.text!,stepsRecipe.text!,pictureRecipe.image!,self.fullName!,likesNum: 0, success: success, failure: failure)
         }
     }
+    func uploadFullName(fullName: String){
+        self.fullName = fullName
+    }
     
-    func success(uid: String,recipeID: String, recipe: Recipe) {
+    func success(recipe: Recipe) {
         print ("Success")
         self.recipe = recipe
         if let recipeViewVC = self.storyboard?.instantiateViewController(withIdentifier: "RecipeViewVC") as? RecipeViewViewController {

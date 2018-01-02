@@ -104,12 +104,11 @@ struct NetworkingService {
     }
     
     //Mark: upload recipes data on Firebase - For signOut
-    func uploadRecipesData(_ uiViewController: UIViewController, _ titleRecipe: String ,_ ingredients: String,_ stepsRecipe: String, _ pictureRercipe: UIImage, success:@escaping (String,String,Recipe)->(), failure:@escaping ()->()){
+    func uploadRecipesData(_ uiViewController: UIViewController,uid: String,uniqID:String ,_ titleRecipe: String ,_ ingredients: String,_ stepsRecipe: String, _ pictureRercipe: UIImage,_ fullName: String,likesNum: Int, success:@escaping (Recipe)->(), failure:@escaping ()->()){
         print ("-------------------")
         SVProgressHUD.show()
-        let uid = Auth.auth().currentUser?.uid
-        let uniqName = NSUUID().uuidString
-        let storageRef = Storage.storage().reference().child("Recipes").child(uid!).child("\(uniqName).png")
+        
+        let storageRef = Storage.storage().reference().child("Recipes").child(uid).child("\(uniqID).png")
         if let uploadData = UIImagePNGRepresentation(pictureRercipe){
             storageRef.putData(uploadData, metadata: nil, completion: {(metadata,error) in
                 if error != nil{
@@ -122,17 +121,20 @@ struct NetworkingService {
                     print ("Storage image Successfully")
                 }
                 if let recipeURL = metadata?.downloadURL()?.absoluteString{
-                    let recipeInfo = ["Title" :titleRecipe, "Ingredients" : ingredients, "steps" : stepsRecipe, "RecipeImage": recipeURL]
-                    Database.database().reference().child("Recipes").child(uid!).child(uniqName).setValue(recipeInfo)
+                    let recipeInfo = ["Title" :titleRecipe, "Ingredients" : ingredients, "steps" : stepsRecipe, "RecipeImage": recipeURL, "Likes": String(likesNum)]
+                    
+                    Database.database().reference().child("Recipes").child(uid).child(uniqID).setValue(recipeInfo)
                     SVProgressHUD.dismiss()
                     print ("upload Recipes data Successfully")
-                    //self.sendAlertToUser(uiViewController, titleAlert: "Success", messageAlert: "inserted new recipe successfuly",action: "RecipeView")
-                    //self.sendAlertToUser(uiViewController, titleAlert: "Success", messageAlert: "inserted new recipe successfuly")
-                    let recipe = Recipe(titleRecipe,ingredients,stepsRecipe,recipeURL)
-                   success(uid!,uniqName,recipe)
+                    let recipe = Recipe(uid,uniqID,titleRecipe,ingredients,stepsRecipe,pictureRercipe, fullName,likesNum)
+                    success(recipe)
                 }
             })
         }
+    }
+    
+    func getCurrentUID () ->String{
+        return (Auth.auth().currentUser?.uid)!
     }
     // MARK: - Display new recipe data לא למחוק
 //    func displayRecipeData(uid: String, recipeNum: String) -> Recipe{
@@ -241,36 +243,32 @@ struct NetworkingService {
         vc.present(alert, animated: true, completion: nil)
     }
     
-    func getCurrentUserPic() ->UIImage {
-        var pic:UIImage?
-        let uid = Auth.auth().currentUser?.uid
-        let storageRef = Storage.storage().reference().child("ProfileImage\(uid)")
-        storageRef.getData(maxSize: 1*1000*1000)  { (data, error) in
+    func getImageFromURL(_ url: String,_ uploadImage:@escaping (UIImage)->())
+    {
+        let storageRef = Storage.storage().reference().child(url)
+        storageRef.getData(maxSize: 2*1024*1024)  { (data, error) in
             if error == nil {
-                pic = UIImage(data : data!)!
+                uploadImage(UIImage(data : data!)!)
             }
             else{
                 //print(error)
                 print("no picture found \n")
                 Storage.storage().reference().child("default chef.png").getData(maxSize: 1*1000*1000)  { (data, error) in
-                    pic = UIImage(data : data!)!
+                    uploadImage(UIImage(data : data!)!)
                 }
             }
         }
-        return pic!
     }
     
-    func getCurrentUserName() -> String{
-        let uid = Auth.auth().currentUser?.uid
-        var name : String = ""
-        Database.database().reference().child("users\(uid)").observeSingleEvent(of: .value, with: {(snapshot) in
+    func getCurrentFullName(_ uploadFullName:@escaping (String)->()){
+        let uid = self.getCurrentUID()
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: {(snapshot) in
             let value = snapshot.value as? NSDictionary
             let firstName = value?["FirstName"] as? String
             let lastName = value?["LastName"] as? String
-            name = firstName! + " " + lastName!
+            let name = firstName! + " " + lastName!
+            uploadFullName(name)
         })
-        
-        return name
     }
     
 }

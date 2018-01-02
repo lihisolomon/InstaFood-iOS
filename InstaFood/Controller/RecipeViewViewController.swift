@@ -15,19 +15,26 @@ class RecipeViewViewController: UIViewController {
     let networkingService = NetworkingService()
     var recipe: Recipe?
 
-    @IBOutlet weak var titleRecipe: UILabel!
-    @IBOutlet weak var ingredientsRecipe: UITextView!
-    @IBOutlet weak var stepsRecipe: UITextView!
-    @IBOutlet weak var pictureRecipe: UIImageView!
+    @IBOutlet var titleRecipe: UILabel!
+    @IBOutlet var ingredientsRecipe: UITextView!
+    @IBOutlet var stepsRecipe: UITextView!
+    @IBOutlet var pictureRecipe: UIImageView!
+    @IBOutlet var writerRecipe: UITextView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
-        print (recipe?.title)
         titleRecipe.text = recipe?.title
         ingredientsRecipe.text = recipe?.ingredients
         stepsRecipe.text = recipe?.steps
+        writerRecipe.text = recipe?.fullName
+        pictureRecipe.image = recipe?.picture
+    }
+    
+    //Mark: move to feed bar
+    @IBAction func FeedIsPressed(_ sender: UIButton) {
+        networkingService.moveToFeedBar()
     }
     
     //MARK: sign out
