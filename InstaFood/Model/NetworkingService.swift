@@ -132,14 +132,16 @@ struct NetworkingService {
             })
         }
     }
-    
+    // MARK: get current user uid
     func getCurrentUID () ->String{
         return (Auth.auth().currentUser?.uid)!
     }
     
+    //Mark: get pictureURL of the current user
     func getUserPicUrl () ->String{
         return Storage.storage().reference().child("ProfileImages").child(getCurrentUID() + ".png").fullPath
     }
+    
     // MARK: - Move To Feed Bar View Controller
     func moveToFeedBar() {
         let storyboardMain = UIStoryboard(name: "Main",bundle: nil)
@@ -147,6 +149,7 @@ struct NetworkingService {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = tabController
     }
+
     
     // MARK: - Move To Login View Controller
     func MoveToLoginViewController() {

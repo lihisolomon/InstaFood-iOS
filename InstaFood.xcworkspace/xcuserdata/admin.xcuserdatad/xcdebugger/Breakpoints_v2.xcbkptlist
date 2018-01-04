@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "InstaFood/Model/NetworkingService.swift"
-            timestampString = "536618767.038242"
+            timestampString = "536753447.86168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
-            landmarkName = "NetworkingService"
-            landmarkType = "14">
+            startingLineNumber = "237"
+            endingLineNumber = "237"
+            landmarkName = "getImageFromURL(_:_:_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

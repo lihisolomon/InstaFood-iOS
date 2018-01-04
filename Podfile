@@ -14,4 +14,5 @@ target 'InstaFood' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKShareKit'
   pod 'FBSDKLoginKit'
+  pod 'KMPlaceholderTextView'
 end

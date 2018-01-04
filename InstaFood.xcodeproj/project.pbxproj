@@ -23,6 +23,7 @@
 		84892D871FE99112004874BC /* RecipesFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84892D861FE99112004874BC /* RecipesFeedViewController.swift */; };
 		84CF31911FEABFEA00882540 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84CF31901FEAB30400882540 /* GoogleService-Info.plist */; };
 		84F69A671FF1544F00BCA187 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F69A661FF1544F00BCA187 /* NetworkingService.swift */; };
+		84F963CE1FFD4F5A001AF222 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F963CD1FFD4F5A001AF222 /* PostCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		84CF31901FEAB30400882540 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		84F69A661FF1544F00BCA187 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		84F69A681FF1624E00BCA187 /* user-Image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "user-Image.jpg"; sourceTree = "<group>"; };
+		84F963CD1FFD4F5A001AF222 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		B341DF587FA5956004163DEA /* Pods-InstaFood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaFood.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstaFood/Pods-InstaFood.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,6 +152,7 @@
 				8447702D1FEED14A002BFD0A /* ForgetPasswordViewController.swift */,
 				845A891D1FF66FA10030F381 /* MyRecipesViewController.swift */,
 				84675F431FF79DFA00D1A196 /* RecipeViewViewController.swift */,
+				84F963CD1FFD4F5A001AF222 /* PostCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/KMPlaceholderTextView/KMPlaceholderTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -260,6 +264,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KMPlaceholderTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -317,6 +322,7 @@
 				8447702E1FEED14A002BFD0A /* ForgetPasswordViewController.swift in Sources */,
 				84F69A671FF1544F00BCA187 /* NetworkingService.swift in Sources */,
 				841476231FE82CA900DC8D1D /* AppDelegate.swift in Sources */,
+				84F963CE1FFD4F5A001AF222 /* PostCell.swift in Sources */,
 				84675F441FF79DFA00D1A196 /* RecipeViewViewController.swift in Sources */,
 				84675F461FF7C5AA00D1A196 /* Recipe.swift in Sources */,
 			);

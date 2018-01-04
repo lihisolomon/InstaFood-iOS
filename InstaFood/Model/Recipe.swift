@@ -39,4 +39,11 @@ class Recipe{
         self.fullName = vfullName
         self.likesNum = vlikesNum
     }
+    
+    func fetchPosts() -> [Recipe] {
+        var posts = [Recipe]()
+        
+        
+        return posts
+    }
 }
