@@ -41,8 +41,8 @@ struct NetworkingService {
                 
                 //successfully authenticated user
                 //upload image into Firebase
-                let storageRef = Storage.storage().reference().child("ProfileImages").child("\(uid).png")
-                if let uploadData = UIImagePNGRepresentation(userImage){
+                let storageRef = Storage.storage().reference().child("ProfileImages").child("\(uid).jpeg")
+                if let uploadData = UIImageJPEGRepresentation(userImage, 0.2){
                     storageRef.putData(uploadData, metadata: nil, completion: {(metadata,error) in
                         if error != nil{
                             print("Error")
@@ -108,8 +108,8 @@ struct NetworkingService {
         print ("-------------------")
         SVProgressHUD.show()
         
-        let storageRef = Storage.storage().reference().child("Recipes").child(uid).child("\(uniqID).png")
-        if let uploadData = UIImagePNGRepresentation(pictureRercipe){
+        let storageRef = Storage.storage().reference().child("Recipes").child(uid).child("\(uniqID).jpeg")
+        if let uploadData = UIImageJPEGRepresentation(pictureRercipe, 0.2){
             storageRef.putData(uploadData, metadata: nil, completion: {(metadata,error) in
                 if error != nil{
                     print("Error: \(error!)")
@@ -126,7 +126,8 @@ struct NetworkingService {
                     Database.database().reference().child("Recipes").child(uid).child(uniqID).setValue(recipeInfo)
                     SVProgressHUD.dismiss()
                     print ("upload Recipes data Successfully")
-                    let recipe = Recipe(uid,uniqID,titleRecipe,ingredients,stepsRecipe,pictureRercipe, fullName,likesNum)
+                    //let recipe = Recipe(uid,uniqID,titleRecipe,ingredients,stepsRecipe,pictureRercipe, fullName,likesNum)
+                    let recipe = Recipe(uid,uniqID,titleRecipe,ingredients,stepsRecipe,recipeURL, fullName,likesNum)
                     success(recipe)
                 }
             })
@@ -139,7 +140,7 @@ struct NetworkingService {
     
     //Mark: get pictureURL of the current user
     func getUserPicUrl () ->String{
-        return Storage.storage().reference().child("ProfileImages").child(getCurrentUID() + ".png").fullPath
+        return Storage.storage().reference().child("ProfileImages").child(getCurrentUID() + ".jpeg").fullPath
     }
     
     // MARK: - Move To Feed Bar View Controller
@@ -158,15 +159,7 @@ struct NetworkingService {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginsView
     }
-    
-    // MARK: - Move To Recipe View View Controller
-    //    func MoveToRecipeViewController() {
-    //        let storyboardMain = UIStoryboard(name: "Main",bundle: nil)
-    //        let recipeView = storyboardMain.instantiateViewController(withIdentifier: "RecipeView") as! UIViewController
-    //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    //        appDelegate.window?.rootViewController = recipeView
-    //    }
-    
+
     // MARK: Send alert to the user
     func sendAlertToUser(_ uiViewController: UIViewController, titleAlert: String, messageAlert: String) {
         let alert = UIAlertController(title: titleAlert, message: messageAlert, preferredStyle: .alert)
@@ -203,9 +196,6 @@ struct NetworkingService {
             if action == "login"{
                 self.MoveToLoginViewController()
             }
-                //            else if action == "RecipeView"{
-                //                self.MoveToRecipeViewController()
-                //            }
             else{
                 NSLog("The \"OK\" alert occured.")
             }
@@ -231,22 +221,38 @@ struct NetworkingService {
     }
     
     //MARK: get UIimage from url in firebase
-    func getImageFromURL(_ url: String,_ uploadImageSuccess:@escaping (UIImage)->(),_ uploadImageFailure:@escaping (UIImage)->())
+    func getImageFromURL(_ url: String,_ uploadImageSuccess:@escaping (UIImage)->())
     {
         let storageRef = Storage.storage().reference().child(url)
-        storageRef.getData(maxSize: 2*1024*1024)  { (data, error) in
+        storageRef.getData(maxSize: 15 * 1024 * 1024)  { (data, error) in
             if error == nil {
                 uploadImageSuccess(UIImage(data : data!)!)
             }
             else{
                 //print(error)
                 print("no picture found \n")
-                Storage.storage().reference().child("default chef.png").getData(maxSize: 2*1024*1024)  { (data, error) in
-                    uploadImageSuccess(UIImage(data : data!)!)
-                }
+                let image = UIImage(named: "chefImage")
+                uploadImageSuccess(image!)
             }
         }
     }
+    
+    //MARK: get image from downloadURL
+    func downloadImage(url: String, _ uploadImageSuccess:@escaping (UIImage)->()) {
+        let ref = Storage.storage().reference(forURL: url)
+        ref.getData(maxSize: 15 * 1024 * 1024, completion: { (data, error) in
+            if error == nil {
+                uploadImageSuccess(UIImage(data : data!)!)
+            }
+            else{
+                //print(error)
+                print("no picture found \n")
+                let image = UIImage(named: "chefImage")
+                uploadImageSuccess(image!)
+            }
+        })
+    }
+    
     //MARK: get full name of current user
     func getCurrentFullName(_ uploadFullName:@escaping (String)->()){
         let uid = self.getCurrentUID()
@@ -259,34 +265,59 @@ struct NetworkingService {
         })
     }
     
+    
     //MARK: get all recipes
     func getRecipesList(_ updataeRecipes:@escaping ([Recipe])->()){
         SVProgressHUD.show()
-        Database.database().reference().child("Recipes").observe(.value){snapshot in
-            if let uids = snapshot.children.allObjects as? [DataSnapshot]{
-                var recipes = [Recipe]()
-                for uid in uids{
-                    let uidNumber = uid.key
-                    //print ("Snap: \(uid)")
-                    if let recipesID = uid.children.allObjects as? [DataSnapshot]{
-                        for recid in recipesID{
-                            let uniqID = recid.key
-                            if var postDict = recid.value as? Dictionary<String, AnyObject> {
-                                //let uniqId = recipesID.key
-                                let title = postDict["Title"] as? String ?? ""
-                                let steps = postDict["steps"] as? String ?? ""
-                                let ingredients = postDict["Ingredients"] as? String ?? ""
-                                let picture = postDict["RecipeImage"] as? String ?? ""
-                                let numOfLikes = postDict["Likes"] as? String ?? ""
+        Database.database().reference().observe(.value){snapshot in
+            if let folders = snapshot.children.allObjects as? [DataSnapshot]{
+                for folder in folders{
+                    if folder.key == "Recipes"{
+                        if let uids = folder.children.allObjects as? [DataSnapshot]{
+                            var recipes = [Recipe]()
+                            for uid in uids{
+                                var fullName = ""
+                                let uidNumber = uid.key
+                                for folder in folders{
+                                    if folder.key == "users"{
+                                        if let users = folder.children.allObjects as? [DataSnapshot]{
+                                            for user in users {
+                                                if user.key == uidNumber{
+                                                    if var userDetals = user.value as? Dictionary<String, AnyObject> {
+                                                        let firstName = userDetals["FirstName"] as? String ?? ""
+                                                        let lastName = userDetals["LastName"] as? String ?? ""
+                                                        fullName = "\(firstName) \(lastName)"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                                 
-                                recipes.append(Recipe(uidNumber,uniqID,title,ingredients,steps,UIImage(),"",Int(numOfLikes)!))
+                                if let recipesID = uid.children.allObjects as? [DataSnapshot]{
+                                    for recid in recipesID{
+                                        let uniqID = recid.key
+                                        if var postDict = recid.value as? Dictionary<String, AnyObject> {
+                                            let title = postDict["Title"] as? String ?? ""
+                                            let steps = postDict["steps"] as? String ?? ""
+                                            let ingredients = postDict["Ingredients"] as? String ?? ""
+                                            let picture = postDict["RecipeImage"] as? String ?? ""
+                                            let numOfLikes = postDict["Likes"] as? String ?? ""
+                                            
+                                            recipes.append(Recipe(uidNumber,uniqID,title,ingredients,steps,picture,fullName,Int(numOfLikes)!))
+                                        }
+                                    }
+                                }
                             }
+                            
+                            updataeRecipes(recipes)
                         }
                     }
                 }
-                SVProgressHUD.dismiss()
-                updataeRecipes(recipes)
             }
+            
         }
+        SVProgressHUD.dismiss()
     }
+
 }

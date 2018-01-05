@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import Firebase
-
+import SVProgressHUD
 
 class RecipeViewViewController: UIViewController {
 
@@ -25,11 +24,15 @@ class RecipeViewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
+        networkingService.downloadImage(url: (recipe?.picture)!, uploadImageSuccess)
         titleRecipe.text = recipe?.title
         ingredientsRecipe.text = recipe?.ingredients
         stepsRecipe.text = recipe?.steps
         writerRecipe.text = recipe?.fullName
-        pictureRecipe.image = recipe?.picture
+    }
+    
+    func uploadImageSuccess(image: UIImage)->(){
+        pictureRecipe.image = image
     }
     
     //Mark: move to feed bar

@@ -13,6 +13,7 @@
 		841476281FE82CA900DC8D1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841476261FE82CA900DC8D1D /* Main.storyboard */; };
 		8414762A1FE82CA900DC8D1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 841476291FE82CA900DC8D1D /* Assets.xcassets */; };
 		8414762D1FE82CA900DC8D1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8414762B1FE82CA900DC8D1D /* LaunchScreen.storyboard */; };
+		841D90EE1FFF9CE500629ECF /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D90ED1FFF9CE500629ECF /* HeaderView.swift */; };
 		8447702E1FEED14A002BFD0A /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447702D1FEED14A002BFD0A /* ForgetPasswordViewController.swift */; };
 		845A891E1FF66FA10030F381 /* MyRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845A891D1FF66FA10030F381 /* MyRecipesViewController.swift */; };
 		84675F441FF79DFA00D1A196 /* RecipeViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84675F431FF79DFA00D1A196 /* RecipeViewViewController.swift */; };
@@ -37,6 +38,7 @@
 		8414762C1FE82CA900DC8D1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8414762E1FE82CA900DC8D1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		841476361FE8334300DC8D1D /* Background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Background.jpg; sourceTree = "<group>"; };
+		841D90ED1FFF9CE500629ECF /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8447702D1FEED14A002BFD0A /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		845A891D1FF66FA10030F381 /* MyRecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecipesViewController.swift; sourceTree = "<group>"; };
 		84675F431FF79DFA00D1A196 /* RecipeViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			children = (
 				841476261FE82CA900DC8D1D /* Main.storyboard */,
 				8414762B1FE82CA900DC8D1D /* LaunchScreen.storyboard */,
+				841D90ED1FFF9CE500629ECF /* HeaderView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				845A891E1FF66FA10030F381 /* MyRecipesViewController.swift in Sources */,
 				8447702E1FEED14A002BFD0A /* ForgetPasswordViewController.swift in Sources */,
 				84F69A671FF1544F00BCA187 /* NetworkingService.swift in Sources */,
+				841D90EE1FFF9CE500629ECF /* HeaderView.swift in Sources */,
 				841476231FE82CA900DC8D1D /* AppDelegate.swift in Sources */,
 				84F963CE1FFD4F5A001AF222 /* PostCell.swift in Sources */,
 				84675F441FF79DFA00D1A196 /* RecipeViewViewController.swift in Sources */,

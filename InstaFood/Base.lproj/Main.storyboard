@@ -435,7 +435,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hS-M3-Nc6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3774" y="-174"/>
+            <point key="canvasLocation" x="3639" y="-791"/>
         </scene>
         <!--Feed-->
         <scene sceneID="nse-mF-br6">
@@ -477,7 +477,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="175" id="tHx-N0-ysm" customClass="PostCell" customModule="InstaFood" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tHx-N0-ysm" id="dxI-l2-ZDX">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tHx-N0-ysm" id="dxI-l2-ZDX" customClass="HeaderView" customModule="InstaFood" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="174.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -524,6 +524,7 @@
                     <tabBarItem key="tabBarItem" title="Feed" image="HomeIcon" selectedImage="HomeIcon" id="g32-N2-EUK"/>
                     <connections>
                         <outlet property="postsTableView" destination="AvM-tr-WeU" id="gKT-Nq-XkP"/>
+                        <segue destination="NuT-hQ-3i3" kind="show" identifier="RecipeDetails" id="P7i-w3-HZg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SJU-Zp-qcq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -779,4 +780,7 @@
         <image name="StarIcon" width="33" height="33"/>
         <image name="UserImage" width="100" height="100"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="P7i-w3-HZg"/>
+    </inferredMetricsTieBreakers>
 </document>

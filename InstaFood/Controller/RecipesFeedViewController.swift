@@ -34,8 +34,16 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
     
     func updataeRecipes(recipesArray: [Recipe]){
         self.recipes = recipesArray
-        self.postsTableView.reloadData()    }
+        self.postsTableView.reloadData()
+        
+    }
     
+    //Mark: recipe Choosen- need to view the full Recipe details
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print ("------------------")
+        //performSegue(withIdentifier: "RecipeDetails", sender: self)
+    
+    }
     // MARK: - LogOut
     @IBAction func LogOut(_ sender: Any) {
         networkingService.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")

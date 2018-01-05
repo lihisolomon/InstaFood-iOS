@@ -15,7 +15,8 @@ class Recipe{
     var title: String
     var ingredients: String
     var steps: String
-    var picture: UIImage
+    //var picture: UIImage
+    var picture: String
     var fullName: String
     var likesNum: Int
     
@@ -25,11 +26,12 @@ class Recipe{
         self.title = ""
         self.ingredients = ""
         self.steps = ""
-        self.picture = UIImage()
+        //self.picture = UIImage()
+        self.picture = ""
         self.fullName = ""
         self.likesNum = 0
     }
-    init(_ vuid:String,_ vuniqId: String, _ vtitle: String ,_ vingredients: String,_ vsteps:String,_ vpicture:UIImage,_ vfullName:String,_ vlikesNum: Int) {
+    init(_ vuid:String,_ vuniqId: String, _ vtitle: String ,_ vingredients: String,_ vsteps:String,_ vpicture:String,_ vfullName:String,_ vlikesNum: Int) {
         self.uid = vuid
         self.uniqId = vuniqId
         self.title = vtitle
