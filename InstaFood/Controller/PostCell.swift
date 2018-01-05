@@ -11,7 +11,7 @@ import UIKit
 class PostCell: UITableViewCell {
 
     @IBOutlet weak var RecipeImage: UIImageView!
-    @IBOutlet weak var numberOfLike: UIButton!
+    @IBOutlet weak var numberOfLikes: UILabel!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var writerName: UILabel!
     
@@ -25,6 +25,6 @@ class PostCell: UITableViewCell {
         RecipeImage.image = post.picture
         recipeName.text = post.title
         writerName.text = post.fullName
-        numberOfLike.setTitle("test lihi", for: [])
+        numberOfLikes.text = "🖤 \(post.likesNum) Likes"
     }
 }
