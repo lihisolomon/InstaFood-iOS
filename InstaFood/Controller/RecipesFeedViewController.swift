@@ -14,6 +14,7 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
     
     let networkingService = NetworkingService()
     var recipes: [Recipe]?
+    var rowNum = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +42,12 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
     //Mark: recipe Choosen- need to view the full Recipe details
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print ("------------------")
-        //performSegue(withIdentifier: "RecipeDetails", sender: self)
-    
+        rowNum = indexPath.row
+        print ("Recipe \(rowNum) selected")
+        performSegue(withIdentifier: "RecipeDetails", sender: self)
     }
+    
+    
     // MARK: - LogOut
     @IBAction func LogOut(_ sender: Any) {
         networkingService.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
@@ -66,6 +70,13 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
         cell.post = self.recipes?[indexPath.row]
         //cell.selectionStyle = .none
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "RecipeDetails" {
+            let detailsVC = segue.destination as! RecipeViewViewController
+            detailsVC.recipe = self.recipes?[rowNum]
+        }
     }
 }
 

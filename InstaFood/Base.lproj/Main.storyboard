@@ -420,6 +420,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="03H-TG-fp6">
+                                <rect key="frame" x="180" y="632" width="54" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" image="StarIcon"/>
+                                <connections>
+                                    <action selector="likeIsPressed:" destination="NuT-hQ-3i3" eventType="touchUpInside" id="2sQ-4V-feR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="tvg-Nb-Jh6"/>
@@ -427,6 +436,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="ingredientsRecipe" destination="wG9-8I-dJt" id="fQ4-Mf-NNK"/>
+                        <outlet property="isLike" destination="03H-TG-fp6" id="qCo-vh-bzX"/>
                         <outlet property="pictureRecipe" destination="U4R-4c-0Q5" id="uVB-x7-9gk"/>
                         <outlet property="stepsRecipe" destination="2iI-e5-MiH" id="Svc-Sd-vvm"/>
                         <outlet property="titleRecipe" destination="OwR-Pp-n2K" id="wqL-DS-mFU"/>
@@ -435,7 +445,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hS-M3-Nc6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3639" y="-791"/>
+            <point key="canvasLocation" x="3637.68115942029" y="-791.57608695652175"/>
         </scene>
         <!--Feed-->
         <scene sceneID="nse-mF-br6">

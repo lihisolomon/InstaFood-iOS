@@ -34,5 +34,4 @@ class PostCell: UITableViewCell {
     func uploadImageSuccess(image: UIImage)->(){
         RecipeImage.image = image
     }
-    
 }

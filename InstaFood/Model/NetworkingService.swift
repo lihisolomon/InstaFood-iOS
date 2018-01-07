@@ -320,4 +320,41 @@ struct NetworkingService {
         SVProgressHUD.dismiss()
     }
 
+    //MARK: change likes number
+    func changeLikesNumber (recipe: Recipe, action: String){
+        //Database.database().reference().child("Recipes").child(uid).child(uniqID).setValue(recipeInfo)
+        if (action == "Minus"){
+            Database.database().reference().child("Recipes").child(recipe.uid).child(recipe.uniqId).child("Likes").setValue(String(recipe.likesNum - 1))
+        }
+        else if (action == "Plus"){
+             Database.database().reference().child("Recipes").child(recipe.uid).child(recipe.uniqId).child("Likes").setValue(String(recipe.likesNum + 1))
+        }
+        else{}
+    }
+    
+    //MARK: add recipe to favorites
+    func addToFavorites(recipe: Recipe){
+        let curUID = self.getCurrentUID()
+        Database.database().reference().child("users").child(curUID).child("FavoriteRecipes").child(recipe.uniqId).setValue(recipe.uid)
+    }
+    //MARK: remove recipe from favorites
+    func removeFavoriteRecipe(recipe: Recipe){
+        let curUID = self.getCurrentUID()
+        Database.database().reference().child("users").child(curUID).child("FavoriteRecipes").child(recipe.uniqId).removeValue()
+    }
+    
+    func checkIfLike(recipe: Recipe, updateLikeButton:@escaping (Bool)->()){
+        let curUID = self.getCurrentUID()
+        Database.database().reference().child("users").child(curUID).child("FavoriteRecipes").observe(.value){snapshot in
+            if let recipes = snapshot.children.allObjects as? [DataSnapshot]{
+                for rec in recipes{
+                    if (rec.key == recipe.uniqId){
+                        updateLikeButton(true)
+                        return
+                    }
+                }
+                updateLikeButton(false)
+            }
+        }
+    }
 }
