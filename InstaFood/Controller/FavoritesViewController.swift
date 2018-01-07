@@ -1,43 +1,41 @@
 //
-//  RecipesFeedViewController.swift
+//  FavoritesViewController.swift
 //  InstaFood
 //
-//  Created by admin on 19/12/2017.
-//  Copyright © 2017 admin. All rights reserved.
+//  Created by admin on 07/01/2018.
+//  Copyright © 2018 admin. All rights reserved.
 //
 
 import UIKit
 
-class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableViewDataSource {
-    
-    @IBOutlet weak var postsTableView: UITableView!
+class FavoritesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+
+    @IBOutlet var favoritesTableView: UITableView!
     
     let networkingService = NetworkingService()
-    var recipes: [Recipe]?
+    var favorites: [Recipe]?
     var rowNum = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.postsTableView.delegate = self
-        self.postsTableView.dataSource = self
+
+        self.favoritesTableView.delegate = self
+        self.favoritesTableView.dataSource = self
         
-        self.fetchPosts()
-        self.postsTableView.rowHeight = UITableViewAutomaticDimension
-        self.postsTableView.rowHeight = 175
-        self.postsTableView.backgroundView = UIImageView(image: UIImage(named: "Background.jpg"))
-        
+        self.fetchFavorites()
+        self.favoritesTableView.rowHeight = UITableViewAutomaticDimension
+        self.favoritesTableView.rowHeight = 175
+        favoritesTableView.backgroundView = UIImageView(image: UIImage(named: "Background.jpg"))
     }
     
-    func fetchPosts(){
-        networkingService.getRecipesList(updataeRecipes)
+    func fetchFavorites(){
+        networkingService.getFavoritesList(updateFavorites)
     }
-    
-    func updataeRecipes(recipesArray: [Recipe]){
-        self.recipes = recipesArray
-        self.postsTableView.reloadData()
+    func updateFavorites(FavoritesArray: [Recipe]){
+        self.favorites = FavoritesArray
+        self.favoritesTableView.reloadData()
         
     }
-    
     //Mark: recipe Choosen- need to view the full Recipe details
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print ("------------------")
@@ -46,9 +44,8 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
         performSegue(withIdentifier: "RecipeDetails", sender: self)
     }
     
-    
-    // MARK: - LogOut
-    @IBAction func LogOut(_ sender: Any) {
+    //MARK: logout
+    @IBAction func LogOut(_ sender: UIButton) {
         networkingService.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
     }
     
@@ -56,27 +53,26 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (self.recipes != nil){
-            return (self.recipes?.count)!
+        if (self.favorites != nil){
+            return (self.favorites?.count)!
         }
         else {
             return 0
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
-        cell.post = self.recipes?[indexPath.row]
-        //cell.selectionStyle = .none
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteCell", for: indexPath) as! FavoriteCell
+        cell.favorite = self.favorites?[indexPath.row]
         return cell
     }
     
-    // MARK: - segue
+    // MARK: segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "RecipeDetails" {
             let detailsVC = segue.destination as! RecipeViewViewController
-            detailsVC.recipe = self.recipes?[rowNum]
+            detailsVC.recipe = self.favorites?[rowNum]
         }
     }
 }
-

@@ -10,12 +10,11 @@ import UIKit
 
 class MyRecipesViewController: UIViewController {
 
-    @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var profileNameLabel: UILabel!
+    @IBOutlet var profileImage: UIImageView!
+    @IBOutlet var profileNameLabel: UILabel!
+    @IBOutlet var myRecipes: UITableView!
     
     let networkingService = NetworkingService()
-    @IBAction func editButton(_ sender: UIButton) {
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,5 +34,7 @@ class MyRecipesViewController: UIViewController {
         profileImage.image = data
         
     }
-
+    @IBAction func logoutIsPressed(_ sender: UIButton) {
+    }
+    
 }

@@ -190,7 +190,7 @@
         <!--Favorites-->
         <scene sceneID="Yuf-HA-Pyu">
             <objects>
-                <viewController id="uY3-Lq-E7o" sceneMemberID="viewController">
+                <viewController id="uY3-Lq-E7o" customClass="FavoritesViewController" customModule="InstaFood" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ep0-pP-bYN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -215,12 +215,56 @@
                                 <state key="normal" title="LogOut">
                                     <color key="titleColor" red="0.94050112419999998" green="0.082353456559999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="LogOut:" destination="uY3-Lq-E7o" eventType="touchUpInside" id="efH-tU-EHh"/>
+                                </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0aw-yD-V5o">
+                                <rect key="frame" x="0.0" y="74" width="414" height="613"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteCell" rowHeight="160" id="fEp-5Q-OvB" customClass="FavoriteCell" customModule="InstaFood" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="160"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fEp-5Q-OvB" id="h2u-ei-woO">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="159.66666666666666"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="82x-3N-lTt">
+                                                    <rect key="frame" x="18" y="8" width="186" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1o-IO-G78">
+                                                    <rect key="frame" x="224" y="8" width="167" height="71"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KxP-mE-3xF">
+                                                    <rect key="frame" x="291" y="87" width="33" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="fullStarIcon"/>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="recipeImage" destination="82x-3N-lTt" id="g6Y-wH-v2m"/>
+                                            <outlet property="recipeTitle" destination="r1o-IO-G78" id="hkV-pv-yQa"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="9tv-5A-vTy"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Favorites" image="StarIcon" selectedImage="StarIcon" id="ELp-i3-3hJ"/>
+                    <connections>
+                        <outlet property="favoritesTableView" destination="0aw-yD-V5o" id="LcN-k0-Tji"/>
+                        <segue destination="NuT-hQ-3i3" kind="show" identifier="RecipeDetails" id="gb9-Hm-s4V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRQ-9P-lg8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -445,7 +489,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hS-M3-Nc6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3637.68115942029" y="-791.57608695652175"/>
+            <point key="canvasLocation" x="4043" y="154"/>
         </scene>
         <!--Feed-->
         <scene sceneID="nse-mF-br6">
@@ -704,44 +748,83 @@
                                 <state key="normal" title="LogOut">
                                     <color key="titleColor" red="0.94050112419999998" green="0.082353456559999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="logoutIsPressed:" destination="Xby-Aa-gwD" eventType="touchUpInside" id="tI1-Np-lI5"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="UserImage" translatesAutoresizingMaskIntoConstraints="NO" id="KqG-hn-fBr">
-                                <rect key="frame" x="20" y="82" width="174" height="128"/>
+                                <rect key="frame" x="20" y="74" width="174" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qr-fI-H4t">
-                                <rect key="frame" x="194" y="149" width="200" height="61"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ga1-Ys-Mlf">
+                                <rect key="frame" x="0.0" y="207" width="414" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyRecipeCell" rowHeight="178" id="33k-hy-B5Q" customClass="MyRecipeCell" customModule="InstaFood" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="178"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="33k-hy-B5Q" id="sDJ-iU-pWI">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="177.66666666666666"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wQd-KT-J43">
+                                                    <rect key="frame" x="8" y="8" width="205" height="162"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlY-yb-bm0">
+                                                    <rect key="frame" x="227" y="8" width="172" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ic9-vl-2S5">
+                                                    <rect key="frame" x="344" y="92" width="46" height="55"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="🗑"/>
+                                                    <connections>
+                                                        <action selector="deleteRecipeIsPressed:" destination="33k-hy-B5Q" eventType="touchUpInside" id="lLa-SP-dhr"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SJ-KN-RNA">
+                                                    <rect key="frame" x="233" y="104" width="46" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="✏️"/>
+                                                    <connections>
+                                                        <action selector="editRecipeIsPressed:" destination="33k-hy-B5Q" eventType="touchUpInside" id="sf3-GJ-Qvy"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="recipeImage" destination="wQd-KT-J43" id="9Zx-gs-cWm"/>
+                                            <outlet property="recipeTitle" destination="hlY-yb-bm0" id="aPI-yu-oxW"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qr-fI-H4t">
+                                <rect key="frame" x="186" y="108" width="200" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfU-HW-6jj">
-                                <rect key="frame" x="354" y="111" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <size key="titleShadowOffset" width="1" height="1"/>
-                                <state key="normal" title="Edit"/>
-                                <state key="selected">
-                                    <color key="titleColor" red="0.15686274510000001" green="0.66666666669999997" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="editButton:" destination="Xby-Aa-gwD" eventType="touchUpInside" id="ap3-Ts-fbP"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="91B-gh-Of2"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="MyRecipes" image="BookIcon" selectedImage="BookIcon" id="sld-Zf-2qY"/>
                     <connections>
+                        <outlet property="myRecipes" destination="ga1-Ys-Mlf" id="UIo-kY-yOW"/>
                         <outlet property="profileImage" destination="KqG-hn-fBr" id="aXv-7c-eTW"/>
                         <outlet property="profileNameLabel" destination="1Qr-fI-H4t" id="tIc-co-PxO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zJ3-HJ-5zE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2189.8550724637685" y="1207.3369565217392"/>
+            <point key="canvasLocation" x="2190" y="1213"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2jX-40-3eD">
@@ -789,8 +872,9 @@
         <image name="PlusIcon" width="33" height="33"/>
         <image name="StarIcon" width="33" height="33"/>
         <image name="UserImage" width="100" height="100"/>
+        <image name="fullStarIcon" width="33" height="33"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="P7i-w3-HZg"/>
+        <segue reference="gb9-Hm-s4V"/>
     </inferredMetricsTieBreakers>
 </document>

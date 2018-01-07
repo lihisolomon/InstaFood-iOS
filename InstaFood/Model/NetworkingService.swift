@@ -121,12 +121,11 @@ struct NetworkingService {
                     print ("Storage image Successfully")
                 }
                 if let recipeURL = metadata?.downloadURL()?.absoluteString{
-                    let recipeInfo = ["Title" :titleRecipe, "Ingredients" : ingredients, "steps" : stepsRecipe, "RecipeImage": recipeURL, "Likes": String(likesNum)]
+                    let recipeInfo = ["Title" :titleRecipe, "Ingredients" : ingredients, "steps" : stepsRecipe, "RecipeImage": recipeURL, "Likes": String(likesNum),"FullName": fullName]
                     
                     Database.database().reference().child("Recipes").child(uid).child(uniqID).setValue(recipeInfo)
                     SVProgressHUD.dismiss()
                     print ("upload Recipes data Successfully")
-                    //let recipe = Recipe(uid,uniqID,titleRecipe,ingredients,stepsRecipe,pictureRercipe, fullName,likesNum)
                     let recipe = Recipe(uid,uniqID,titleRecipe,ingredients,stepsRecipe,recipeURL, fullName,likesNum)
                     success(recipe)
                 }
@@ -276,24 +275,7 @@ struct NetworkingService {
                         if let uids = folder.children.allObjects as? [DataSnapshot]{
                             var recipes = [Recipe]()
                             for uid in uids{
-                                var fullName = ""
                                 let uidNumber = uid.key
-                                for folder in folders{
-                                    if folder.key == "users"{
-                                        if let users = folder.children.allObjects as? [DataSnapshot]{
-                                            for user in users {
-                                                if user.key == uidNumber{
-                                                    if var userDetals = user.value as? Dictionary<String, AnyObject> {
-                                                        let firstName = userDetals["FirstName"] as? String ?? ""
-                                                        let lastName = userDetals["LastName"] as? String ?? ""
-                                                        fullName = "\(firstName) \(lastName)"
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                
                                 if let recipesID = uid.children.allObjects as? [DataSnapshot]{
                                     for recid in recipesID{
                                         let uniqID = recid.key
@@ -303,7 +285,7 @@ struct NetworkingService {
                                             let ingredients = postDict["Ingredients"] as? String ?? ""
                                             let picture = postDict["RecipeImage"] as? String ?? ""
                                             let numOfLikes = postDict["Likes"] as? String ?? ""
-                                            
+                                            let fullName = postDict["FullName"] as? String ?? ""
                                             recipes.append(Recipe(uidNumber,uniqID,title,ingredients,steps,picture,fullName,Int(numOfLikes)!))
                                         }
                                     }
@@ -316,6 +298,33 @@ struct NetworkingService {
                 }
             }
             
+        }
+        SVProgressHUD.dismiss()
+    }
+    
+    func getFavoritesList(_ updateFavorites:@escaping ([Recipe])->()){
+        SVProgressHUD.show()
+        let curUID = self.getCurrentUID()
+        Database.database().reference().child("users").child(curUID).child("FavoriteRecipes").observe(.value){snapshot in
+            if let favRecipes = snapshot.children.allObjects as? [DataSnapshot]{
+                var recipes = [Recipe]()
+                for favRecipe in favRecipes{
+                    let uniqID = String(favRecipe.key)
+                    let uid = favRecipe.value as! String
+                   
+                    Database.database().reference().child("Recipes").child(uid).child(uniqID).observeSingleEvent(of: .value, with: {(snapshot) in
+                        let value = snapshot.value as? NSDictionary
+                        let ingredients = value?["Ingredients"] as? String
+                        let numOfLikes = value?["Likes"] as? String
+                        let picture = value?["RecipeImage"] as? String
+                        let title = value?["Title"] as? String
+                        let steps = value?["steps"] as? String
+                        let fullName = value?["FullName"] as? String
+                        recipes.append(Recipe(uid,uniqID,title!,ingredients!,steps!,picture!,fullName!,Int(numOfLikes!)!))
+                        updateFavorites(recipes)
+                    })
+                }
+            }
         }
         SVProgressHUD.dismiss()
     }
