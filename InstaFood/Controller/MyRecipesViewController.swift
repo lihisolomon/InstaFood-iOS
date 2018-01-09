@@ -49,6 +49,21 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
         self.profileNameLabel.text = fullName
     }
     
+    //Mark: recipe Choosen- need to view the full Recipe details
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print ("------------------")
+        rowNum = indexPath.row
+        print ("Recipe \(rowNum) selected")
+        performSegue(withIdentifier: "RecipeDetails", sender: self)
+    }
+    // MARK: segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "RecipeDetails" {
+            let detailsVC = segue.destination as! RecipeViewViewController
+            detailsVC.recipe = self.recipes?[rowNum]
+        }
+    }
+    
     @IBAction func logoutIsPressed(_ sender: UIButton) {
         networkingService.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
     }

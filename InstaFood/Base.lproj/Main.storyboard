@@ -825,6 +825,7 @@
                         <outlet property="myRecipes" destination="ga1-Ys-Mlf" id="UIo-kY-yOW"/>
                         <outlet property="profileImage" destination="KqG-hn-fBr" id="aXv-7c-eTW"/>
                         <outlet property="profileNameLabel" destination="1Qr-fI-H4t" id="tIc-co-PxO"/>
+                        <segue destination="NuT-hQ-3i3" kind="show" identifier="RecipeDetails" id="mFz-QK-4kz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zJ3-HJ-5zE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -880,6 +881,6 @@
         <image name="fullStarIcon" width="33" height="33"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gb9-Hm-s4V"/>
+        <segue reference="mFz-QK-4kz"/>
     </inferredMetricsTieBreakers>
 </document>
