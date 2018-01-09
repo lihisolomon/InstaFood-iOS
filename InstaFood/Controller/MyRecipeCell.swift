@@ -7,17 +7,27 @@
 //
 
 import UIKit
-
-class MyRecipeCell: UITableViewCell {
+import SwipeCellKit
+class MyRecipeCell: SwipeTableViewCell {
+    
+    let networkingService = NetworkingService()
 
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeTitle: UILabel!
     
-
-    @IBAction func editRecipeIsPressed(_ sender: UIButton) {
+    var myRecipe:Recipe!{
+        didSet{
+            self.updateUI();
+        }
+    }
+    // MARK: - update ui view
+    func updateUI(){
+        networkingService.downloadImage(url:myRecipe.picture, uploadImageSuccess)
+        recipeTitle.text = myRecipe.title
     }
     
-    
-    @IBAction func deleteRecipeIsPressed(_ sender: UIButton) {
+    func uploadImageSuccess(image: UIImage)->(){
+        recipeImage.image = image
     }
+    
 }

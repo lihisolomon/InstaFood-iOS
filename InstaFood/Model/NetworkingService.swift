@@ -137,11 +137,6 @@ struct NetworkingService {
         return (Auth.auth().currentUser?.uid)!
     }
     
-    //Mark: get pictureURL of the current user
-    func getUserPicUrl () ->String{
-        return Storage.storage().reference().child("ProfileImages").child(getCurrentUID() + ".jpeg").fullPath
-    }
-    
     // MARK: - Move To Feed Bar View Controller
     func moveToFeedBar() {
         let storyboardMain = UIStoryboard(name: "Main",bundle: nil)
@@ -158,7 +153,7 @@ struct NetworkingService {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginsView
     }
-
+    
     // MARK: Send alert to the user
     func sendAlertToUser(_ uiViewController: UIViewController, titleAlert: String, messageAlert: String) {
         let alert = UIAlertController(title: titleAlert, message: messageAlert, preferredStyle: .alert)
@@ -219,21 +214,15 @@ struct NetworkingService {
         vc.present(alert, animated: true, completion: nil)
     }
     
-    //MARK: get UIimage from url in firebase
-    func getImageFromURL(_ url: String,_ uploadImageSuccess:@escaping (UIImage)->())
-    {
-        let storageRef = Storage.storage().reference().child(url)
-        storageRef.getData(maxSize: 15 * 1024 * 1024)  { (data, error) in
-            if error == nil {
-                uploadImageSuccess(UIImage(data : data!)!)
-            }
-            else{
-                //print(error)
-                print("no picture found \n")
-                let image = UIImage(named: "chefImage")
-                uploadImageSuccess(image!)
-            }
-        }
+    //MARK: get profile image
+    func getProfileImage(_ uploadImageSuccess:@escaping (UIImage)->()){
+        let uid = self.getCurrentUID()
+        
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: {(snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let profileImage = value?["ProfileImage"] as! String
+            self.downloadImage(url:profileImage, uploadImageSuccess)
+        })
     }
     
     //MARK: get image from downloadURL
@@ -297,11 +286,36 @@ struct NetworkingService {
                     }
                 }
             }
-            
         }
         SVProgressHUD.dismiss()
     }
     
+    //get user's recipes list
+    func getMyRecipesList( updateMyRecipes:@escaping ([Recipe])->()){
+        SVProgressHUD.show()
+        let curUID = self.getCurrentUID()
+        Database.database().reference().child("Recipes").child(curUID).observe(.value){snapshot in
+            if let myRecipes = snapshot.children.allObjects as? [DataSnapshot]{
+                var recipes = [Recipe]()
+                for myRecipe in myRecipes{
+                    let uniqID = String(myRecipe.key)
+                    if var postDict = myRecipe.value as? Dictionary<String, AnyObject> {
+                        let title = postDict["Title"] as? String ?? ""
+                        let steps = postDict["steps"] as? String ?? ""
+                        let ingredients = postDict["Ingredients"] as? String ?? ""
+                        let picture = postDict["RecipeImage"] as? String ?? ""
+                        let numOfLikes = postDict["Likes"] as? String ?? ""
+                        let fullName = postDict["FullName"] as? String ?? ""
+                        recipes.append(Recipe(curUID,uniqID,title,ingredients,steps,picture,fullName,Int(numOfLikes)!))
+                    }
+                }
+                updateMyRecipes(recipes)
+            }
+        }
+        SVProgressHUD.dismiss()
+    }
+    
+    //MARK: get user favourites recipes list
     func getFavoritesList(_ updateFavorites:@escaping ([Recipe])->()){
         SVProgressHUD.show()
         let curUID = self.getCurrentUID()
@@ -311,7 +325,7 @@ struct NetworkingService {
                 for favRecipe in favRecipes{
                     let uniqID = String(favRecipe.key)
                     let uid = favRecipe.value as! String
-                   
+                    
                     Database.database().reference().child("Recipes").child(uid).child(uniqID).observeSingleEvent(of: .value, with: {(snapshot) in
                         let value = snapshot.value as? NSDictionary
                         let ingredients = value?["Ingredients"] as? String
@@ -328,7 +342,7 @@ struct NetworkingService {
         }
         SVProgressHUD.dismiss()
     }
-
+    
     //MARK: change likes number
     func changeLikesNumber (recipe: Recipe, action: String){
         //Database.database().reference().child("Recipes").child(uid).child(uniqID).setValue(recipeInfo)
@@ -336,7 +350,7 @@ struct NetworkingService {
             Database.database().reference().child("Recipes").child(recipe.uid).child(recipe.uniqId).child("Likes").setValue(String(recipe.likesNum - 1))
         }
         else if (action == "Plus"){
-             Database.database().reference().child("Recipes").child(recipe.uid).child(recipe.uniqId).child("Likes").setValue(String(recipe.likesNum + 1))
+            Database.database().reference().child("Recipes").child(recipe.uid).child(recipe.uniqId).child("Likes").setValue(String(recipe.likesNum + 1))
         }
         else{}
     }
@@ -347,11 +361,12 @@ struct NetworkingService {
         Database.database().reference().child("users").child(curUID).child("FavoriteRecipes").child(recipe.uniqId).setValue(recipe.uid)
     }
     //MARK: remove recipe from favorites
-    func removeFavoriteRecipe(recipe: Recipe){
-        let curUID = self.getCurrentUID()
-        Database.database().reference().child("users").child(curUID).child("FavoriteRecipes").child(recipe.uniqId).removeValue()
+    func removeFavoriteRecipe(uid:String,recipe: Recipe){
+        //self.getCurrentUID()
+        Database.database().reference().child("users").child(uid).child("FavoriteRecipes").child(recipe.uniqId).removeValue()
     }
     
+    //MARK: check if user likes the recipe
     func checkIfLike(recipe: Recipe, updateLikeButton:@escaping (Bool)->()){
         let curUID = self.getCurrentUID()
         Database.database().reference().child("users").child(curUID).child("FavoriteRecipes").observe(.value){snapshot in
@@ -366,4 +381,30 @@ struct NetworkingService {
             }
         }
     }
+    
+    //MARK: remove recipe
+    func removeRecipe(_ recipe: Recipe,_ removeSuccess:@escaping ()->(),_ removeFaild:@escaping ()->()){
+        Database.database().reference().child("Recipes").child(recipe.uid).child(recipe.uniqId).removeValue{ error, _ in
+            if error != nil {
+                print("error \(error!)")
+                removeFaild()
+                return
+            }
+            else {
+                self.removeRecipeFromFavorites(recipe)
+                removeSuccess()
+            }
+        }
+    }
+    
+    func removeRecipeFromFavorites(_ recipe: Recipe){
+        Database.database().reference().child("users").observe(.value){snapshot in
+            if let users = snapshot.children.allObjects as? [DataSnapshot]{
+                for user in users{
+                    self.removeFavoriteRecipe(uid: user.key, recipe: recipe)
+                }
+            }
+        }
+    }
 }
+

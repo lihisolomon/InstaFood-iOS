@@ -15,4 +15,5 @@ target 'InstaFood' do
   pod 'FBSDKShareKit'
   pod 'FBSDKLoginKit'
   pod 'KMPlaceholderTextView'
+  pod 'SwipeCellKit'
 end

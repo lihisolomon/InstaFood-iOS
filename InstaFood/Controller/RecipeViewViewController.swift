@@ -20,8 +20,8 @@ class RecipeViewViewController: UIViewController {
     @IBOutlet var stepsRecipe: UITextView!
     @IBOutlet var pictureRecipe: UIImageView!
     @IBOutlet var writerRecipe: UITextView!
-    
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
@@ -47,14 +47,14 @@ class RecipeViewViewController: UIViewController {
             print ("Did not like this recipe")
         }
     }
-
+    
     @IBAction func likeIsPressed(_ sender: UIButton) {
         if (isLike.image(for: UIControlState.normal)) == UIImage(named: "fullStarIcon") {
             print ("full, change to empty")
             self.setDontLike()
             
             networkingService.changeLikesNumber(recipe: self.recipe!, action: "Minus")
-            networkingService.removeFavoriteRecipe(recipe: self.recipe!)
+            networkingService.removeFavoriteRecipe(uid: networkingService.getCurrentUID(),recipe: self.recipe!)
         }
         else{
             print ("empty, change to full")
@@ -82,5 +82,5 @@ class RecipeViewViewController: UIViewController {
     @IBAction func SignOut(_ sender: UIButton) {
         networkingService.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
     }
-
+    
 }
