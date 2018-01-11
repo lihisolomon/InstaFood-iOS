@@ -10,12 +10,14 @@ import Foundation
 import Firebase
 import UIKit
 import SVProgressHUD
+import FBSDKLoginKit
 import FBSDKCoreKit
 
 struct NetworkingService {
     
     // MARK: - Login user Firebase
     func LoginUser(_ uiViewController: UIViewController,_ email: String ,_ password: String){
+         print ("-------------------")
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error != nil {
                 print (error!)
@@ -29,6 +31,70 @@ struct NetworkingService {
         }
     }
     
+    func LoginWithFacebook(_ vc: UIViewController, _ failure:@escaping ()->()){
+        print ("-------------------")
+        FBSDKLoginManager().logIn(withReadPermissions: ["email","public_profile"], from: vc) {(result,error) in
+            SVProgressHUD.show()
+            FBSDKGraphRequest(graphPath: "/me", parameters: ["fields":"id,name,email"]).start(completionHandler: {(connection,result, error) in
+                if error != nil {
+                    print (error!)
+                    failure()
+                    SVProgressHUD.dismiss()
+                }
+                else {
+                    let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                    Auth.auth().signIn(with: credential, completion: {(user, error) in
+                        if error != nil {
+                            print (error!)
+                            failure()
+                            SVProgressHUD.dismiss()
+                        }
+                        else {
+                            let userImage = UIImage(named: "chefImage")
+                            var fullName = (user?.displayName)!
+                            var fullNameArr = fullName.characters.split{$0 == " "}.map(String.init)
+                            let firstName: String = fullNameArr[0]
+                            let lastName: String? = fullNameArr[1]
+                            self.insertUserToFirebase((user?.email)!, firstName, lastName!, userImage!)
+                            SVProgressHUD.dismiss()
+                            
+                        }
+                    })
+                }
+                
+            })
+        }
+    }
+    
+    //Mark: Insert new user to Firebase
+    func insertUserToFirebase(_ email: String ,_ firstName: String ,_ lastName: String , _ userImage: UIImage){
+        print ("-------------------")
+        let uid = self.getCurrentUID()
+        let storageRef = Storage.storage().reference().child("ProfileImages").child("\(uid).jpeg")
+        if let uploadData = UIImageJPEGRepresentation(userImage, 0.2){
+            storageRef.putData(uploadData, metadata: nil, completion: {(metadata,error) in
+                if error != nil{
+                    print("Error")
+                    print (error!)
+                }
+                else{
+                    print ("-------------------")
+                    print ("Storage image Successfully")
+                }
+                if let profileUserURL = metadata?.downloadURL()?.absoluteString{
+                    let userInfo = ["FirstName" : firstName, "LastName" : lastName, "EmailAddress" : email ,"ProfileImage" : profileUserURL]
+                    self.uploadUserData(uid, values: userInfo as [String : AnyObject])
+                }
+                else {
+                    let userInfo = ["FirstName" :firstName, "LastName" : lastName, "EmailAddress" : email]
+                    self.uploadUserData(uid, values: userInfo as [String : AnyObject])
+                }
+            })
+        }
+        print ("Registration Successfully")
+        self.moveToFeedBar()
+    }
+    
     // MARK: Create a new user use Firebase
     func CreateNewUser(_ uiViewController: UIViewController, _ email: String ,_ password: String,_ firstName: String ,_ lastName: String , _ userImage: UIImage) {
         Auth.auth().createUser(withEmail: email, password: password, completion: {(authData,error) in
@@ -37,33 +103,34 @@ struct NetworkingService {
                 self.sendAlertToUser(uiViewController,titleAlert: "Error, Please Try Again", messageAlert: error!.localizedDescription)
             }
             else {
-                guard let uid = authData?.uid else {return }
-                
-                //successfully authenticated user
-                //upload image into Firebase
-                let storageRef = Storage.storage().reference().child("ProfileImages").child("\(uid).jpeg")
-                if let uploadData = UIImageJPEGRepresentation(userImage, 0.2){
-                    storageRef.putData(uploadData, metadata: nil, completion: {(metadata,error) in
-                        if error != nil{
-                            print("Error")
-                            print (error!)
-                        }
-                        else{
-                            print ("-------------------")
-                            print ("Storage image Successfully")
-                        }
-                        if let profileUserURL = metadata?.downloadURL()?.absoluteString{
-                            let userInfo = ["FirstName" : firstName, "LastName" : lastName, "EmailAddress" : email ,"ProfileImage" : profileUserURL]
-                            self.uploadUserData(uid, values: userInfo as [String : AnyObject])
-                        }
-                        else {
-                            let userInfo = ["FirstName" :firstName, "LastName" : lastName, "EmailAddress" : email]
-                            self.uploadUserData(uid, values: userInfo as [String : AnyObject])
-                        }
-                    })
-                }
-                print ("Registration Successfully")
-                self.moveToFeedBar()
+                self.insertUserToFirebase(email, firstName, lastName, userImage)
+                //guard let uid = authData?.uid else {return }
+//
+//                //successfully authenticated user
+//                //upload image into Firebase
+//                let storageRef = Storage.storage().reference().child("ProfileImages").child("\(uid).jpeg")
+//                if let uploadData = UIImageJPEGRepresentation(userImage, 0.2){
+//                    storageRef.putData(uploadData, metadata: nil, completion: {(metadata,error) in
+//                        if error != nil{
+//                            print("Error")
+//                            print (error!)
+//                        }
+//                        else{
+//                            print ("-------------------")
+//                            print ("Storage image Successfully")
+//                        }
+//                        if let profileUserURL = metadata?.downloadURL()?.absoluteString{
+//                            let userInfo = ["FirstName" : firstName, "LastName" : lastName, "EmailAddress" : email ,"ProfileImage" : profileUserURL]
+//                            self.uploadUserData(uid, values: userInfo as [String : AnyObject])
+//                        }
+//                        else {
+//                            let userInfo = ["FirstName" :firstName, "LastName" : lastName, "EmailAddress" : email]
+//                            self.uploadUserData(uid, values: userInfo as [String : AnyObject])
+//                        }
+//                    })
+//                }
+//                print ("Registration Successfully")
+//                self.moveToFeedBar()
             }
         })
     }
