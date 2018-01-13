@@ -55,9 +55,23 @@ struct NetworkingService {
                             var fullNameArr = fullName.characters.split{$0 == " "}.map(String.init)
                             let firstName: String = fullNameArr[0]
                             let lastName: String? = fullNameArr[1]
-                            self.insertUserToFirebase((user?.email)!, firstName, lastName!, userImage!)
-                            SVProgressHUD.dismiss()
                             
+                            let uid = self.getCurrentUID()
+                            Database.database().reference().child("users").observe(.value){snapshot in
+                                if let users = snapshot.children.allObjects as? [DataSnapshot]{
+                                    for user in users{
+                                        if String(user.key) == uid{
+                                            SVProgressHUD.dismiss()
+                                            self.moveToFeedBar()
+                                            print ("-------------------")
+                                            print("User already exist")
+                                            return
+                                        }
+                                    }
+                                    self.insertUserToFirebase((user?.email)!, firstName, lastName!, userImage!)
+                                    SVProgressHUD.dismiss()
+                                }
+                            }
                         }
                     })
                 }
@@ -104,33 +118,6 @@ struct NetworkingService {
             }
             else {
                 self.insertUserToFirebase(email, firstName, lastName, userImage)
-                //guard let uid = authData?.uid else {return }
-//
-//                //successfully authenticated user
-//                //upload image into Firebase
-//                let storageRef = Storage.storage().reference().child("ProfileImages").child("\(uid).jpeg")
-//                if let uploadData = UIImageJPEGRepresentation(userImage, 0.2){
-//                    storageRef.putData(uploadData, metadata: nil, completion: {(metadata,error) in
-//                        if error != nil{
-//                            print("Error")
-//                            print (error!)
-//                        }
-//                        else{
-//                            print ("-------------------")
-//                            print ("Storage image Successfully")
-//                        }
-//                        if let profileUserURL = metadata?.downloadURL()?.absoluteString{
-//                            let userInfo = ["FirstName" : firstName, "LastName" : lastName, "EmailAddress" : email ,"ProfileImage" : profileUserURL]
-//                            self.uploadUserData(uid, values: userInfo as [String : AnyObject])
-//                        }
-//                        else {
-//                            let userInfo = ["FirstName" :firstName, "LastName" : lastName, "EmailAddress" : email]
-//                            self.uploadUserData(uid, values: userInfo as [String : AnyObject])
-//                        }
-//                    })
-//                }
-//                print ("Registration Successfully")
-//                self.moveToFeedBar()
             }
         })
     }
@@ -142,6 +129,38 @@ struct NetworkingService {
         ref.child("users").child(uid).setValue(values)
         
         print ("upload data Successfully")
+    }
+    
+    func uploadUserProfile (_ uiViewController: UIViewController,_ profileImage:UIImage){
+        let uid = self.getCurrentUID()
+        
+        let storageRef = Storage.storage().reference().child("ProfileImages").child("\(uid).jpeg")
+        storageRef.delete { error in
+            if error != nil{
+                print("Error")
+                print (error!)
+                self.sendAlertToUser(uiViewController, titleAlert: "Error", messageAlert: "Error while changing profile photo, Please try again")
+            }
+            else{
+                print ("-------------------")
+                print ("Image deleted Successfully")
+                if let uploadData = UIImageJPEGRepresentation(profileImage, 0.2){
+                    storageRef.putData(uploadData, metadata: nil, completion: {(metadata,error) in
+                        if error != nil{
+                            print("Error")
+                            print (error!)
+                        }
+                        else{
+                            if let profileUserURL = metadata?.downloadURL()?.absoluteString{
+                                Database.database().reference().child("users").child(uid).child("ProfileImage").setValue(profileUserURL)
+                            }
+                            print ("-------------------")
+                            print ("change image Successfully")
+                        }
+                    })
+                }
+            }
+        }
     }
     
     func ForgotPassword(_ uiViewController: UIViewController,_ email : String) {
@@ -284,7 +303,7 @@ struct NetworkingService {
     //MARK: get profile image
     func getProfileImage(_ uploadImageSuccess:@escaping (UIImage)->()){
         let uid = self.getCurrentUID()
-        
+
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: {(snapshot) in
             let value = snapshot.value as? NSDictionary
             let profileImage = value?["ProfileImage"] as! String
@@ -412,7 +431,6 @@ struct NetworkingService {
     
     //MARK: change likes number
     func changeLikesNumber (recipe: Recipe, action: String){
-        //Database.database().reference().child("Recipes").child(uid).child(uniqID).setValue(recipeInfo)
         if (action == "Minus"){
             Database.database().reference().child("Recipes").child(recipe.uid).child(recipe.uniqId).child("Likes").setValue(String(recipe.likesNum - 1))
         }

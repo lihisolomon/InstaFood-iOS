@@ -9,7 +9,7 @@
 import UIKit
 import SwipeCellKit
 
-class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, SwipeTableViewCellDelegate {
+class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, SwipeTableViewCellDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var profileNameLabel: UILabel!
@@ -48,6 +48,24 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
     func uploadFullName(fullName: String){
         self.profileNameLabel.text = fullName
     }
+    
+    //Mark: user want to change his profile image
+    @IBAction func editProfilePictureisPressed(_ sender: UIButton) {
+        print ("-------------------")
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.allowsEditing = true
+        networkingService.pickPicture (self,pickerController)
+    }
+    // MARK: pick image
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.profileImage.image = image
+        }
+        picker.dismiss(animated: true, completion: nil);
+        networkingService.uploadUserProfile(self,profileImage.image!)
+    }
+    
     
     //Mark: recipe Choosen- need to view the full Recipe details
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
