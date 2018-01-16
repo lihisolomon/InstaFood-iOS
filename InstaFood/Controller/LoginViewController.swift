@@ -20,10 +20,7 @@ class LoginViewController: UIViewController {//, FBSDKLoginButtonDelegate {
     }
     
     @IBAction func loginWithFacebook(_ sender: UIButton) {
-        NetworkingService.sharedInstance.LoginWithFacebook(self,success, failure)
-    }
-    func success(){
-        NetworkingService.sharedInstance.moveToFeedBar()
+        NetworkingService.sharedInstance.LoginWithFacebook(self, failure)
     }
     func failure(){
         NetworkingService.sharedInstance.sendAlertToUser(self, titleAlert: "Error", messageAlert: "Failed login with facebook")

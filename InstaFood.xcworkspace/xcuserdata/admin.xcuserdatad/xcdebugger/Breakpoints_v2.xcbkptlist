@@ -10,12 +10,108 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "InstaFood/Model/NetworkingService.swift"
-            timestampString = "537818535.764878"
+            timestampString = "537821618.762931"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "LoginWithFacebook(_:_:_:)"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
+            landmarkName = "getCurrentFullName(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InstaFood/Model/NetworkingService.swift"
+            timestampString = "537821618.771991"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "LoginWithFacebook(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InstaFood/Model/NetworkingService.swift"
+            timestampString = "537821657.04533"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "LoginWithFacebook(_:_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (__ObjC.DataSnapshot) -&gt; () in closure #1 (Swift.Optional&lt;__ObjC.User&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__ObjC.FBSDKGraphRequestConnection&gt;, Swift.Optional&lt;Any&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__ObjC.FBSDKLoginManagerLoginResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in InstaFood.NetworkingService.LoginWithFacebook(__ObjC.UIViewController, () -&gt; ()) -&gt; ()"
+                  moduleName = "InstaFood"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/InstaFood-iOS/InstaFood/Model/NetworkingService.swift"
+                  timestampString = "537821657.059844"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "1375">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (__ObjC.DataSnapshot) -&gt; () in closure #1 (Swift.Optional&lt;__ObjC.User&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__ObjC.FBSDKGraphRequestConnection&gt;, Swift.Optional&lt;Any&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__ObjC.FBSDKLoginManagerLoginResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in InstaFood.NetworkingService.LoginWithFacebook(__ObjC.UIViewController, () -&gt; ()) -&gt; ()"
+                  moduleName = "InstaFood"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/InstaFood-iOS/InstaFood/Model/NetworkingService.swift"
+                  timestampString = "537821657.065014"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "2459">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InstaFood/Model/NetworkingService.swift"
+            timestampString = "537821772.046308"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "insertUserToFirebase(_:_:_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InstaFood/Model/NetworkingService.swift"
+            timestampString = "537821840.588012"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "342"
+            endingLineNumber = "342"
+            landmarkName = "getCurrentFullName(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

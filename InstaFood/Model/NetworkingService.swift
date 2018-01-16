@@ -33,7 +33,7 @@ class NetworkingService {
         }
     }
     
-    func LoginWithFacebook(_ vc: UIViewController, _ success:@escaping ()->(),_ failure:@escaping ()->()){
+    func LoginWithFacebook(_ vc: UIViewController, _ failure:@escaping ()->()){
         print ("-------------------")
         FBSDKLoginManager().logIn(withReadPermissions: ["email","public_profile"], from: vc) {(result,error) in
             SVProgressHUD.show()
@@ -58,15 +58,18 @@ class NetworkingService {
                             let firstName: String = fullNameArr[0]
                             let lastName: String? = fullNameArr[1]
                             
+                            self.moveToFeedBar()
+                            
+                            let uid = self.getCurrentUID()
                             Database.database().reference().child("users").observe(.value){snapshot in
                                 if let users = snapshot.children.allObjects as? [DataSnapshot]{
                                     for user in users{
-                                        if user.exists(){
-                                            if let loginVC = vc as? LoginViewController{
-                                                loginVC.success()
-                                            }
+                                        if (user.key == uid){
+//                                        if user.exists(){
+//                                            if let loginVC = vc as? LoginViewController{
+//                                                loginVC.success()
+//                                            }
                                             SVProgressHUD.dismiss()
-//                                            self.moveToFeedBar()
                                             print ("-------------------")
                                             print("User already exist")
                                             return
