@@ -11,8 +11,7 @@ import UIKit
 class FavoritesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet var favoritesTableView: UITableView!
-    
-    let networkingService = NetworkingService()
+
     var favorites: [Recipe]?
     var rowNum = 0
     
@@ -29,7 +28,7 @@ class FavoritesViewController: UIViewController,UITableViewDelegate,UITableViewD
     }
     
     func fetchFavorites(){
-        networkingService.getFavoritesList(updateFavorites)
+        NetworkingService.sharedInstance.getFavoritesList(updateFavorites)
     }
     func updateFavorites(FavoritesArray: [Recipe]){
         self.favorites = FavoritesArray
@@ -46,7 +45,7 @@ class FavoritesViewController: UIViewController,UITableViewDelegate,UITableViewD
     
     //MARK: logout
     @IBAction func LogOut(_ sender: UIButton) {
-        networkingService.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
+        NetworkingService.sharedInstance.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
     }
     
     // MARK: table view settings

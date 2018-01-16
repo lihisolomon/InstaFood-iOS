@@ -16,9 +16,7 @@ class SignUpViewController: UIViewController,UIImagePickerControllerDelegate, UI
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var passwordTextfield: UITextField!
     @IBOutlet weak var userImageView: UIImageView!
-    
-    let networkingService = NetworkingService()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,22 +30,22 @@ class SignUpViewController: UIViewController,UIImagePickerControllerDelegate, UI
         SVProgressHUD.show()
         if (firstNameTextfield.text!.isEmpty){
             SVProgressHUD.dismiss()
-            networkingService.sendAlertToUser(self, titleAlert: "No First Name", messageAlert: "please type your first name")
+            NetworkingService.sharedInstance.sendAlertToUser(self, titleAlert: "No First Name", messageAlert: "please type your first name")
         }
         else if (lastNameTextfield.text!.isEmpty){
             SVProgressHUD.dismiss()
-            networkingService.sendAlertToUser(self,titleAlert: "No Last Name", messageAlert: "please type your last name")
+            NetworkingService.sharedInstance.sendAlertToUser(self,titleAlert: "No Last Name", messageAlert: "please type your last name")
         }
         else if (!isValidEmail(emailTextfield.text!)){
             SVProgressHUD.dismiss()
-            networkingService.sendAlertToUser(self,titleAlert: "invalid email", messageAlert: "please type valid email address")
+            NetworkingService.sharedInstance.sendAlertToUser(self,titleAlert: "invalid email", messageAlert: "please type valid email address")
         }
         else if (!isValidPassword(passwordTextfield.text!)){
             SVProgressHUD.dismiss()
-            networkingService.sendAlertToUser(self,titleAlert: "invalid password", messageAlert: "please type passwrod with minimum 6 characters at least 1 Alphabet and 1 Number")
+            NetworkingService.sharedInstance.sendAlertToUser(self,titleAlert: "invalid password", messageAlert: "please type passwrod with minimum 6 characters at least 1 Alphabet and 1 Number")
         }
         else {
-            networkingService.CreateNewUser(self,emailTextfield.text!,passwordTextfield.text!,self.firstNameTextfield.text!,self.lastNameTextfield.text!, userImageView.image!)
+            NetworkingService.sharedInstance.CreateNewUser(self,emailTextfield.text!,passwordTextfield.text!,self.firstNameTextfield.text!,self.lastNameTextfield.text!, userImageView.image!)
             SVProgressHUD.dismiss()
         }
     }
@@ -58,7 +56,7 @@ class SignUpViewController: UIViewController,UIImagePickerControllerDelegate, UI
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.allowsEditing = true
-        networkingService.pickPicture (self,pickerController)
+        NetworkingService.sharedInstance.pickPicture (self,pickerController)
         
         let button = sender as? UIButton
         button?.setTitle("", for: UIControlState.normal)

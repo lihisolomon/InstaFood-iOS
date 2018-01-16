@@ -13,8 +13,10 @@ import SVProgressHUD
 import FBSDKLoginKit
 import FBSDKCoreKit
 
-struct NetworkingService {
+class NetworkingService {
     
+    static let sharedInstance = NetworkingService()
+
     // MARK: - Login user Firebase
     func LoginUser(_ uiViewController: UIViewController,_ email: String ,_ password: String){
          print ("-------------------")
@@ -31,7 +33,7 @@ struct NetworkingService {
         }
     }
     
-    func LoginWithFacebook(_ vc: UIViewController, _ failure:@escaping ()->()){
+    func LoginWithFacebook(_ vc: UIViewController, _ success:@escaping ()->(),_ failure:@escaping ()->()){
         print ("-------------------")
         FBSDKLoginManager().logIn(withReadPermissions: ["email","public_profile"], from: vc) {(result,error) in
             SVProgressHUD.show()
@@ -56,13 +58,15 @@ struct NetworkingService {
                             let firstName: String = fullNameArr[0]
                             let lastName: String? = fullNameArr[1]
                             
-                            let uid = self.getCurrentUID()
                             Database.database().reference().child("users").observe(.value){snapshot in
                                 if let users = snapshot.children.allObjects as? [DataSnapshot]{
                                     for user in users{
-                                        if String(user.key) == uid{
+                                        if user.exists(){
+                                            if let loginVC = vc as? LoginViewController{
+                                                loginVC.success()
+                                            }
                                             SVProgressHUD.dismiss()
-                                            self.moveToFeedBar()
+//                                            self.moveToFeedBar()
                                             print ("-------------------")
                                             print("User already exist")
                                             return
@@ -70,6 +74,7 @@ struct NetworkingService {
                                     }
                                     self.insertUserToFirebase((user?.email)!, firstName, lastName!, userImage!)
                                     SVProgressHUD.dismiss()
+                                    return
                                 }
                             }
                         }

@@ -12,8 +12,6 @@ class ForgetPasswordViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     
-    let networkingService = NetworkingService()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,17 +25,7 @@ class ForgetPasswordViewController: UIViewController {
     
 
     @IBAction func ForgetPasswordPressed(_ sender: Any) {
-        networkingService.ForgotPassword(self, emailTextField.text!)
+        NetworkingService.sharedInstance.ForgotPassword(self, emailTextField.text!)
 
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

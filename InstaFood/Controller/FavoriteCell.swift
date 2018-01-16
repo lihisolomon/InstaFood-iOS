@@ -10,8 +10,6 @@ import UIKit
 
 class FavoriteCell: UITableViewCell {
 
-     let networkingService = NetworkingService()
-
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeTitle: UILabel!
     
@@ -23,7 +21,7 @@ class FavoriteCell: UITableViewCell {
 
     // MARK: - update ui view
     func updateUI(){
-        networkingService.downloadImage(url: favorite.picture, uploadImageSuccess)
+        NetworkingService.sharedInstance.downloadImage(url: favorite.picture, uploadImageSuccess)
         recipeTitle.text = favorite.title
     }
     func uploadImageSuccess(image: UIImage)->(){

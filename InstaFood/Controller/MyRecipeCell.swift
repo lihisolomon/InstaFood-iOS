@@ -10,8 +10,6 @@ import UIKit
 import SwipeCellKit
 class MyRecipeCell: SwipeTableViewCell {
     
-    let networkingService = NetworkingService()
-
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeTitle: UILabel!
     
@@ -22,7 +20,7 @@ class MyRecipeCell: SwipeTableViewCell {
     }
     // MARK: - update ui view
     func updateUI(){
-        networkingService.downloadImage(url:myRecipe.picture, uploadImageSuccess)
+        NetworkingService.sharedInstance.downloadImage(url:myRecipe.picture, uploadImageSuccess)
         recipeTitle.text = myRecipe.title
     }
     

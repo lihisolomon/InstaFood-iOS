@@ -15,15 +15,14 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
     @IBOutlet var profileNameLabel: UILabel!
     @IBOutlet var myRecipes: UITableView!
 
-    let networkingService = NetworkingService()
     var recipes: [Recipe]?
     var rowNum = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkingService.getCurrentFullName(uploadFullName)
-        networkingService.getProfileImage(uploadImageSuccess)
+        NetworkingService.sharedInstance.getCurrentFullName(uploadFullName)
+        NetworkingService.sharedInstance.getProfileImage(uploadImageSuccess)
         
         self.myRecipes.delegate = self
         self.myRecipes.dataSource = self
@@ -35,7 +34,7 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
     }
     
     func fetchMyRecipes(){
-        networkingService.getMyRecipesList(updateMyRecipes: updateMyRecipes)
+        NetworkingService.sharedInstance.getMyRecipesList(updateMyRecipes: updateMyRecipes)
     }
     func updateMyRecipes(myRecipesArray: [Recipe]){
         self.recipes = myRecipesArray
@@ -55,7 +54,7 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.allowsEditing = true
-        networkingService.pickPicture (self,pickerController)
+        NetworkingService.sharedInstance.pickPicture (self,pickerController)
     }
     // MARK: pick image
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -63,7 +62,7 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
             self.profileImage.image = image
         }
         picker.dismiss(animated: true, completion: nil);
-        networkingService.uploadUserProfile(self,profileImage.image!)
+        NetworkingService.sharedInstance.uploadUserProfile(self,profileImage.image!)
     }
     
     
@@ -83,7 +82,7 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
     }
     
     @IBAction func logoutIsPressed(_ sender: UIButton) {
-        networkingService.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
+        NetworkingService.sharedInstance.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
     }
     
     // MARK: table view settings
@@ -110,7 +109,7 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            self.networkingService.removeRecipe(self.recipes![indexPath.row], self.removeSuccess, self.removeFaild)
+            NetworkingService.sharedInstance.removeRecipe(self.recipes![indexPath.row], self.removeSuccess, self.removeFaild)
         }
         deleteAction.image = UIImage(named: "delete")
         return [deleteAction]

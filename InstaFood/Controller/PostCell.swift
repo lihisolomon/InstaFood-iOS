@@ -10,7 +10,6 @@ import UIKit
 
 class PostCell: UITableViewCell {
 
-    let networkingService = NetworkingService()
     
     @IBOutlet weak var RecipeImage: UIImageView!
     @IBOutlet weak var numberOfLikes: UILabel!
@@ -24,7 +23,7 @@ class PostCell: UITableViewCell {
     }
     // MARK: - update ui view
     func updateUI(){
-        networkingService.downloadImage(url: post.picture, uploadImageSuccess)
+        NetworkingService.sharedInstance.downloadImage(url: post.picture, uploadImageSuccess)
         writerName.text = post.fullName
         recipeName.text = post.title
         numberOfLikes.text = "🖤 \(post.likesNum) Likes"

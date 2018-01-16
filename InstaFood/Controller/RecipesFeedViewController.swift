@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableViewDataSource {
     
@@ -22,6 +23,7 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
         self.postsTableView.dataSource = self
         
         self.fetchPosts()
+        SVProgressHUD.show()
         self.postsTableView.rowHeight = UITableViewAutomaticDimension
         self.postsTableView.rowHeight = 175
         self.postsTableView.backgroundView = UIImageView(image: UIImage(named: "Background.jpg"))
@@ -35,7 +37,7 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
     func updataeRecipes(recipesArray: [Recipe]){
         self.recipes = recipesArray
         self.postsTableView.reloadData()
-        
+        SVProgressHUD.dismiss()        
     }
     
     //Mark: recipe Choosen- need to view the full Recipe details

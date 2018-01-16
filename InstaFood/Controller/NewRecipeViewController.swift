@@ -11,7 +11,6 @@ import UIKit
 
 class NewRecipeViewController: UIViewController,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
-    let networkingService = NetworkingService()
     var recipe: Recipe?
     var fullName :String?
     
@@ -24,27 +23,27 @@ class NewRecipeViewController: UIViewController,UITextViewDelegate,UIImagePicker
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
-        networkingService.getCurrentFullName(uploadFullName)
+        NetworkingService.sharedInstance.getCurrentFullName(uploadFullName)
     }
     
     // MARK: save button is pressed
     @IBAction func SaveIsPressed(_ sender: UIButton) {
         if titleRecipe.text == "Add Title"{
-            networkingService.sendAlertToUser(self, titleAlert: "Title is missing", messageAlert: "please enter the title of the recipe")
+            NetworkingService.sharedInstance.sendAlertToUser(self, titleAlert: "Title is missing", messageAlert: "please enter the title of the recipe")
         }
         else if ingredients.text == "Add ingredients"{
-            networkingService.sendAlertToUser(self, titleAlert: "ingredients is missing", messageAlert: "please enter the ingredients of the recipe")
+            NetworkingService.sharedInstance.sendAlertToUser(self, titleAlert: "ingredients is missing", messageAlert: "please enter the ingredients of the recipe")
         }
         else if stepsRecipe.text == "Add steps" {
-            networkingService.sendAlertToUser(self, titleAlert: "steps is missing", messageAlert: "please enter the steps of the recipe")
+            NetworkingService.sharedInstance.sendAlertToUser(self, titleAlert: "steps is missing", messageAlert: "please enter the steps of the recipe")
         }
         else if pictureRecipe.image == nil{
-            networkingService.sendAlertToUser(self, titleAlert: "image is missing", messageAlert: "please enter the image of the recipe")
+            NetworkingService.sharedInstance.sendAlertToUser(self, titleAlert: "image is missing", messageAlert: "please enter the image of the recipe")
         }
         else{
-            let uid = networkingService.getCurrentUID()
+            let uid = NetworkingService.sharedInstance.getCurrentUID()
             let uniqID = NSUUID().uuidString
-            networkingService.uploadRecipesData(self,uid:uid ,uniqID:uniqID, titleRecipe.text!,ingredients.text!,stepsRecipe.text!,pictureRecipe.image!,self.fullName!,likesNum: 0, success: success, failure: failure)
+            NetworkingService.sharedInstance.uploadRecipesData(self,uid:uid ,uniqID:uniqID, titleRecipe.text!,ingredients.text!,stepsRecipe.text!,pictureRecipe.image!,self.fullName!,likesNum: 0, success: success, failure: failure)
         }
     }
     func uploadFullName(fullName: String){
@@ -61,7 +60,7 @@ class NewRecipeViewController: UIViewController,UITextViewDelegate,UIImagePicker
         
     }
     func failure() {
-        networkingService.sendAlertToUser(self, titleAlert: "Error", messageAlert: "Error loading new recipe\n please try again")
+        NetworkingService.sharedInstance.sendAlertToUser(self, titleAlert: "Error", messageAlert: "Error loading new recipe\n please try again")
         print("Could not upload the recipe")
     }
     
@@ -71,7 +70,7 @@ class NewRecipeViewController: UIViewController,UITextViewDelegate,UIImagePicker
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.allowsEditing = true
-        networkingService.pickPicture (self,pickerController)
+        NetworkingService.sharedInstance.pickPicture (self,pickerController)
         
         let button = sender as UIButton
         button.setTitle("", for: UIControlState.normal)
@@ -88,7 +87,7 @@ class NewRecipeViewController: UIViewController,UITextViewDelegate,UIImagePicker
     
     // MARK: - Logout
     @IBAction func Logout(_ sender: UIButton) {
-        networkingService.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
+        NetworkingService.sharedInstance.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
     }
 
     
