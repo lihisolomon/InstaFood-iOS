@@ -352,6 +352,7 @@ class NetworkingService {
     func getRecipesList(_ updataeRecipes:@escaping ([Recipe])->()){
         SVProgressHUD.show()
         Database.database().reference().observe(.value){snapshot in
+            UserDefaults.standard.removeObject(forKey: "recipesArray")
             if let folders = snapshot.children.allObjects as? [DataSnapshot]{
                 for folder in folders{
                     if folder.key == "Recipes"{
@@ -439,6 +440,7 @@ class NetworkingService {
     
     //MARK: change likes number
     func changeLikesNumber (recipe: Recipe, action: String){
+        UserDefaults.standard.removeObject(forKey: "recipesArray")
         if (action == "Minus"){
             Database.database().reference().child("Recipes").child(recipe.uid).child(recipe.uniqId).child("Likes").setValue(String(recipe.likesNum - 1))
         }
@@ -463,6 +465,7 @@ class NetworkingService {
     func checkIfLike(recipe: Recipe, updateLikeButton:@escaping (Bool)->()){
         let curUID = self.getCurrentUID()
         Database.database().reference().child("users").child(curUID).child("FavoriteRecipes").observe(.value){snapshot in
+            //UserDefaults.standard.removeObject(forKey: "recipesArray")
             if let recipes = snapshot.children.allObjects as? [DataSnapshot]{
                 for rec in recipes{
                     if (rec.key == recipe.uniqId){
@@ -499,5 +502,64 @@ class NetworkingService {
             }
         }
     }
+    
+    func uploadFeed(_ savedrecipes: [Recipe],_ uploadSuccess:@escaping ([Recipe])->()){
+        Database.database().reference().child("Recipes").observe(.value){snapshot in
+            if let recipesList = snapshot.children.allObjects as? [DataSnapshot]{
+                var recipes = [Recipe]()
+                for recipe in recipesList{
+                    let uidNumber = recipe.key
+                    if let recipesID = recipe.children.allObjects as? [DataSnapshot]{
+                        for recid in recipesID{
+                            let uniqID = recid.key
+                            if let found = savedrecipes.filter({ $0.uniqId == uniqID }).first{
+                                    if var postDict = recid.value as? Dictionary<String, AnyObject> {
+                                        let numOfLikes = postDict["Likes"] as? String ?? ""
+                                        if Int(numOfLikes) != found.likesNum{
+                                            found.likesNum = Int(numOfLikes)!
+                                            recipes.append(found)
+                                        }
+                                        recipes.append(found)
+                                    }
+                                }
+                                else{
+                                    print ("New recipe- need add to feed")
+                                    if var postDict = recid.value as? Dictionary<String, AnyObject> {
+                                        let title = postDict["Title"] as? String ?? ""
+                                        let steps = postDict["steps"] as? String ?? ""
+                                        let ingredients = postDict["Ingredients"] as? String ?? ""
+                                        let picture = postDict["RecipeImage"] as? String ?? ""
+                                        let numOfLikes = postDict["Likes"] as? String ?? ""
+                                        let fullName = postDict["FullName"] as? String ?? ""
+                                        recipes.append(Recipe(uidNumber,uniqID,title,ingredients,steps,picture,fullName,Int(numOfLikes)!))
+                                    }
+                                }
+                        }
+                    }
+                }
+                 uploadSuccess(recipes)
+            }
+        }
+    }
 }
+//if let uids = folder.children.allObjects as? [DataSnapshot]{
+//    var recipes = [Recipe]()
+//    for uid in uids{
+//        let uidNumber = uid.key
+//        if let recipesID = uid.children.allObjects as? [DataSnapshot]{
+//            for recid in recipesID{
+//                let uniqID = recid.key
+//                if var postDict = recid.value as? Dictionary<String, AnyObject> {
+//                    let title = postDict["Title"] as? String ?? ""
+//                    let steps = postDict["steps"] as? String ?? ""
+//                    let ingredients = postDict["Ingredients"] as? String ?? ""
+//                    let picture = postDict["RecipeImage"] as? String ?? ""
+//                    let numOfLikes = postDict["Likes"] as? String ?? ""
+//                    let fullName = postDict["FullName"] as? String ?? ""
+//                    recipes.append(Recipe(uidNumber,uniqID,title,ingredients,steps,picture,fullName,Int(numOfLikes)!))
+//                }
+//            }
+//        }
+//    }
+//}
 

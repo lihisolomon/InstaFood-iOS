@@ -1,4 +1,4 @@
-//
+	//
 //  RecipesFeedViewController.swift
 //  InstaFood
 //
@@ -22,22 +22,36 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
         self.postsTableView.delegate = self
         self.postsTableView.dataSource = self
         
-        self.fetchPosts()
-        SVProgressHUD.show()
         self.postsTableView.rowHeight = UITableViewAutomaticDimension
         self.postsTableView.rowHeight = 175
         self.postsTableView.backgroundView = UIImageView(image: UIImage(named: "Background.jpg"))
         
+        NotificationCenter.default.addObserver(self, selector: #selector(saveDataLocally), name: .APP_CLOESD_NOTIFICATION, object: nil)
+        
+        SVProgressHUD.show()
+        guard let recipesData = UserDefaults.standard.object(forKey: "recipesArray") as? Data
+        else {
+            
+            self.fetchPosts()
+            return
+        }
+        guard let recipesFromLocal = NSKeyedUnarchiver.unarchiveObject(with: recipesData) as? [Recipe]
+        else {
+            print("Could not unarchive from placesData")
+            return
+        }
+        NetworkingService.sharedInstance.uploadFeed(recipesFromLocal,updateRecipes)
+        
     }
     
     func fetchPosts(){
-        networkingService.getRecipesList(updataeRecipes)
+        networkingService.getRecipesList(updateRecipes)
     }
     
-    func updataeRecipes(recipesArray: [Recipe]){
+    func updateRecipes(recipesArray: [Recipe]){
         self.recipes = recipesArray
         self.postsTableView.reloadData()
-        SVProgressHUD.dismiss()        
+        SVProgressHUD.dismiss()
     }
     
     //Mark: recipe Choosen- need to view the full Recipe details
@@ -79,6 +93,12 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
             let detailsVC = segue.destination as! RecipeViewViewController
             detailsVC.recipe = self.recipes?[rowNum]
         }
+    }
+    
+    //Mark: when notification post, use to save data locally
+    @objc func saveDataLocally(){
+        print ("Notification called")
+        UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: self.recipes), forKey: "recipesArray")
     }
 }
 

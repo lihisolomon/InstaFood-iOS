@@ -15,6 +15,7 @@
 		8414762D1FE82CA900DC8D1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8414762B1FE82CA900DC8D1D /* LaunchScreen.storyboard */; };
 		841D90EE1FFF9CE500629ECF /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D90ED1FFF9CE500629ECF /* HeaderView.swift */; };
 		8447702E1FEED14A002BFD0A /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447702D1FEED14A002BFD0A /* ForgetPasswordViewController.swift */; };
+		844B5D7C2011148A007CF3DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B5D7B2011148A007CF3DF /* Constants.swift */; };
 		8455DC67200230EE00E8C002 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455DC66200230EE00E8C002 /* FavoriteCell.swift */; };
 		8455DC6A200232EA00E8C002 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455DC69200232EA00E8C002 /* FavoritesViewController.swift */; };
 		845A891E1FF66FA10030F381 /* MyRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845A891D1FF66FA10030F381 /* MyRecipesViewController.swift */; };
@@ -43,6 +44,7 @@
 		841476361FE8334300DC8D1D /* Background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Background.jpg; sourceTree = "<group>"; };
 		841D90ED1FFF9CE500629ECF /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8447702D1FEED14A002BFD0A /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
+		844B5D7B2011148A007CF3DF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8455DC66200230EE00E8C002 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		8455DC69200232EA00E8C002 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		845A891D1FF66FA10030F381 /* MyRecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecipesViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				84F69A661FF1544F00BCA187 /* NetworkingService.swift */,
 				84675F451FF7C5AA00D1A196 /* Recipe.swift */,
+				844B5D7B2011148A007CF3DF /* Constants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				84892D871FE99112004874BC /* RecipesFeedViewController.swift in Sources */,
 				847186B91FE96E4C00781F8D /* SignUpViewController.swift in Sources */,
 				845A891E1FF66FA10030F381 /* MyRecipesViewController.swift in Sources */,
+				844B5D7C2011148A007CF3DF /* Constants.swift in Sources */,
 				8447702E1FEED14A002BFD0A /* ForgetPasswordViewController.swift in Sources */,
 				84F69A671FF1544F00BCA187 /* NetworkingService.swift in Sources */,
 				849429C8200256090064BE48 /* MyRecipeCell.swift in Sources */,

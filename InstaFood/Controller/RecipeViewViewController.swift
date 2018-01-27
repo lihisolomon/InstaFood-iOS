@@ -38,12 +38,12 @@ class RecipeViewViewController: UIViewController {
     func updateLikeButton(isLike: Bool){
         print ("-------------------")
         if isLike{
-            print ("Like this recipe")
+            //print ("Like this recipe")
             self.setLike()
         }
         else {
             setDontLike()
-            print ("Did not like this recipe")
+            //print ("Did not like this recipe")
         }
     }
     
@@ -75,6 +75,7 @@ class RecipeViewViewController: UIViewController {
     //Mark: move to feed bar
     @IBAction func FeedIsPressed(_ sender: UIButton) {
         NetworkingService.sharedInstance.moveToFeedBar()
+//        self.dismiss(animated: true, completion: nil)
     }
     
     //MARK: sign out

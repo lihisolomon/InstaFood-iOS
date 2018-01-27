@@ -28,13 +28,13 @@ class NewRecipeViewController: UIViewController,UITextViewDelegate,UIImagePicker
     
     // MARK: save button is pressed
     @IBAction func SaveIsPressed(_ sender: UIButton) {
-        if titleRecipe.text == "Add Title"{
+        if titleRecipe.text.isEmpty{
             NetworkingService.sharedInstance.sendAlertToUser(self, titleAlert: "Title is missing", messageAlert: "please enter the title of the recipe")
         }
-        else if ingredients.text == "Add ingredients"{
+        else if ingredients.text.isEmpty{
             NetworkingService.sharedInstance.sendAlertToUser(self, titleAlert: "ingredients is missing", messageAlert: "please enter the ingredients of the recipe")
         }
-        else if stepsRecipe.text == "Add steps" {
+        else if stepsRecipe.text.isEmpty{
             NetworkingService.sharedInstance.sendAlertToUser(self, titleAlert: "steps is missing", messageAlert: "please enter the steps of the recipe")
         }
         else if pictureRecipe.image == nil{
@@ -56,6 +56,7 @@ class NewRecipeViewController: UIViewController,UITextViewDelegate,UIImagePicker
         if let recipeViewVC = self.storyboard?.instantiateViewController(withIdentifier: "RecipeViewVC") as? RecipeViewViewController {
             recipeViewVC.recipe = recipe
             self.navigationController?.pushViewController(recipeViewVC, animated: true)
+
         }
         
     }
