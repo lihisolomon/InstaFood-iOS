@@ -24,7 +24,8 @@ class FavoritesViewController: UIViewController,UITableViewDelegate,UITableViewD
         self.fetchFavorites()
         self.favoritesTableView.rowHeight = UITableViewAutomaticDimension
         self.favoritesTableView.rowHeight = 175
-        favoritesTableView.backgroundView = UIImageView(image: UIImage(named: "Background.jpg"))
+        self.favoritesTableView.backgroundView = UIImageView(image: UIImage(named: DEFAULT_BACKGROUND))
+        self.favoritesTableView.backgroundView?.contentMode = UIViewContentMode.scaleAspectFit
     }
     
     func fetchFavorites(){

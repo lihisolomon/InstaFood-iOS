@@ -30,7 +30,8 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
         self.fetchMyRecipes()
         self.myRecipes.rowHeight = UITableViewAutomaticDimension
         self.myRecipes.rowHeight = 175
-        self.myRecipes.backgroundView = UIImageView(image: UIImage(named: "Background.jpg"))
+        self.myRecipes.backgroundView = UIImageView(image: UIImage(named: DEFAULT_BACKGROUND))
+        self.myRecipes.backgroundView?.contentMode = UIViewContentMode.scaleAspectFit
     }
     
     func fetchMyRecipes(){

@@ -24,7 +24,8 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
         
         self.postsTableView.rowHeight = UITableViewAutomaticDimension
         self.postsTableView.rowHeight = 175
-        self.postsTableView.backgroundView = UIImageView(image: UIImage(named: "Background.jpg"))
+        self.postsTableView.backgroundView = UIImageView(image: UIImage(named: DEFAULT_BACKGROUND))
+        self.postsTableView.backgroundView?.contentMode = UIViewContentMode.scaleAspectFit
         
         NotificationCenter.default.addObserver(self, selector: #selector(saveDataLocally), name: .APP_CLOESD_NOTIFICATION, object: nil)
         
