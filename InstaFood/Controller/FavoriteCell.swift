@@ -31,7 +31,7 @@ class FavoriteCell: UITableViewCell {
             self.recipeImage.image = imageFromCache as! UIImage
         }
         else{
-            NetworkingService.sharedInstance.downloadImage(url: favorite.picture, uploadImageSuccess)
+            RecipeData.recipeDataInstance.downloadImage(url: favorite.picture, uploadImageSuccess)
         }
     }
     //MARK: upload image to cell

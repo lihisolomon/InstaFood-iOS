@@ -14,6 +14,10 @@
 		8414762A1FE82CA900DC8D1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 841476291FE82CA900DC8D1D /* Assets.xcassets */; };
 		8414762D1FE82CA900DC8D1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8414762B1FE82CA900DC8D1D /* LaunchScreen.storyboard */; };
 		841D90EE1FFF9CE500629ECF /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D90ED1FFF9CE500629ECF /* HeaderView.swift */; };
+		84279AD32026306800901F40 /* UserConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84279AD22026306800901F40 /* UserConnection.swift */; };
+		84279AD5202634AE00901F40 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84279AD4202634AE00901F40 /* UserData.swift */; };
+		84279AD72026364300901F40 /* ScreenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84279AD62026364300901F40 /* ScreenHandler.swift */; };
+		84279AD92026389D00901F40 /* RecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84279AD82026389C00901F40 /* RecipeData.swift */; };
 		8447702E1FEED14A002BFD0A /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447702D1FEED14A002BFD0A /* ForgetPasswordViewController.swift */; };
 		844B5D7C2011148A007CF3DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B5D7B2011148A007CF3DF /* Constants.swift */; };
 		8455DC67200230EE00E8C002 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455DC66200230EE00E8C002 /* FavoriteCell.swift */; };
@@ -27,7 +31,6 @@
 		84892D871FE99112004874BC /* RecipesFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84892D861FE99112004874BC /* RecipesFeedViewController.swift */; };
 		849429C8200256090064BE48 /* MyRecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849429C7200256090064BE48 /* MyRecipeCell.swift */; };
 		84CF31911FEABFEA00882540 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84CF31901FEAB30400882540 /* GoogleService-Info.plist */; };
-		84F69A671FF1544F00BCA187 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F69A661FF1544F00BCA187 /* NetworkingService.swift */; };
 		84F963CE1FFD4F5A001AF222 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F963CD1FFD4F5A001AF222 /* PostCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +46,10 @@
 		8414762E1FE82CA900DC8D1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		841476361FE8334300DC8D1D /* Background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Background.jpg; sourceTree = "<group>"; };
 		841D90ED1FFF9CE500629ECF /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		84279AD22026306800901F40 /* UserConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConnection.swift; sourceTree = "<group>"; };
+		84279AD4202634AE00901F40 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		84279AD62026364300901F40 /* ScreenHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHandler.swift; sourceTree = "<group>"; };
+		84279AD82026389C00901F40 /* RecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeData.swift; sourceTree = "<group>"; };
 		8447702D1FEED14A002BFD0A /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		844B5D7B2011148A007CF3DF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8455DC66200230EE00E8C002 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
@@ -60,7 +67,6 @@
 		84892D8C1FE99A6A004874BC /* star-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-100.png"; sourceTree = "<group>"; };
 		849429C7200256090064BE48 /* MyRecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecipeCell.swift; sourceTree = "<group>"; };
 		84CF31901FEAB30400882540 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
-		84F69A661FF1544F00BCA187 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		84F69A681FF1624E00BCA187 /* user-Image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "user-Image.jpg"; sourceTree = "<group>"; };
 		84F963CD1FFD4F5A001AF222 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		B341DF587FA5956004163DEA /* Pods-InstaFood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaFood.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstaFood/Pods-InstaFood.release.xcconfig"; sourceTree = "<group>"; };
@@ -136,9 +142,12 @@
 		847186AE1FE9654D00781F8D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				84F69A661FF1544F00BCA187 /* NetworkingService.swift */,
 				84675F451FF7C5AA00D1A196 /* Recipe.swift */,
 				844B5D7B2011148A007CF3DF /* Constants.swift */,
+				84279AD22026306800901F40 /* UserConnection.swift */,
+				84279AD4202634AE00901F40 /* UserData.swift */,
+				84279AD62026364300901F40 /* ScreenHandler.swift */,
+				84279AD82026389C00901F40 /* RecipeData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -336,15 +345,18 @@
 				8455DC6A200232EA00E8C002 /* FavoritesViewController.swift in Sources */,
 				8408A87D1FF6A6E6006C7960 /* NewRecipeViewController.swift in Sources */,
 				84892D871FE99112004874BC /* RecipesFeedViewController.swift in Sources */,
+				84279AD72026364300901F40 /* ScreenHandler.swift in Sources */,
 				847186B91FE96E4C00781F8D /* SignUpViewController.swift in Sources */,
 				845A891E1FF66FA10030F381 /* MyRecipesViewController.swift in Sources */,
 				844B5D7C2011148A007CF3DF /* Constants.swift in Sources */,
 				8447702E1FEED14A002BFD0A /* ForgetPasswordViewController.swift in Sources */,
-				84F69A671FF1544F00BCA187 /* NetworkingService.swift in Sources */,
 				849429C8200256090064BE48 /* MyRecipeCell.swift in Sources */,
 				841D90EE1FFF9CE500629ECF /* HeaderView.swift in Sources */,
+				84279AD5202634AE00901F40 /* UserData.swift in Sources */,
+				84279AD32026306800901F40 /* UserConnection.swift in Sources */,
 				841476231FE82CA900DC8D1D /* AppDelegate.swift in Sources */,
 				84F963CE1FFD4F5A001AF222 /* PostCell.swift in Sources */,
+				84279AD92026389D00901F40 /* RecipeData.swift in Sources */,
 				84675F441FF79DFA00D1A196 /* RecipeViewViewController.swift in Sources */,
 				84675F461FF7C5AA00D1A196 /* Recipe.swift in Sources */,
 			);

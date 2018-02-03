@@ -30,7 +30,7 @@ class FavoritesViewController: UIViewController,UITableViewDelegate,UITableViewD
     }
     //MARK: get user's favorites list
     func fetchFavorites(){
-        NetworkingService.sharedInstance.getFavoritesList(updateFavorites)
+        RecipeData.recipeDataInstance.getFavoritesList(updateFavorites)
     }
     
     //MARK: upload the table view
@@ -49,7 +49,7 @@ class FavoritesViewController: UIViewController,UITableViewDelegate,UITableViewD
     
     //MARK: logout
     @IBAction func LogOut(_ sender: UIButton) {
-        NetworkingService.sharedInstance.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
+        ScreenHandler.screenInstance.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
     }
     
     // MARK: table view settings

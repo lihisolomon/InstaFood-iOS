@@ -18,7 +18,7 @@ class ForgetPasswordViewController: UIViewController {
 
     //send email to the user
     @IBAction func ForgetPasswordPressed(_ sender: Any) {
-        NetworkingService.sharedInstance.ForgotPassword(self, emailTextField.text!)
+        UserConnection.userInstance.ForgotPassword(self, emailTextField.text!)
 
     }
 }

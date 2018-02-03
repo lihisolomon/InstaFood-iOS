@@ -13,7 +13,6 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
     
     @IBOutlet weak var postsTableView: UITableView!
     
-    let networkingService = NetworkingService()
     var recipes: [Recipe]?
     var rowNum = 0
     
@@ -46,12 +45,12 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
             return
         }
         //if data saved on local device, checking for new recipes
-        NetworkingService.sharedInstance.uploadFeed(recipesFromLocal,updateRecipes)
+        RecipeData.recipeDataInstance.uploadFeed(recipesFromLocal,updateRecipes)
         
     }
     //MARK: get recipes list
     func fetchPosts(){
-        networkingService.getRecipesList(updateRecipes)
+        RecipeData.recipeDataInstance.getRecipesList(updateRecipes)
     }
     
     //MARK: upload the table view
@@ -72,7 +71,7 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
     
     // MARK: - LogOut
     @IBAction func LogOut(_ sender: Any) {
-        networkingService.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
+        ScreenHandler.screenInstance.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
     }
     
     // MARK: table view settings

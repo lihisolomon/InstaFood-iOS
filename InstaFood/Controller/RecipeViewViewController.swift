@@ -24,8 +24,8 @@ class RecipeViewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
-        NetworkingService.sharedInstance.checkIfLike(recipe: recipe!, updateLikeButton: updateLikeButton)
-        NetworkingService.sharedInstance.downloadImage(url: (recipe?.picture)!, uploadImageSuccess)
+        UserData.userDataInstance.checkIfLike(recipe: recipe!, updateLikeButton: updateLikeButton)
+        RecipeData.recipeDataInstance.downloadImage(url: (recipe?.picture)!, uploadImageSuccess)
         titleRecipe.text = recipe?.title
         ingredientsRecipe.text = recipe?.ingredients
         stepsRecipe.text = recipe?.steps
@@ -53,15 +53,15 @@ class RecipeViewViewController: UIViewController {
             print ("full, change to empty")
             self.setDontLike()
             
-            NetworkingService.sharedInstance.changeLikesNumber(recipe: self.recipe!, action: "Minus")
-            NetworkingService.sharedInstance.removeFavoriteRecipe(uid: NetworkingService.sharedInstance.getCurrentUID(),recipe: self.recipe!)
+            RecipeData.recipeDataInstance.changeLikesNumber(recipe: self.recipe!, action: "Minus")
+            UserData.userDataInstance.removeFavoriteRecipe(uid: UserConnection.userInstance.getCurrentUID(),recipe: self.recipe!)
         }
         else{
             print ("empty, change to full")
             self.setLike()
             
-            NetworkingService.sharedInstance.changeLikesNumber(recipe: self.recipe!, action: "Plus")
-            NetworkingService.sharedInstance.addToFavorites(recipe: self.recipe!)
+            RecipeData.recipeDataInstance.changeLikesNumber(recipe: self.recipe!, action: "Plus")
+            UserData.userDataInstance.addToFavorites(recipe: self.recipe!)
         }
     }
     //MARK: change to like picture
@@ -75,13 +75,13 @@ class RecipeViewViewController: UIViewController {
     
     //Mark: move to feed bar
     @IBAction func FeedIsPressed(_ sender: UIButton) {
-        NetworkingService.sharedInstance.moveToFeedBar()
+        ScreenHandler.screenInstance.moveToFeedBar()
         //self.dismiss(animated: true, completion: nil)
     }
     
     //MARK: sign out
     @IBAction func SignOut(_ sender: UIButton) {
-        NetworkingService.sharedInstance.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
+        ScreenHandler.screenInstance.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
     }
     
 }

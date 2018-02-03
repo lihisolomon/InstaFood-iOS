@@ -33,7 +33,7 @@ class PostCell: UITableViewCell {
             self.RecipeImage.image = imageFromCache as! UIImage
         }
         else{
-            NetworkingService.sharedInstance.downloadImage(url: post.picture, uploadImageSuccess)
+            RecipeData.recipeDataInstance.downloadImage(url: post.picture, uploadImageSuccess)
         }
         numberOfLikes.text = "🖤 \(post.likesNum) Likes"
     }

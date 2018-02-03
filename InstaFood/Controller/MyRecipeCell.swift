@@ -30,7 +30,7 @@ class MyRecipeCell: SwipeTableViewCell {
             self.recipeImage.image = imageFromCache as! UIImage
         }
         else{
-            NetworkingService.sharedInstance.downloadImage(url:myRecipe.picture, uploadImageSuccess)
+            RecipeData.recipeDataInstance.downloadImage(url:myRecipe.picture, uploadImageSuccess)
         }
     }
     //MARK: upload image to cell
