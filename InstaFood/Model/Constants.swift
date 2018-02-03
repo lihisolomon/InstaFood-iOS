@@ -8,8 +8,10 @@
 
 import Foundation
 
+//set image background
 let DEFAULT_BACKGROUND = "BackgroundImage"
 
+//set notification name
 extension Notification.Name {
     static let APP_CLOESD_NOTIFICATION = NSNotification.Name("AppCloesdNotification")
 

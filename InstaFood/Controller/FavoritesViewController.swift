@@ -17,7 +17,8 @@ class FavoritesViewController: UIViewController,UITableViewDelegate,UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //set table view
         self.favoritesTableView.delegate = self
         self.favoritesTableView.dataSource = self
         
@@ -27,15 +28,17 @@ class FavoritesViewController: UIViewController,UITableViewDelegate,UITableViewD
         self.favoritesTableView.backgroundView = UIImageView(image: UIImage(named: DEFAULT_BACKGROUND))
         self.favoritesTableView.backgroundView?.contentMode = UIViewContentMode.scaleAspectFit
     }
-    
+    //MARK: get user's favorites list
     func fetchFavorites(){
         NetworkingService.sharedInstance.getFavoritesList(updateFavorites)
     }
+    
+    //MARK: upload the table view
     func updateFavorites(FavoritesArray: [Recipe]){
         self.favorites = FavoritesArray
         self.favoritesTableView.reloadData()
-        
     }
+    
     //Mark: recipe Choosen- need to view the full Recipe details
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print ("------------------")
@@ -53,7 +56,6 @@ class FavoritesViewController: UIViewController,UITableViewDelegate,UITableViewD
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (self.favorites != nil){
             return (self.favorites?.count)!

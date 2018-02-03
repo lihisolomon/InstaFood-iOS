@@ -21,9 +21,11 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //get user info
         NetworkingService.sharedInstance.getCurrentFullName(uploadFullName)
         NetworkingService.sharedInstance.getProfileImage(uploadImageSuccess)
         
+        //set table view
         self.myRecipes.delegate = self
         self.myRecipes.dataSource = self
         
@@ -33,18 +35,20 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
         self.myRecipes.backgroundView = UIImageView(image: UIImage(named: DEFAULT_BACKGROUND))
         self.myRecipes.backgroundView?.contentMode = UIViewContentMode.scaleAspectFit
     }
-    
+    //MARK: get user's Recipes list
     func fetchMyRecipes(){
         NetworkingService.sharedInstance.getMyRecipesList(updateMyRecipes: updateMyRecipes)
     }
+     //MARK: upload the table view
     func updateMyRecipes(myRecipesArray: [Recipe]){
         self.recipes = myRecipesArray
         self.myRecipes.reloadData()
     }
-    
+     //MARK: upload user's image profile
     func uploadImageSuccess(image: UIImage){
         profileImage.image = image
     }
+    //MARK: upload user's name
     func uploadFullName(fullName: String){
         self.profileNameLabel.text = fullName
     }
@@ -66,7 +70,6 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
         NetworkingService.sharedInstance.uploadUserProfile(self,profileImage.image!)
     }
     
-    
     //Mark: recipe Choosen- need to view the full Recipe details
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print ("------------------")
@@ -81,7 +84,7 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
             detailsVC.recipe = self.recipes?[rowNum]
         }
     }
-    
+    // MARK: Log out
     @IBAction func logoutIsPressed(_ sender: UIButton) {
         NetworkingService.sharedInstance.sendAlertToUserWithTwoOptions(vc: self, title: "Logout", body: "Are you sure you want to log out?", option1: "Logout", option2: "Cancel")
     }
@@ -115,7 +118,7 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
         deleteAction.image = UIImage(named: "delete")
         return [deleteAction]
     }
-    
+    //Mark: Delete from table view
     func removeSuccess(){
         self.myRecipes.reloadData()
     }

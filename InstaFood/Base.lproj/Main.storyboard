@@ -240,13 +240,8 @@
                                                             <rect key="frame" x="18" y="12" width="186" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KxP-mE-3xF">
-                                                            <rect key="frame" x="287" y="91" width="33" height="33"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <state key="normal" image="fullStarIcon"/>
-                                                        </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1o-IO-G78">
-                                                            <rect key="frame" x="220" y="12" width="167" height="71"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1o-IO-G78">
+                                                            <rect key="frame" x="223" y="12" width="167" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                             <nil key="textColor"/>
@@ -906,9 +901,8 @@
         <image name="PlusIcon" width="33" height="33"/>
         <image name="StarIcon" width="33" height="33"/>
         <image name="UserImage" width="100" height="100"/>
-        <image name="fullStarIcon" width="33" height="33"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mFz-QK-4kz"/>
+        <segue reference="gb9-Hm-s4V"/>
     </inferredMetricsTieBreakers>
 </document>

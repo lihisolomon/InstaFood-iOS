@@ -13,6 +13,8 @@ class MyRecipeCell: SwipeTableViewCell {
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeTitle: UILabel!
     
+    let myRecipeImagesCache = NSCache<AnyObject, AnyObject>()
+    
     var myRecipe:Recipe!{
         didSet{
             self.updateUI();
@@ -20,12 +22,23 @@ class MyRecipeCell: SwipeTableViewCell {
     }
     // MARK: - update ui view
     func updateUI(){
-        NetworkingService.sharedInstance.downloadImage(url:myRecipe.picture, uploadImageSuccess)
-        recipeTitle.text = myRecipe.title
+        self.recipeImage.image = nil
+        self.recipeTitle.text = myRecipe.title
+        
+        //check if have any image in the cache
+        if let imageFromCache = myRecipeImagesCache.object(forKey: self.recipeTitle.text as AnyObject){
+            self.recipeImage.image = imageFromCache as! UIImage
+        }
+        else{
+            NetworkingService.sharedInstance.downloadImage(url:myRecipe.picture, uploadImageSuccess)
+        }
     }
-    
+    //MARK: upload image to cell
     func uploadImageSuccess(image: UIImage)->(){
-        recipeImage.image = image
+        //save image to cache
+        let imageToCache  = image
+        myRecipeImagesCache.setObject(image, forKey: self.recipeTitle.text as AnyObject)
+        self.recipeImage.image = imageToCache
     }
     
 }

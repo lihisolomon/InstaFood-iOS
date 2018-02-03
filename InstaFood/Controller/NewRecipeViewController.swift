@@ -19,7 +19,6 @@ class NewRecipeViewController: UIViewController,UITextViewDelegate,UIImagePicker
     @IBOutlet var stepsRecipe: UITextView!
     @IBOutlet var pictureRecipe: UIImageView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
@@ -49,16 +48,14 @@ class NewRecipeViewController: UIViewController,UITextViewDelegate,UIImagePicker
     func uploadFullName(fullName: String){
         self.fullName = fullName
     }
-    
+    //if the recipe upload successfully - move to recipe view
     func success(recipe: Recipe) {
         print ("Success")
         self.recipe = recipe
         if let recipeViewVC = self.storyboard?.instantiateViewController(withIdentifier: "RecipeViewVC") as? RecipeViewViewController {
             recipeViewVC.recipe = recipe
             self.navigationController?.pushViewController(recipeViewVC, animated: true)
-
         }
-        
     }
     func failure() {
         NetworkingService.sharedInstance.sendAlertToUser(self, titleAlert: "Error", messageAlert: "Error loading new recipe\n please try again")
@@ -84,7 +81,6 @@ class NewRecipeViewController: UIViewController,UITextViewDelegate,UIImagePicker
         }
         picker.dismiss(animated: true, completion: nil);
     }
-    
     
     // MARK: - Logout
     @IBAction func Logout(_ sender: UIButton) {

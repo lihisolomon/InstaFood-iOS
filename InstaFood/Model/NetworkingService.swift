@@ -493,6 +493,7 @@ class NetworkingService {
         }
     }
     
+    //MARK: remove recipe from favorites when recipe was removed
     func removeRecipeFromFavorites(_ recipe: Recipe){
         Database.database().reference().child("users").observe(.value){snapshot in
             if let users = snapshot.children.allObjects as? [DataSnapshot]{
@@ -503,6 +504,7 @@ class NetworkingService {
         }
     }
     
+    //MARK: upload feed when have a local saving in device - check for new recipes (from othe users) and check the likes number
     func uploadFeed(_ savedrecipes: [Recipe],_ uploadSuccess:@escaping ([Recipe])->()){
         Database.database().reference().child("Recipes").observe(.value){snapshot in
             if let recipesList = snapshot.children.allObjects as? [DataSnapshot]{
@@ -517,7 +519,6 @@ class NetworkingService {
                                         let numOfLikes = postDict["Likes"] as? String ?? ""
                                         if Int(numOfLikes) != found.likesNum{
                                             found.likesNum = Int(numOfLikes)!
-                                            recipes.append(found)
                                         }
                                         recipes.append(found)
                                     }

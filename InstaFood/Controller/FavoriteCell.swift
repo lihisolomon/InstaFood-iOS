@@ -13,6 +13,8 @@ class FavoriteCell: UITableViewCell {
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeTitle: UILabel!
     
+    let myFavoritesImagesCache = NSCache<AnyObject, AnyObject>()
+    
     var favorite:Recipe!{
         didSet{
             self.updateUI();
@@ -21,13 +23,23 @@ class FavoriteCell: UITableViewCell {
 
     // MARK: - update ui view
     func updateUI(){
-        NetworkingService.sharedInstance.downloadImage(url: favorite.picture, uploadImageSuccess)
-        recipeTitle.text = favorite.title
+        self.recipeImage.image = nil
+        self.recipeTitle.text = favorite.title
+        
+        //check if have any image in the cache
+        if let imageFromCache = myFavoritesImagesCache.object(forKey: self.recipeTitle.text as AnyObject){
+            self.recipeImage.image = imageFromCache as! UIImage
+        }
+        else{
+            NetworkingService.sharedInstance.downloadImage(url: favorite.picture, uploadImageSuccess)
+        }
     }
+    //MARK: upload image to cell
     func uploadImageSuccess(image: UIImage)->(){
-        recipeImage.image = image
+        //save image to cache
+        let imageToCache  = image
+        myFavoritesImagesCache.setObject(image, forKey: self.recipeTitle.text as AnyObject)
+        self.recipeImage.image = imageToCache
     }
-    
-    @IBAction func unlikeIsPressed(_ sender: UIButton) {
-    }
+
 }

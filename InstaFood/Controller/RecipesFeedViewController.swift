@@ -19,6 +19,8 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //set table view
         self.postsTableView.delegate = self
         self.postsTableView.dataSource = self
         
@@ -27,12 +29,14 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
         self.postsTableView.backgroundView = UIImageView(image: UIImage(named: DEFAULT_BACKGROUND))
         self.postsTableView.backgroundView?.contentMode = UIViewContentMode.scaleAspectFit
         
+        //set notification observer when application is closing
         NotificationCenter.default.addObserver(self, selector: #selector(saveDataLocally), name: .APP_CLOESD_NOTIFICATION, object: nil)
         
+        //check if object is saved in local device
         SVProgressHUD.show()
         guard let recipesData = UserDefaults.standard.object(forKey: "recipesArray") as? Data
         else {
-            
+            //if nothing saved on device
             self.fetchPosts()
             return
         }
@@ -41,14 +45,16 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
             print("Could not unarchive from placesData")
             return
         }
+        //if data saved on local device, checking for new recipes
         NetworkingService.sharedInstance.uploadFeed(recipesFromLocal,updateRecipes)
         
     }
-    
+    //MARK: get recipes list
     func fetchPosts(){
         networkingService.getRecipesList(updateRecipes)
     }
     
+    //MARK: upload the table view
     func updateRecipes(recipesArray: [Recipe]){
         self.recipes = recipesArray
         self.postsTableView.reloadData()

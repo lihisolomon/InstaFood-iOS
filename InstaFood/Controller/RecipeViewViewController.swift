@@ -47,6 +47,7 @@ class RecipeViewViewController: UIViewController {
         }
     }
     
+    //MARK: like recipe
     @IBAction func likeIsPressed(_ sender: UIButton) {
         if (isLike.image(for: UIControlState.normal)) == UIImage(named: "fullStarIcon") {
             print ("full, change to empty")
@@ -62,12 +63,12 @@ class RecipeViewViewController: UIViewController {
             NetworkingService.sharedInstance.changeLikesNumber(recipe: self.recipe!, action: "Plus")
             NetworkingService.sharedInstance.addToFavorites(recipe: self.recipe!)
         }
-        
     }
-    
+    //MARK: change to like picture
     func setLike(){
         isLike.setImage(UIImage(named: "fullStarIcon"), for: UIControlState.normal)
     }
+    //MARK: change to unlike picture
     func setDontLike(){
         isLike.setImage(UIImage(named: "StarIcon"), for: UIControlState.normal)
     }
@@ -75,7 +76,7 @@ class RecipeViewViewController: UIViewController {
     //Mark: move to feed bar
     @IBAction func FeedIsPressed(_ sender: UIButton) {
         NetworkingService.sharedInstance.moveToFeedBar()
-//        self.dismiss(animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
     }
     
     //MARK: sign out
