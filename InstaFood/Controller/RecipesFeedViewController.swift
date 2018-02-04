@@ -89,6 +89,7 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
         cell.post = self.recipes?[indexPath.row]
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         //cell.selectionStyle = .none
         return cell
     }
@@ -98,6 +99,7 @@ class RecipesFeedViewController:  UIViewController, UITableViewDelegate,UITableV
         if segue.identifier == "RecipeDetails" {
             let detailsVC = segue.destination as! RecipeViewViewController
             detailsVC.recipe = self.recipes?[rowNum]
+            detailsVC.senderName = "Feed"
         }
     }
     

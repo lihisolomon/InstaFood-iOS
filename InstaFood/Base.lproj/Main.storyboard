@@ -281,10 +281,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BackgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="c46-5U-5pQ">
-                                <rect key="frame" x="0.0" y="70" width="414" height="666"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Recipe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOq-Nb-4Sl">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -421,7 +417,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" label="save"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
-                                <state key="normal" title="Feed"/>
+                                <state key="normal" title="&lt; Back"/>
                                 <connections>
                                     <action selector="FeedIsPressed:" destination="NuT-hQ-3i3" eventType="touchUpInside" id="C97-rr-oqX"/>
                                 </connections>
@@ -903,6 +899,6 @@
         <image name="UserImage" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gb9-Hm-s4V"/>
+        <segue reference="P7i-w3-HZg"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -82,6 +82,7 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
         if segue.identifier == "RecipeDetails" {
             let detailsVC = segue.destination as! RecipeViewViewController
             detailsVC.recipe = self.recipes?[rowNum]
+            detailsVC.senderName = "MyRecipes"
         }
     }
     // MARK: Log out
@@ -105,6 +106,7 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyRecipeCell", for: indexPath) as! MyRecipeCell
         cell.delegate = self
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.myRecipe = self.recipes?[indexPath.row]
         return cell
     }

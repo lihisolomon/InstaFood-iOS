@@ -12,6 +12,7 @@ import SVProgressHUD
 class RecipeViewViewController: UIViewController {
 
     var recipe: Recipe?
+    var senderName: String?
 
     @IBOutlet var isLike: UIButton!
     @IBOutlet var titleRecipe: UILabel!
@@ -75,8 +76,13 @@ class RecipeViewViewController: UIViewController {
     
     //Mark: move to feed bar
     @IBAction func FeedIsPressed(_ sender: UIButton) {
-        ScreenHandler.screenInstance.moveToFeedBar()
-        //self.dismiss(animated: true, completion: nil)
+        print(self.senderName)
+        if self.senderName == "AddRecipe" {
+            ScreenHandler.screenInstance.moveToFeedBar()
+        }
+        else{
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     //MARK: sign out

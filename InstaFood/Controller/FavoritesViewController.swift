@@ -66,6 +66,7 @@ class FavoritesViewController: UIViewController,UITableViewDelegate,UITableViewD
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteCell", for: indexPath) as! FavoriteCell
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.favorite = self.favorites?[indexPath.row]
         return cell
     }
@@ -75,6 +76,7 @@ class FavoritesViewController: UIViewController,UITableViewDelegate,UITableViewD
         if segue.identifier == "RecipeDetails" {
             let detailsVC = segue.destination as! RecipeViewViewController
             detailsVC.recipe = self.favorites?[rowNum]
+            detailsVC.senderName = "Favorites"
         }
     }
 }

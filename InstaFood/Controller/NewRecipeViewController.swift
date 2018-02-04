@@ -54,6 +54,7 @@ class NewRecipeViewController: UIViewController,UITextViewDelegate,UIImagePicker
         self.recipe = recipe
         if let recipeViewVC = self.storyboard?.instantiateViewController(withIdentifier: "RecipeViewVC") as? RecipeViewViewController {
             recipeViewVC.recipe = recipe
+            recipeViewVC.senderName = "AddRecipe"
             self.navigationController?.pushViewController(recipeViewVC, animated: true)
         }
     }
