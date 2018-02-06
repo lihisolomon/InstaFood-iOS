@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5FFB1B0BF2C3C0FF696E910E /* Pods_InstaFood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A6E7EB61949A17AECAB4E0 /* Pods_InstaFood.framework */; };
+		8406E1F6202A3211007FD530 /* ProfilePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406E1F5202A3211007FD530 /* ProfilePicture.swift */; };
 		8408A87D1FF6A6E6006C7960 /* NewRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8408A87C1FF6A6E6006C7960 /* NewRecipeViewController.swift */; };
 		841476231FE82CA900DC8D1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841476221FE82CA900DC8D1D /* AppDelegate.swift */; };
 		841476281FE82CA900DC8D1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841476261FE82CA900DC8D1D /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		03A6E7EB61949A17AECAB4E0 /* Pods_InstaFood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaFood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		344AAC3BA7703357383F89D0 /* Pods-InstaFood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaFood.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstaFood/Pods-InstaFood.debug.xcconfig"; sourceTree = "<group>"; };
+		8406E1F5202A3211007FD530 /* ProfilePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicture.swift; sourceTree = "<group>"; };
 		8408A87C1FF6A6E6006C7960 /* NewRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecipeViewController.swift; sourceTree = "<group>"; };
 		8414761F1FE82CA900DC8D1D /* InstaFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		841476221FE82CA900DC8D1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				841476261FE82CA900DC8D1D /* Main.storyboard */,
 				8414762B1FE82CA900DC8D1D /* LaunchScreen.storyboard */,
 				841D90ED1FFF9CE500629ECF /* HeaderView.swift */,
+				8406E1F5202A3211007FD530 /* ProfilePicture.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				8447702E1FEED14A002BFD0A /* ForgetPasswordViewController.swift in Sources */,
 				849429C8200256090064BE48 /* MyRecipeCell.swift in Sources */,
 				841D90EE1FFF9CE500629ECF /* HeaderView.swift in Sources */,
+				8406E1F6202A3211007FD530 /* ProfilePicture.swift in Sources */,
 				84279AD5202634AE00901F40 /* UserData.swift in Sources */,
 				84279AD32026306800901F40 /* UserConnection.swift in Sources */,
 				841476231FE82CA900DC8D1D /* AppDelegate.swift in Sources */,

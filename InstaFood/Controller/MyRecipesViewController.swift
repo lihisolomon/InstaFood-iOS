@@ -11,7 +11,7 @@ import SwipeCellKit
 
 class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, SwipeTableViewCellDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
-    @IBOutlet var profileImage: UIImageView!
+    @IBOutlet var profileImage: ProfilePicture!
     @IBOutlet var profileNameLabel: UILabel!
     @IBOutlet var myRecipes: UITableView!
 
@@ -118,11 +118,14 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
             RecipeData.recipeDataInstance.removeRecipe(self.recipes![indexPath.row], self.removeSuccess, self.removeFaild)
         }
         deleteAction.image = UIImage(named: "delete")
+        
         return [deleteAction]
     }
     //Mark: Delete from table view
     func removeSuccess(){
-        self.myRecipes.reloadData()
+        DispatchQueue.main.async {
+            self.myRecipes.reloadData()
+        }
     }
     func removeFaild(){
         print ("error")
