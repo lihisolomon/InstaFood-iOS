@@ -16,6 +16,7 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var numberOfLikes: UILabel!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var writerName: UILabel!
+    @IBOutlet weak var userProfile: ProfilePicture!
     
     var post:Recipe!{
         didSet{
@@ -25,6 +26,9 @@ class PostCell: UITableViewCell {
     // MARK: - update ui view
     func updateUI(){
         self.RecipeImage.image = nil
+        self.userProfile.image = nil
+        
+        UserData.userDataInstance.getProfileImage(uploadImageprofileSuccess)
         writerName.text = post.fullName
         recipeName.text = post.title
         
@@ -45,4 +49,11 @@ class PostCell: UITableViewCell {
         postsImagesCache.setObject(imageToCache, forKey: self.recipeName.text as AnyObject)
         self.RecipeImage.image = imageToCache
     }
+    
+    //MARK: upload user's image profile
+    func uploadImageprofileSuccess(image: UIImage){
+        self.userProfile.image = image
+    }
+    
+    
 }

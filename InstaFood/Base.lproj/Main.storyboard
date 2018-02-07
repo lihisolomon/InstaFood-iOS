@@ -727,17 +727,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RML-lF-eKr" customClass="HeaderView" customModule="InstaFood" customModuleProvider="target">
-                                                    <rect key="frame" x="5" y="5" width="404" height="164.66666666666666"/>
+                                                    <rect key="frame" x="5" y="5" width="330" height="165"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aUf-Sa-hHW">
-                                                            <rect key="frame" x="116" y="27" width="165" height="107"/>
+                                                            <rect key="frame" x="114" y="27" width="165" height="107"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="aUf-Sa-hHW" secondAttribute="height" multiplier="165:107" id="ijg-t5-KWd"/>
                                                                 <constraint firstAttribute="width" constant="165" id="qzt-ob-SBc"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Hi-cR-LK4">
-                                                            <rect key="frame" x="75" y="139" width="254" height="28.666666666666657"/>
+                                                            <rect key="frame" x="75" y="139" width="180" height="20.333333333333343"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="8Hi-cR-LK4" secondAttribute="height" multiplier="115:13" id="JNw-lM-iOe"/>
                                                             </constraints>
@@ -746,7 +746,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mt4-rl-dvB">
-                                                            <rect key="frame" x="289" y="62" width="110" height="38"/>
+                                                            <rect key="frame" x="287" y="62" width="110" height="38"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="110" id="6zt-ta-MLY"/>
                                                                 <constraint firstAttribute="width" secondItem="mt4-rl-dvB" secondAttribute="height" multiplier="55:19" id="Usl-jh-eMM"/>
@@ -765,16 +765,29 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vNf-3d-RbM" customClass="ProfilePicture" customModule="InstaFood" customModuleProvider="target">
+                                                            <rect key="frame" x="16" y="39" width="79" height="95"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="79" id="Gp9-Mu-MnD"/>
+                                                                <constraint firstAttribute="width" secondItem="vNf-3d-RbM" secondAttribute="height" multiplier="79:95" id="QOH-OF-vom"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
+                                                        <constraint firstItem="aUf-Sa-hHW" firstAttribute="leading" secondItem="vNf-3d-RbM" secondAttribute="trailing" constant="19" id="408-wg-sKS"/>
                                                         <constraint firstItem="mt4-rl-dvB" firstAttribute="top" secondItem="RML-lF-eKr" secondAttribute="top" constant="62" id="9OY-xh-YKr"/>
+                                                        <constraint firstItem="8Hi-cR-LK4" firstAttribute="top" secondItem="vNf-3d-RbM" secondAttribute="bottom" constant="5" id="AO0-3k-5Lb"/>
                                                         <constraint firstAttribute="trailing" secondItem="8Hi-cR-LK4" secondAttribute="trailing" constant="75" id="Bpq-pk-50b"/>
+                                                        <constraint firstItem="vNf-3d-RbM" firstAttribute="leading" secondItem="RML-lF-eKr" secondAttribute="leading" constant="16" id="IEb-CF-T6z"/>
                                                         <constraint firstItem="mt4-rl-dvB" firstAttribute="leading" secondItem="aUf-Sa-hHW" secondAttribute="trailing" constant="8" id="La6-ZU-WEq"/>
                                                         <constraint firstItem="gtM-hb-GAZ" firstAttribute="leading" secondItem="RML-lF-eKr" secondAttribute="leading" constant="5" id="Pig-wO-8L1"/>
                                                         <constraint firstItem="gtM-hb-GAZ" firstAttribute="top" secondItem="RML-lF-eKr" secondAttribute="top" id="VYQ-sI-2CP"/>
                                                         <constraint firstItem="aUf-Sa-hHW" firstAttribute="top" secondItem="gtM-hb-GAZ" secondAttribute="bottom" constant="6" id="YWr-vm-Yf9"/>
                                                         <constraint firstItem="8Hi-cR-LK4" firstAttribute="top" secondItem="aUf-Sa-hHW" secondAttribute="bottom" constant="5" id="gbY-lW-EbV"/>
+                                                        <constraint firstItem="vNf-3d-RbM" firstAttribute="leading" secondItem="RML-lF-eKr" secondAttribute="leading" constant="16" id="hEc-Hc-y44"/>
+                                                        <constraint firstItem="vNf-3d-RbM" firstAttribute="top" secondItem="gtM-hb-GAZ" secondAttribute="bottom" constant="18" id="oB4-BJ-DEV"/>
+                                                        <constraint firstItem="vNf-3d-RbM" firstAttribute="top" secondItem="gtM-hb-GAZ" secondAttribute="bottom" constant="18" id="pV2-oT-oxV"/>
                                                         <constraint firstAttribute="trailing" secondItem="mt4-rl-dvB" secondAttribute="trailing" constant="5" id="pd4-VD-pjU"/>
                                                         <constraint firstItem="8Hi-cR-LK4" firstAttribute="leading" secondItem="RML-lF-eKr" secondAttribute="leading" constant="75" id="pfZ-Dj-uY5"/>
                                                     </constraints>
@@ -791,6 +804,7 @@
                                             <outlet property="RecipeImage" destination="aUf-Sa-hHW" id="lhZ-dM-we2"/>
                                             <outlet property="numberOfLikes" destination="mt4-rl-dvB" id="x0x-M8-4Qg"/>
                                             <outlet property="recipeName" destination="8Hi-cR-LK4" id="ig3-I3-hsE"/>
+                                            <outlet property="userProfile" destination="vNf-3d-RbM" id="a02-Vy-qf3"/>
                                             <outlet property="writerName" destination="gtM-hb-GAZ" id="6ag-rt-sKP"/>
                                         </connections>
                                     </tableViewCell>
@@ -1215,6 +1229,6 @@
         <image name="UserImage" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mFz-QK-4kz"/>
+        <segue reference="P7i-w3-HZg"/>
     </inferredMetricsTieBreakers>
 </document>
