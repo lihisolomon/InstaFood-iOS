@@ -87,8 +87,8 @@ class UserData {
     }
     
     //MARK: get profile image
-    func getProfileImage(_ uploadImageSuccess:@escaping (UIImage)->()){
-        let uid = UserConnection.userInstance.getCurrentUID()
+    func getProfileImage(_ uid: String ,_ uploadImageSuccess:@escaping (UIImage)->()){
+        //let uid = UserConnection.userInstance.getCurrentUID()
         
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: {(snapshot) in
             let value = snapshot.value as? NSDictionary

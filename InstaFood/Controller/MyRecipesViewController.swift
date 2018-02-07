@@ -23,7 +23,7 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
         
         //get user info
         UserData.userDataInstance.getCurrentFullName(uploadFullName)
-        UserData.userDataInstance.getProfileImage(uploadImageSuccess)
+        UserData.userDataInstance.getProfileImage(UserConnection.userInstance.getCurrentUID(),uploadImageSuccess)
         
         //set table view
         self.myRecipes.delegate = self

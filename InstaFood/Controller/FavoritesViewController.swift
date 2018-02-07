@@ -21,7 +21,7 @@ class FavoritesViewController: UIViewController,UITableViewDelegate,UITableViewD
         //set table view
         self.favoritesTableView.delegate = self
         self.favoritesTableView.dataSource = self
-        
+        //insert recipes into the array
         self.fetchFavorites()
         self.favoritesTableView.rowHeight = UITableViewAutomaticDimension
         self.favoritesTableView.rowHeight = 175

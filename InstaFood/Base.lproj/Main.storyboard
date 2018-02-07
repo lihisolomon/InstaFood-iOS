@@ -765,8 +765,8 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vNf-3d-RbM" customClass="ProfilePicture" customModule="InstaFood" customModuleProvider="target">
-                                                            <rect key="frame" x="16" y="39" width="79" height="95"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vNf-3d-RbM" customClass="ProfilePicture" customModule="InstaFood" customModuleProvider="target">
+                                                            <rect key="frame" x="8" y="46" width="79" height="72"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="79" id="Gp9-Mu-MnD"/>
                                                                 <constraint firstAttribute="width" secondItem="vNf-3d-RbM" secondAttribute="height" multiplier="79:95" id="QOH-OF-vom"/>
@@ -1229,6 +1229,6 @@
         <image name="UserImage" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="P7i-w3-HZg"/>
+        <segue reference="gb9-Hm-s4V"/>
     </inferredMetricsTieBreakers>
 </document>

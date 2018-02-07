@@ -18,6 +18,7 @@ class ProfilePicture: UIImageView {
         layer.borderColor = UIColor.white.cgColor//black.cgColor
         layer.cornerRadius = frame.height / 2
         clipsToBounds = true
+        
     }
 }
 

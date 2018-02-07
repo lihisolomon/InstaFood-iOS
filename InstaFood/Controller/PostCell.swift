@@ -28,11 +28,19 @@ class PostCell: UITableViewCell {
         self.RecipeImage.image = nil
         self.userProfile.image = nil
         
-        UserData.userDataInstance.getProfileImage(uploadImageprofileSuccess)
+        //UserData.userDataInstance.getProfileImage(post.uid,uploadImageprofileSuccess)
         writerName.text = post.fullName
         recipeName.text = post.title
         
-        //check if have any image in the cache
+         //check if have any Profile image in the cache
+        if let imageFromCache = postsImagesCache.object(forKey: self.post.uid as AnyObject){
+            self.userProfile.image = imageFromCache as! UIImage
+        }
+        else{
+           UserData.userDataInstance.getProfileImage(post.uid,uploadImageprofileSuccess)
+        }
+        
+        //check if have any recipe image in the cache
         if let imageFromCache = postsImagesCache.object(forKey: self.recipeName.text as AnyObject){
             self.RecipeImage.image = imageFromCache as! UIImage
         }
@@ -52,7 +60,9 @@ class PostCell: UITableViewCell {
     
     //MARK: upload user's image profile
     func uploadImageprofileSuccess(image: UIImage){
-        self.userProfile.image = image
+        let imageToCache  = image
+        postsImagesCache.setObject(imageToCache, forKey: self.post.uid as AnyObject)
+        self.userProfile.image = imageToCache
     }
     
     
