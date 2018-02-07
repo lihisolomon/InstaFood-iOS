@@ -10,7 +10,7 @@ import UIKit
 
 class PostCell: UITableViewCell {
 
-    let postsImagesCache = NSCache<AnyObject, AnyObject>()
+    static let postsImagesCache = NSCache<AnyObject, AnyObject>()
     
     @IBOutlet weak var RecipeImage: UIImageView!
     @IBOutlet weak var numberOfLikes: UILabel!
@@ -33,7 +33,7 @@ class PostCell: UITableViewCell {
         recipeName.text = post.title
         
          //check if have any Profile image in the cache
-        if let imageFromCache = postsImagesCache.object(forKey: self.post.uid as AnyObject){
+        if let imageFromCache = PostCell.postsImagesCache.object(forKey: self.post.uid as AnyObject){
             self.userProfile.image = imageFromCache as! UIImage
         }
         else{
@@ -41,7 +41,7 @@ class PostCell: UITableViewCell {
         }
         
         //check if have any recipe image in the cache
-        if let imageFromCache = postsImagesCache.object(forKey: self.recipeName.text as AnyObject){
+        if let imageFromCache = PostCell.postsImagesCache.object(forKey: self.recipeName.text as AnyObject){
             self.RecipeImage.image = imageFromCache as! UIImage
         }
         else{
@@ -54,14 +54,14 @@ class PostCell: UITableViewCell {
     func uploadImageSuccess(image: UIImage)->(){
         //save image to cache
         let imageToCache  = image
-        postsImagesCache.setObject(imageToCache, forKey: self.recipeName.text as AnyObject)
+        PostCell.postsImagesCache.setObject(imageToCache, forKey: self.recipeName.text as AnyObject)
         self.RecipeImage.image = imageToCache
     }
     
     //MARK: upload user's image profile
     func uploadImageprofileSuccess(image: UIImage){
         let imageToCache  = image
-        postsImagesCache.setObject(imageToCache, forKey: self.post.uid as AnyObject)
+        PostCell.postsImagesCache.setObject(imageToCache, forKey: self.post.uid as AnyObject)
         self.userProfile.image = imageToCache
     }
     

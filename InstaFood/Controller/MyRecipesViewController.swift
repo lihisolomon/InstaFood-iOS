@@ -60,6 +60,7 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
         pickerController.delegate = self
         pickerController.allowsEditing = true
         ScreenHandler.screenInstance.pickPicture (self,pickerController)
+        
     }
     // MARK: pick image
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -68,6 +69,8 @@ class MyRecipesViewController: UIViewController,UITableViewDelegate,UITableViewD
         }
         picker.dismiss(animated: true, completion: nil);
         UserData.userDataInstance.uploadUserProfile(self,profileImage.image!)
+        PostCell.postsImagesCache.setObject(profileImage.image!, forKey: UserConnection.userInstance.getCurrentUID()  as AnyObject)
+    
     }
     
     //Mark: recipe Choosen- need to view the full Recipe details
